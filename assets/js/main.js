@@ -1,9 +1,9 @@
 const toggle = document.querySelector('.mobile-toggle');
-const nav = document.querySelector('header nav');
+const nav = document.getElementById('main-nav');
 
 if (toggle && nav) {
   toggle.addEventListener('click', () => {
-    nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
-    toggle.setAttribute('aria-expanded', nav.style.display === 'block' ? 'true' : 'false');
+    const isOpen = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 }

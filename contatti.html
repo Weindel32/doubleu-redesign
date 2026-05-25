@@ -4,14 +4,146 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DOUBLEU | Contatti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <header class="topbar"><div class="container header-wrap"><a class="brand" href="index.html"><h1>DOUBLEU</h1><small>TENNIS APPAREL</small></a></div></header>
-  <main class="container hero">
-    <div class="eyebrow">Contatti</div>
-    <h2>Parliamo del tuo progetto DOUBLEU.</h2>
-    <p>hello@doubleu-italy.com</p>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="container">
+      <div class="header-top">
+        <a class="brand" href="index.html">
+          <span class="brand-name">DOUBLEU</span>
+          <span class="brand-sub">Tennis Apparel</span>
+        </a>
+
+        <button class="mobile-toggle" aria-expanded="false" aria-label="Apri menu">&#9776;</button>
+
+        <nav class="header-nav" id="main-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="club.html">Per i Club</a></li>
+            <li><a href="capsule.html">Capsule</a></li>
+            <li><a href="#">Made in Italy</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a class="active" href="contatti.html">Contatti</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn primary" href="club.html">Avvia un progetto club</a>
+          <a class="btn" href="capsule.html">Esplora le capsule</a>
+        </div>
+      </div>
+      <div class="header-lang"><a href="#">IT</a> | <a href="#">EN</a> | <a href="#">DE</a></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="contatti-grid">
+
+        <!-- LEFT: Info -->
+        <div class="contatti-info">
+          <div class="eyebrow">Contatti</div>
+          <h2>Parliamo del tuo progetto DOUBLEU.</h2>
+          <p>Che tu stia pensando a una nuova collezione per il tuo club o voglia saperne di più sulle capsule, siamo pronti ad ascoltarti.</p>
+
+          <div class="contact-item">
+            <div class="contact-item-label">Email</div>
+            <a href="mailto:hello@doubleu-italy.com">hello@doubleu-italy.com</a>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-label">Telefono</div>
+            <a href="tel:+390000000000">+39 000 000 0000</a>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-label">Sede</div>
+            <span>Italia</span>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-label">Lingua</div>
+            <span>Italiano &middot; English &middot; Deutsch</span>
+          </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="contatti-form">
+          <form>
+            <div class="form-group">
+              <label for="nome">Nome e cognome</label>
+              <input type="text" id="nome" name="nome" placeholder="Il tuo nome" autocomplete="name" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="La tua email" autocomplete="email" />
+            </div>
+
+            <div class="form-group">
+              <label for="club">Nome del club / organizzazione</label>
+              <input type="text" id="club" name="club" placeholder="Tennis Club..." />
+            </div>
+
+            <div class="form-group">
+              <label for="tipo">Tipo di richiesta</label>
+              <select id="tipo" name="tipo">
+                <option value="">Seleziona...</option>
+                <option value="club">Collezione Club</option>
+                <option value="capsule">Capsule WFOX / SURFACES</option>
+                <option value="info">Informazioni generali</option>
+                <option value="altro">Altro</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="messaggio">Messaggio</label>
+              <textarea id="messaggio" name="messaggio" placeholder="Raccontaci del tuo club e del progetto che hai in mente..."></textarea>
+            </div>
+
+            <button type="submit" class="btn primary" style="width:100%;text-align:center;font-size:14px;padding:14px;">
+              Invia la richiesta
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- QUOTE BAND -->
+    <div class="quote-band">
+      <div class="quote-band-inner">
+        <span class="quote-mark">&#8220;</span>
+        <p>Costruire l'identità di un club significa capire chi siete prima ancora di disegnare.</p>
+        <span class="quote-mark" style="transform:rotate(180deg);display:inline-block;">&#8220;</span>
+      </div>
+    </div>
   </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>
+        <a class="brand" href="index.html" style="display:flex;flex-direction:column;gap:2px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;letter-spacing:2px;">DOUBLEU</span>
+          <span style="font-size:8px;letter-spacing:3px;color:#6a8090;text-transform:uppercase;">Tennis Apparel</span>
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Termini e condizioni</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+      <div class="footer-lang"><a href="#">IT</a> | <a href="#">EN</a> | <a href="#">DE</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

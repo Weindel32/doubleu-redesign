@@ -104,8 +104,9 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   justify-content: center;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
+  font-size: 8px;
   font-weight: 600;
+  letter-spacing: 0.5px;
   flex-shrink: 0;
 }
 

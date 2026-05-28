@@ -315,8 +315,8 @@ a { text-decoration: none; color: inherit; }
 }
 
 .icon-card img {
-  width: 44px;
-  height: 44px;
+  width: 55px;
+  height: 55px;
   object-fit: contain;
   flex-shrink: 0;
 }

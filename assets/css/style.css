@@ -258,7 +258,7 @@ a { text-decoration: none; color: inherit; }
 .mondo-card-img .ph { min-height: 300px; }
 
 /* Club card */
-.mondo-card.club-card { background: var(--dw-navy); }
+.mondo-card.club-card { background: var(--dw-navy); border: 1px solid transparent; }
 .mondo-card.club-card .w-emblem { color: rgba(255,255,255,0.55); margin-bottom: 14px; }
 .mondo-card.club-card h3 {
   font-family: 'Cormorant Garamond', serif;

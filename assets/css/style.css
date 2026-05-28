@@ -319,7 +319,6 @@ a { text-decoration: none; color: inherit; }
   height: 80px;
   object-fit: contain;
   flex-shrink: 0;
-  mix-blend-mode: multiply;
 }
 
 .icon-card-label {

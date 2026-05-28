@@ -254,7 +254,8 @@ a { text-decoration: none; color: inherit; }
   justify-content: center;
 }
 
-.mondo-card-img { overflow: hidden; }
+.mondo-card-img { overflow: hidden; min-height: 300px; }
+.mondo-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .mondo-card-img .ph { min-height: 300px; }
 
 /* Club card */

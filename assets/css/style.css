@@ -435,6 +435,13 @@ a { text-decoration: none; color: inherit; }
   stroke-linejoin: round;
 }
 
+.made-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .made-item-label {
   font-size: 10px;
   font-weight: 700;

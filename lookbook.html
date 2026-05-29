@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
     .lookbook-hero {
-      padding: 80px 0 48px;
+      padding: 80px 0 40px;
       text-align: center;
     }
     .lookbook-hero h1 {
@@ -28,19 +28,57 @@
       margin: 0 auto;
       line-height: 1.7;
     }
-    .lookbook-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+    .lookbook-context {
+      text-align: center;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #999;
+      padding: 0 0 40px;
+    }
+
+    /* Layout editoriale */
+    .lookbook-section {
+      padding-bottom: 12px;
+    }
+    .lookbook-block {
+      display: flex;
       gap: 12px;
-      padding-bottom: 80px;
+      margin-bottom: 12px;
     }
-    .lookbook-grid .item-tall {
-      grid-row: span 2;
+    .lookbook-block:last-child {
+      margin-bottom: 0;
     }
+
+    /* Blocco A e C: grande sinistra, due piccole destra */
+    .lb-col-large {
+      flex: 0 0 65%;
+    }
+    .lb-col-small {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Blocco B: due piccole sinistra, grande destra */
+    .lb-col-small-left {
+      flex: 0 0 35%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .lb-col-large-right {
+      flex: 1;
+    }
+
     .lookbook-item {
       overflow: hidden;
       background: #f0ece6;
       cursor: pointer;
+      aspect-ratio: 3 / 4;
     }
     .lookbook-item img {
       width: 100%;
@@ -48,13 +86,11 @@
       object-fit: cover;
       display: block;
       transition: transform 0.4s ease;
-      min-height: 320px;
     }
     .lookbook-item:hover img {
       transform: scale(1.03);
     }
     .lookbook-item.placeholder {
-      min-height: 320px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -64,6 +100,28 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #b0a090;
+    }
+
+    /* Nelle colonne a due celle, ogni item occupa metà altezza del grande */
+    .lb-col-small .lookbook-item,
+    .lb-col-small-left .lookbook-item {
+      flex: 1;
+      aspect-ratio: unset;
+    }
+
+    /* CTA section */
+    .lookbook-cta {
+      padding: 80px 0;
+      background: #fff;
+      text-align: center;
+    }
+    .lookbook-cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 600;
+      color: var(--dw-navy);
+      margin-bottom: 32px;
+      letter-spacing: 0.02em;
     }
 
     /* Lightbox */
@@ -95,13 +153,25 @@
     }
 
     @media (max-width: 768px) {
-      .lookbook-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+      .lookbook-block {
+        flex-direction: column;
       }
-      .lookbook-grid .item-tall { grid-row: span 1; }
-      .lookbook-item img,
-      .lookbook-item.placeholder { min-height: 200px; }
+      .lb-col-large,
+      .lb-col-small,
+      .lb-col-small-left,
+      .lb-col-large-right {
+        flex: unset;
+        width: 100%;
+      }
+      .lookbook-item {
+        aspect-ratio: 3 / 4;
+        width: 100%;
+      }
+      .lb-col-small .lookbook-item,
+      .lb-col-small-left .lookbook-item {
+        aspect-ratio: 3 / 4;
+        flex: unset;
+      }
     }
   </style>
 </head>
@@ -149,46 +219,70 @@
       </div>
     </section>
 
-    <section>
+    <div class="lookbook-context">Collezione 2024 — Tennis · Padel · Pickleball</div>
+
+    <section class="lookbook-section">
       <div class="container">
-        <div class="lookbook-grid">
 
-          <!-- Le immagini vanno inserite qui sotto -->
-          <!-- Esempio con immagine reale:
-          <div class="lookbook-item">
-            <img src="assets/images/lookbook/foto-01.jpg" alt="DOUBLEU Lookbook" loading="lazy">
+        <!-- Blocco A: grande sinistra (65%), due piccole destra (35%) -->
+        <div class="lookbook-block">
+          <div class="lb-col-large">
+            <div class="lookbook-item placeholder">
+              <span>Foto 01</span>
+            </div>
           </div>
-          -->
-
-          <div class="lookbook-item placeholder item-tall">
-            <span>Foto 01</span>
+          <div class="lb-col-small">
+            <div class="lookbook-item placeholder">
+              <span>Foto 02</span>
+            </div>
+            <div class="lookbook-item placeholder">
+              <span>Foto 03</span>
+            </div>
           </div>
-          <div class="lookbook-item placeholder">
-            <span>Foto 02</span>
-          </div>
-          <div class="lookbook-item placeholder">
-            <span>Foto 03</span>
-          </div>
-          <div class="lookbook-item placeholder">
-            <span>Foto 04</span>
-          </div>
-          <div class="lookbook-item placeholder">
-            <span>Foto 05</span>
-          </div>
-          <div class="lookbook-item placeholder item-tall">
-            <span>Foto 06</span>
-          </div>
-          <div class="lookbook-item placeholder">
-            <span>Foto 07</span>
-          </div>
-          <div class="lookbook-item placeholder">
-            <span>Foto 08</span>
-          </div>
-          <div class="lookbook-item placeholder">
-            <span>Foto 09</span>
-          </div>
-
         </div>
+
+        <!-- Blocco B: due piccole sinistra (35%), grande destra (65%) -->
+        <div class="lookbook-block">
+          <div class="lb-col-small-left">
+            <div class="lookbook-item placeholder">
+              <span>Foto 04</span>
+            </div>
+            <div class="lookbook-item placeholder">
+              <span>Foto 05</span>
+            </div>
+          </div>
+          <div class="lb-col-large-right">
+            <div class="lookbook-item placeholder">
+              <span>Foto 06</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blocco C: uguale ad A — grande sinistra, due piccole destra -->
+        <div class="lookbook-block">
+          <div class="lb-col-large">
+            <div class="lookbook-item placeholder">
+              <span>Foto 07</span>
+            </div>
+          </div>
+          <div class="lb-col-small">
+            <div class="lookbook-item placeholder">
+              <span>Foto 08</span>
+            </div>
+            <div class="lookbook-item placeholder">
+              <span>Foto 09</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="lookbook-cta">
+      <div class="container">
+        <h2>Vuoi una collezione esclusiva per il tuo club?</h2>
+        <a class="btn primary" href="club.html">Avvia un progetto</a>
       </div>
     </section>
 

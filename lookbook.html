@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DOUBLEU | Lookbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .lookbook-hero {
+      padding: 80px 0 48px;
+      text-align: center;
+    }
+    .lookbook-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 600;
+      color: var(--dw-navy);
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+    }
+    .lookbook-hero p {
+      font-size: 15px;
+      color: #666;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .lookbook-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding-bottom: 80px;
+    }
+    .lookbook-grid .item-tall {
+      grid-row: span 2;
+    }
+    .lookbook-item {
+      overflow: hidden;
+      background: #f0ece6;
+      cursor: pointer;
+    }
+    .lookbook-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+      min-height: 320px;
+    }
+    .lookbook-item:hover img {
+      transform: scale(1.03);
+    }
+    .lookbook-item.placeholder {
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lookbook-item.placeholder span {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #b0a090;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      color: #fff;
+      font-size: 32px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+
+    @media (max-width: 768px) {
+      .lookbook-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .lookbook-grid .item-tall { grid-row: span 1; }
+      .lookbook-item img,
+      .lookbook-item.placeholder { min-height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="container">
+      <div class="header-top">
+        <a class="brand" href="index.html">
+          <span class="brand-name">DOUBLEU</span>
+          <span class="brand-sub">Tennis Apparel</span>
+        </a>
+
+        <button class="mobile-toggle" aria-expanded="false" aria-label="Apri menu">&#9776;</button>
+
+        <nav class="header-nav" id="main-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="club.html">Per i Club</a></li>
+            <li><a href="capsule.html">Capsule</a></li>
+            <li><a href="#">Made in Italy</a></li>
+            <li><a class="active" href="lookbook.html">Lookbook</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="contatti.html">Contatti</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn primary" href="club.html">Avvia un progetto club</a>
+          <a class="btn" href="capsule.html">Esplora le capsule</a>
+        </div>
+      </div>
+      <div class="header-lang"><a href="#">IT</a> | <a href="#">EN</a> | <a href="#">DE</a></div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="lookbook-hero">
+      <div class="container">
+        <div class="eyebrow">Lookbook</div>
+        <h1>La visione DOUBLEU</h1>
+        <p>Abbigliamento da tennis, padel e pickleball progettato e prodotto in Italia. Stile, identità, qualità.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="lookbook-grid">
+
+          <!-- Le immagini vanno inserite qui sotto -->
+          <!-- Esempio con immagine reale:
+          <div class="lookbook-item">
+            <img src="assets/images/lookbook/foto-01.jpg" alt="DOUBLEU Lookbook" loading="lazy">
+          </div>
+          -->
+
+          <div class="lookbook-item placeholder item-tall">
+            <span>Foto 01</span>
+          </div>
+          <div class="lookbook-item placeholder">
+            <span>Foto 02</span>
+          </div>
+          <div class="lookbook-item placeholder">
+            <span>Foto 03</span>
+          </div>
+          <div class="lookbook-item placeholder">
+            <span>Foto 04</span>
+          </div>
+          <div class="lookbook-item placeholder">
+            <span>Foto 05</span>
+          </div>
+          <div class="lookbook-item placeholder item-tall">
+            <span>Foto 06</span>
+          </div>
+          <div class="lookbook-item placeholder">
+            <span>Foto 07</span>
+          </div>
+          <div class="lookbook-item placeholder">
+            <span>Foto 08</span>
+          </div>
+          <div class="lookbook-item placeholder">
+            <span>Foto 09</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">&times;</button>
+    <img src="" alt="" id="lightbox-img">
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>
+        <a class="brand" href="index.html" style="display:flex;flex-direction:column;gap:2px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;letter-spacing:2px;">DOUBLEU</span>
+          <span style="font-size:8px;letter-spacing:3px;color:#6a8090;text-transform:uppercase;">Tennis Apparel</span>
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="club.html">Per i Club</a>
+        <a href="capsule.html">Capsule</a>
+        <a href="#">Made in Italy</a>
+        <a href="lookbook.html">Lookbook</a>
+        <a href="#">Case Studies</a>
+        <a href="contatti.html">Contatti</a>
+      </div>
+      <div class="footer-lang"><a href="#">IT</a> | <a href="#">EN</a> | <a href="#">DE</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    const items = document.querySelectorAll('.lookbook-item:not(.placeholder)');
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbClose = document.getElementById('lightbox-close');
+
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lightbox.classList.add('open');
+      });
+    });
+
+    lbClose.addEventListener('click', () => lightbox.classList.remove('open'));
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+  </script>
+</body>
+</html>

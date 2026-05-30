@@ -1402,6 +1402,80 @@ a { text-decoration: none; color: inherit; }
 
 .csd-result-card p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
 
+/* Hero motto */
+.csd-hero-motto {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--dw-muted);
+  margin-top: 14px;
+  letter-spacing: 0.3px;
+}
+
+/* Lancio */
+.csd-launch-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.csd-launch-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 600;
+  color: var(--dw-navy);
+  line-height: 1.1;
+  margin: 16px 0 20px;
+}
+
+.csd-launch-content p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.75;
+}
+
+.csd-launch-img { border-radius: 6px; overflow: hidden; }
+.csd-launch-img .ph { min-height: 360px; }
+.csd-launch-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Citazione */
+.csd-quote-section {
+  background: var(--dw-navy);
+  padding: 80px 0;
+}
+
+.csd-quote-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.csd-quote-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px;
+  line-height: 0.6;
+  color: var(--dw-bordeaux);
+  margin-bottom: 24px;
+}
+
+.csd-quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.6;
+  font-weight: 400;
+  margin-bottom: 28px;
+}
+
+.csd-quote-author {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
 /* ================================
    RESPONSIVE
    ================================ */

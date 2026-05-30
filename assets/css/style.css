@@ -662,6 +662,8 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  height: 130px;
+  flex-shrink: 0;
 }
 
 .product-card-overlay .w-emblem {

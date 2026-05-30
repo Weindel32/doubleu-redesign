@@ -648,6 +648,7 @@ a { text-decoration: none; color: inherit; }
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
+  align-items: start;
 }
 
 .product-card { display: flex; flex-direction: column; overflow: hidden; border-radius: 6px; }

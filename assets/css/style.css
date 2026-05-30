@@ -661,7 +661,9 @@ a { text-decoration: none; color: inherit; }
   color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   height: 130px;
   flex-shrink: 0;
 }

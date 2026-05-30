@@ -736,6 +736,13 @@ a { text-decoration: none; color: inherit; }
   stroke-linejoin: round;
   display: block;
 }
+.step-icon img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
 
 .step-title {
   font-size: 11px;

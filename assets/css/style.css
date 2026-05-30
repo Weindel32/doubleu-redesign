@@ -1121,6 +1121,18 @@ a { text-decoration: none; color: inherit; }
 .cs-item-img .ph { min-height: 420px; }
 .cs-item-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+.cs-item-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid var(--dw-border);
+  border-radius: 6px;
+  padding: 40px;
+  min-height: 420px;
+}
+.cs-item-logo img { max-width: 240px; max-height: 180px; object-fit: contain; display: block; }
+
 .cs-item-meta {
   display: flex;
   gap: 8px;

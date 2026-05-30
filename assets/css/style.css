@@ -1116,8 +1116,6 @@ a { text-decoration: none; color: inherit; }
   overflow: hidden;
   border-radius: 6px;
   min-height: 420px;
-  border: 2px solid var(--dw-bordeaux);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
 }
 
 .cs-item-img .ph { min-height: 420px; }

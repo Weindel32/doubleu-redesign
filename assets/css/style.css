@@ -1119,7 +1119,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .cs-item-img .ph { min-height: 420px; }
-.cs-item-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-item-img img { width: 100%; height: 420px; object-fit: cover; display: block; }
 
 .cs-club-logo {
   height: 40px;

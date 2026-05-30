@@ -1076,6 +1076,122 @@ a { text-decoration: none; color: inherit; }
 
 
 /* ================================
+   CASE STUDIES PAGE
+   ================================ */
+
+.cs-hero {
+  padding: 64px 0 48px;
+  border-bottom: 1px solid var(--dw-border);
+}
+
+.cs-hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 600;
+  color: var(--dw-navy);
+  line-height: 1.08;
+  margin-bottom: 16px;
+  max-width: 640px;
+}
+
+.cs-hero-sub {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.75;
+  max-width: 560px;
+}
+
+.cs-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 60px 0;
+}
+
+.cs-item--reverse { direction: rtl; }
+.cs-item--reverse > * { direction: ltr; }
+
+.cs-item-img {
+  overflow: hidden;
+  border-radius: 6px;
+  min-height: 420px;
+}
+
+.cs-item-img .ph { min-height: 420px; }
+.cs-item-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.cs-item-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.cs-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--dw-bordeaux);
+  border: 1px solid var(--dw-bordeaux);
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+
+.cs-item-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 600;
+  color: var(--dw-navy);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.cs-item-location {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dw-muted);
+  margin-bottom: 20px;
+}
+
+.cs-item-desc {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+
+.cs-item-results {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding: 24px 0;
+  border-top: 1px solid var(--dw-border);
+  border-bottom: 1px solid var(--dw-border);
+}
+
+.cs-result-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--dw-navy);
+  margin-bottom: 4px;
+}
+
+.cs-result-label {
+  font-size: 11px;
+  color: var(--dw-muted);
+  line-height: 1.4;
+}
+
+.cs-divider {
+  height: 1px;
+  background: var(--dw-border);
+}
+
+/* ================================
    RESPONSIVE
    ================================ */
 

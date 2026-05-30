@@ -1125,13 +1125,12 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
-  border: 1px solid var(--dw-border);
+  background: var(--dw-navy);
   border-radius: 6px;
-  padding: 40px;
+  padding: 60px;
   min-height: 420px;
 }
-.cs-item-logo img { max-width: 240px; max-height: 180px; object-fit: contain; display: block; }
+.cs-item-logo img { max-width: 280px; max-height: 220px; object-fit: contain; display: block; filter: brightness(0) invert(1); }
 
 .cs-item-meta {
   display: flex;

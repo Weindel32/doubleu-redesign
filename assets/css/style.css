@@ -1121,16 +1121,14 @@ a { text-decoration: none; color: inherit; }
 .cs-item-img .ph { min-height: 420px; }
 .cs-item-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.cs-item-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--dw-navy);
-  border-radius: 6px;
-  padding: 60px;
-  min-height: 420px;
+.cs-club-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 12px;
 }
-.cs-item-logo img { max-width: 280px; max-height: 220px; object-fit: contain; display: block; filter: brightness(0) invert(1); }
 
 .cs-item-meta {
   display: flex;

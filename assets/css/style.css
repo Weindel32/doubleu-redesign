@@ -188,6 +188,8 @@ a { text-decoration: none; color: inherit; }
    HERO
    ================================ */
 
+.hero-section { padding-top: 32px; }
+
 .hero-split {
   display: grid;
   grid-template-columns: 1fr 1fr;

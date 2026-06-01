@@ -218,8 +218,8 @@ a { text-decoration: none; color: inherit; }
   max-width: 400px;
 }
 
-.hero-visual { overflow: hidden; min-height: 420px; display: flex; align-items: center; justify-content: center; background: #f5f0eb; }
-.hero-visual img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.hero-visual { overflow: hidden; min-height: 420px; }
+.hero-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hero-visual .ph { min-height: 420px; }
 
 
@@ -377,7 +377,7 @@ a { text-decoration: none; color: inherit; }
 
 .capsule-big-card-img { overflow: hidden; position: relative; }
 .capsule-big-card-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
-.capsule-big-card.wfox .capsule-big-card-img img { object-position: center top; transform: scale(1.4); transform-origin: center top; }
+.capsule-big-card.wfox .capsule-big-card-img img { object-position: center center; transform: scale(1.4); transform-origin: center center; }
 .capsule-big-card-img .ph { min-height: 260px; }
 
 .capsule-big-card.surfaces { background: var(--dw-clay); }
@@ -768,12 +768,7 @@ a { text-decoration: none; color: inherit; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
-  align-items: stretch;
-}
-.visual-collection-grid > div:last-child {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: start;
 }
 
 .vc-heading {
@@ -936,7 +931,6 @@ a { text-decoration: none; color: inherit; }
 }
 
 .capsule-full-card-img { overflow: hidden; }
-.capsule-full-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .capsule-full-card-img .ph { min-height: 320px; }
 
 .capsule-full-card.surfaces { background: var(--dw-clay); }
@@ -999,13 +993,6 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-}
-
-.pezzi-product img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   border-radius: 4px;
 }
 

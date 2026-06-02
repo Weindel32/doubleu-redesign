@@ -936,6 +936,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .capsule-full-card-img { overflow: hidden; }
+.capsule-full-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .capsule-full-card-img .ph { min-height: 320px; }
 
 .capsule-full-card.surfaces { background: var(--dw-clay); }

@@ -996,6 +996,7 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   justify-content: center;
   border-radius: 4px;
+  overflow: hidden;
 }
 
 .pezzi-product img {

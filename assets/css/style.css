@@ -1005,7 +1005,8 @@ a { text-decoration: none; color: inherit; }
 .pezzi-product img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 6px;
   border-radius: 4px;
 }
 

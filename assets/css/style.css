@@ -1011,7 +1011,7 @@ a { text-decoration: none; color: inherit; }
 
 .pezzi-product img.contain {
   object-fit: contain;
-  background: #fff;
+  background: #3a2318;
 }
 
 .pezzi-product svg {

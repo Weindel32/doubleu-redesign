@@ -992,18 +992,20 @@ a { text-decoration: none; color: inherit; }
   aspect-ratio: 1;
   border: 1px solid var(--dw-border);
   background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  overflow: hidden;
 }
 
 .pezzi-product img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 4px;
 }
 
 .pezzi-product svg {

@@ -1289,6 +1289,7 @@ a { text-decoration: none; color: inherit; }
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--dw-muted);
+  margin-top: 16px;
 }
 
 .csd-hero-img { border-radius: 6px; overflow: hidden; }

@@ -1830,9 +1830,11 @@ a { text-decoration: none; color: inherit; }
   opacity: 0.75;
 }
 
-.gc-qs-icon svg {
+.gc-qs-icon svg,
+.gc-qs-icon img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .gc-qs-label {

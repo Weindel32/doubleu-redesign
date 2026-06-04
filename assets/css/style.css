@@ -1535,6 +1535,24 @@ a { text-decoration: none; color: inherit; }
   .hero-content { padding: 48px 0 32px; }
   .hero-content h2 { font-size: 36px; }
 
+  .cs-hero { padding: 40px 0 32px; }
+  .cs-hero-title { font-size: 36px; }
+  .cs-item,
+  .cs-item--link {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 40px 0;
+  }
+  .cs-item--reverse { direction: ltr; }
+  .cs-item-img {
+    min-height: auto;
+    margin-bottom: 24px;
+  }
+  .cs-item-img img { height: 260px; }
+  .cs-item-img .ph { min-height: 220px; }
+  .cs-item-title { font-size: 32px; }
+  .cs-item-results { flex-wrap: wrap; gap: 16px; }
+
   .due-mondi-grid { grid-template-columns: 1fr; }
   .mondo-card { grid-template-columns: 1fr; }
   .mondo-card-img .ph { min-height: 180px; }
@@ -1557,6 +1575,12 @@ a { text-decoration: none; color: inherit; }
   .club-icons-grid { grid-template-columns: repeat(2, 1fr); }
   .made-grid { grid-template-columns: repeat(2, 1fr); }
   .feature-cards-grid { grid-template-columns: 1fr; }
+  .cs-hero-title { font-size: 30px; }
+  .cs-item-title { font-size: 28px; }
+  .cs-club-logo { height: 32px; margin-right: 12px; }
+  .cs-item, .cs-item--link { padding: 32px 0; }
+  .cs-item-results { flex-direction: column; gap: 12px; }
+
   .quote-band p { font-size: 22px; }
   .cta-section h3 { font-size: 28px; }
   .pezzi-products { grid-template-columns: repeat(3, 1fr); }

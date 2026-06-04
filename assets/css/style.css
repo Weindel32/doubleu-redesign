@@ -432,8 +432,8 @@ a { text-decoration: none; color: inherit; }
 }
 
 .made-item svg {
-  width: 46px;
-  height: 46px;
+  width: 80px;
+  height: 80px;
   stroke: var(--dw-bordeaux);
   fill: none;
   stroke-width: 1.5;

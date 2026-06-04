@@ -12,6 +12,13 @@
   --dw-text:          #111111;
   --dw-muted:         #6a5d52;
   --dw-border:        #E4D7C7;
+
+  /* Alias usati nelle pagine legali e garment care */
+  --bordeaux:  #7A0F1B;
+  --ink:       #111111;
+  --slate:     #4a5568;
+  --surface:   #f8f5f0;
+  --border:    #e8e0d6;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1758,7 +1765,7 @@ a { text-decoration: none; color: inherit; }
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(36px, 6vw, 64px);
   font-weight: 600;
-  color: #fff;
+  color: var(--bordeaux);
   margin: 8px 0 16px;
   letter-spacing: 1px;
 }
@@ -1815,8 +1822,8 @@ a { text-decoration: none; color: inherit; }
 }
 
 .gc-qs-card {
-  background: #fdf6f6;
-  border: 1px solid rgba(122,20,20,0.12);
+  background: #fdf6f6 !important;
+  border: 1px solid rgba(122,20,20,0.18) !important;
   border-radius: 8px;
   padding: 22px 16px 18px;
   text-align: center;

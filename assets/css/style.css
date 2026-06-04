@@ -1567,6 +1567,20 @@ a { text-decoration: none; color: inherit; }
   .product-cards-grid { grid-template-columns: repeat(2, 1fr); }
   .pezzi-grid { grid-template-columns: 1fr; }
   .contatti-grid { grid-template-columns: 1fr; gap: 36px; }
+
+  /* Case study detail – mobile */
+  .csd-hero .container { grid-template-columns: 1fr; gap: 32px; }
+  .csd-title { font-size: 38px; }
+  .csd-hero-img .ph { min-height: 260px; }
+  .csd-intro-grid { grid-template-columns: 1fr; gap: 16px; }
+  .csd-challenge-grid { grid-template-columns: 1fr; }
+  .csd-solution-grid { grid-template-columns: 1fr; }
+  .csd-extra-grid { grid-template-columns: 1fr; gap: 24px; }
+  .csd-extra-divider { display: none; }
+  .csd-results-grid { grid-template-columns: repeat(2, 1fr); }
+  .csd-launch-grid { grid-template-columns: 1fr; gap: 32px; }
+  .csd-launch-title { font-size: 32px; }
+  .csd-quote-text { font-size: 20px; }
 }
 
 @media (max-width: 600px) {
@@ -1580,6 +1594,11 @@ a { text-decoration: none; color: inherit; }
   .cs-club-logo { height: 32px; margin-right: 12px; }
   .cs-item, .cs-item--link { padding: 32px 0; }
   .cs-item-results { flex-direction: column; gap: 12px; }
+
+  /* Case study detail – small screens */
+  .csd-title { font-size: 30px; }
+  .csd-launch-title { font-size: 26px; }
+  .csd-results-grid { grid-template-columns: 1fr; }
 
   .quote-band p { font-size: 22px; }
   .cta-section h3 { font-size: 28px; }

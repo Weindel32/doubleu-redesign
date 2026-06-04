@@ -1351,6 +1351,7 @@ a { text-decoration: none; color: inherit; }
   background: #fff;
 }
 
+.csd-solution-img { background: var(--dw-cream); }
 .csd-solution-img .ph { min-height: 260px; }
 .csd-solution-img img { width: 100%; height: 260px; object-fit: cover; display: block; }
 

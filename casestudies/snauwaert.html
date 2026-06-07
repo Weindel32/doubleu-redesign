@@ -8,6 +8,49 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    /* ── Snauwaert mobile layout overrides ── */
+
+    /* Hero: prevent title overflow on small screens */
+    @media (max-width: 700px) {
+      .csd-title { font-size: 36px; word-break: break-word; }
+      .csd-hero .container { padding-bottom: 24px; }
+      .csd-hero-img img { height: auto; }
+      .section { padding: 40px 0; }
+    }
+
+    /* Challenge grid: 4-col → 2-col → 1-col */
+    @media (max-width: 700px) {
+      .csd-challenge-grid { grid-template-columns: 1fr 1fr !important; gap: 16px; }
+    }
+    @media (max-width: 480px) {
+      .csd-challenge-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* Solution grid: 2-col → 1-col */
+    @media (max-width: 700px) {
+      .csd-solution-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* Results grid: 4-col → 2-col → 1-col (complements existing 860px rule) */
+    @media (max-width: 700px) {
+      .csd-results-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    }
+    @media (max-width: 480px) {
+      .csd-results-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Intro sidebar: keep readable on narrow screens */
+    @media (max-width: 700px) {
+      .csd-intro-grid { grid-template-columns: 1fr; gap: 12px; }
+    }
+
+    /* CTA band: stack on mobile */
+    @media (max-width: 600px) {
+      .cta-band { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+      .cta-band p { font-size: 20px; }
+    }
+  </style>
 </head>
 <body>
 

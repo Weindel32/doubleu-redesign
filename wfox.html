@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DOUBLEU | WFOX — Be Your Nature</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+/* ── WFOX Capsule styles ── */
+:root{
+  --wfox-navy:#0D1B2A;
+  --wfox-cream:#F5F0E8;
+  --wfox-gold:#C9A84C;
+  --wfox-warm:#FDFAF5;
+  --wfox-mid:#8B7355;
+  --wfox-fox:#D4742A;
+}
+
+/* HERO */
+.wfox-hero{min-height:100vh;display:grid;grid-template-columns:46% 54%;background:var(--wfox-navy)}
+.wfox-hl{display:flex;flex-direction:column;justify-content:center;padding:140px 56px 80px 80px;position:relative;z-index:2}
+.wfox-hl::after{content:"";position:absolute;right:0;top:15%;bottom:15%;width:1px;background:linear-gradient(to bottom,transparent,rgba(201,168,76,.2),transparent)}
+.wfox-hey{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--wfox-gold);margin-bottom:36px;display:flex;align-items:center;gap:14px}
+.wfox-hey::before{content:"";width:36px;height:1px;background:var(--wfox-gold);display:block}
+.wfox-hlogo{width:clamp(180px,22vw,280px);height:auto;display:block;margin-bottom:20px;filter:brightness(0) invert(1)}
+.wfox-htag{font-family:"Cormorant Garamond",serif;font-size:clamp(20px,2.2vw,28px);font-style:italic;color:rgba(245,240,232,.62);font-weight:300;margin-bottom:36px;line-height:1.25}
+.wfox-hdesc{font-size:13.5px;line-height:1.82;color:rgba(245,240,232,.45);max-width:380px;margin-bottom:48px;font-weight:300}
+.wfox-hact{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.wfox-gg{color:rgba(245,240,232,.45);font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(245,240,232,.18);padding-bottom:2px;transition:all .2s}
+.wfox-gg:hover{color:var(--wfox-cream);border-color:var(--wfox-cream)}
+.wfox-hr{position:relative;overflow:hidden;background:var(--wfox-navy)}
+.wfox-hr img{width:100%;height:100%;object-fit:cover;object-position:left center;display:block}
+.wfox-hr::before{content:"";position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(to right,var(--wfox-navy) 0%,rgba(13,27,42,.6) 60%,transparent 100%);z-index:1;pointer-events:none}
+.wfox-hbadge{position:absolute;bottom:72px;left:0;z-index:2;background:var(--wfox-gold);padding:11px 18px}
+.wfox-hbadge span{display:block;font-family:"Bebas Neue",sans-serif;font-size:11px;letter-spacing:.2em;color:var(--wfox-navy);line-height:1.55}
+.wfox-hscroll{position:absolute;bottom:32px;right:40px;z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px}
+.wfox-hscroll span{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:rgba(245,240,232,.22);writing-mode:vertical-rl}
+.wfox-sline{width:1px;height:44px;background:linear-gradient(to bottom,var(--wfox-gold),transparent);animation:wfox-sp 2s ease-in-out infinite}
+@keyframes wfox-sp{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* MARQUEE */
+.wfox-mq{background:var(--wfox-gold);padding:13px 0;overflow:hidden;white-space:nowrap}
+.wfox-mqi{display:inline-block;animation:wfox-tk 24s linear infinite}
+.wfox-mi{display:inline-block;margin:0 26px;font-family:"Bebas Neue",sans-serif;font-size:13px;letter-spacing:.22em;color:var(--wfox-navy)}
+.wfox-md{display:inline-block;width:4px;height:4px;background:var(--wfox-navy);border-radius:50%;vertical-align:middle;margin:0 8px}
+@keyframes wfox-tk{to{transform:translateX(-50%)}}
+
+/* PRODUCTS */
+.wfox-prods{background:var(--wfox-warm);padding:120px 80px}
+.wfox-stl{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:64px}
+.wfox-slbl{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--wfox-gold);margin-bottom:14px}
+.wfox-sttl{font-family:"Bebas Neue",sans-serif;font-size:clamp(52px,7vw,88px);line-height:.9}
+.wfox-snote{font-family:"Cormorant Garamond",serif;font-size:15px;font-style:italic;color:var(--wfox-mid);font-weight:300;text-align:right;max-width:180px;line-height:1.5}
+.wfox-pgrid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:3px}
+.wfox-pc{position:relative;overflow:hidden;background:var(--wfox-navy);cursor:pointer}
+.wfox-pc img{width:100%;height:100%;object-fit:cover;display:block;min-height:520px;transition:transform .7s ease}
+.wfox-pc:hover img{transform:scale(1.05)}
+.wfox-pco{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(13,27,42,.95) 65%);padding:80px 26px 26px}
+.wfox-ptag{position:absolute;top:16px;right:16px;background:var(--wfox-gold);color:var(--wfox-navy);font-size:9px;letter-spacing:.25em;text-transform:uppercase;padding:5px 11px;font-weight:500}
+.wfox-pn{font-family:"Bebas Neue",sans-serif;font-size:21px;letter-spacing:.08em;color:var(--wfox-cream);margin-bottom:4px}
+.wfox-pm{font-size:11px;color:rgba(245,240,232,.4);letter-spacing:.06em;margin-bottom:10px}
+.wfox-pcb{display:inline-block;margin-top:14px;background:var(--wfox-gold);color:var(--wfox-navy);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:9px 22px;text-decoration:none;font-weight:500;opacity:0;transform:translateY(8px);transition:all .3s .05s}
+.wfox-pc:hover .wfox-pcb{opacity:1;transform:translateY(0)}
+
+/* ABOUT */
+.wfox-about{display:grid;grid-template-columns:1fr 1fr}
+.wfox-av{position:relative;overflow:hidden;min-height:640px}
+.wfox-av img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .8s ease}
+.wfox-av:hover img{transform:scale(1.03)}
+.wfox-avlbl{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(13,27,42,.88));padding:60px 36px 28px}
+.wfox-avln{font-family:"Bebas Neue",sans-serif;font-size:19px;letter-spacing:.1em;color:var(--wfox-cream)}
+.wfox-avls{font-size:11px;color:rgba(245,240,232,.45);letter-spacing:.08em}
+.wfox-ac{background:var(--wfox-navy);padding:96px 80px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.wfox-ac::after{content:"W";font-family:"Bebas Neue",sans-serif;font-size:400px;color:rgba(255,255,255,.02);position:absolute;right:-50px;bottom:-70px;line-height:1;pointer-events:none}
+.wfox-atag{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--wfox-gold);margin-bottom:26px}
+.wfox-ah{font-family:"Cormorant Garamond",serif;font-size:clamp(38px,4vw,56px);color:var(--wfox-cream);line-height:1.1;font-weight:300;margin-bottom:26px}
+.wfox-ah em{color:var(--wfox-fox);font-style:italic}
+.wfox-ab{font-size:13.5px;line-height:1.85;color:rgba(245,240,232,.52);font-weight:300;max-width:380px;margin-bottom:44px}
+.wfox-pills{display:grid;grid-template-columns:1fr 1fr;gap:26px 22px}
+.wfox-pl{border-top:1px solid rgba(245,240,232,.09);padding-top:16px}
+.wfox-plt{font-family:"Bebas Neue",sans-serif;font-size:15px;letter-spacing:.08em;color:var(--wfox-cream);margin-bottom:6px}
+.wfox-pld{font-size:12px;line-height:1.6;color:rgba(245,240,232,.38);font-weight:300}
+
+/* GALLERY */
+.wfox-gal{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--wfox-navy)}
+.wfox-gi{position:relative;overflow:hidden}
+.wfox-gi img{width:100%;height:100%;object-fit:cover;display:block;min-height:400px;transition:transform .7s ease}
+.wfox-gi:hover img{transform:scale(1.04)}
+.wfox-gc{position:absolute;bottom:20px;left:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,.55);background:rgba(13,27,42,.55);padding:5px 12px;backdrop-filter:blur(4px)}
+
+/* STATS */
+.wfox-stats{background:var(--wfox-navy);display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(245,240,232,.05)}
+.wfox-st{padding:50px 44px;border-right:1px solid rgba(245,240,232,.05)}
+.wfox-st:last-child{border-right:none}
+.wfox-sn{font-family:"Bebas Neue",sans-serif;font-size:52px;color:var(--wfox-gold);line-height:1;margin-bottom:8px}
+.wfox-sl{font-size:11px;color:rgba(245,240,232,.32);letter-spacing:.12em;text-transform:uppercase;line-height:1.5}
+
+/* CTA */
+.wfox-ctab{background:var(--wfox-gold);padding:80px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+.wfox-ctab h2{font-family:"Bebas Neue",sans-serif;font-size:clamp(44px,5.5vw,70px);color:var(--wfox-navy);line-height:.92;margin-bottom:12px}
+.wfox-ctab p{font-size:14px;color:rgba(13,27,42,.58);font-weight:300;max-width:340px}
+.wfox-bn{background:var(--wfox-navy);color:var(--wfox-cream);padding:18px 52px;font-size:11px;letter-spacing:.25em;text-transform:uppercase;font-weight:500;text-decoration:none;border:2px solid var(--wfox-navy);transition:all .25s;white-space:nowrap;flex-shrink:0;display:inline-block}
+.wfox-bn:hover{background:transparent;color:var(--wfox-navy)}
+
+/* ANIM */
+.wfox-fu{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.wfox-fu.on{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .wfox-hero{grid-template-columns:1fr}
+  .wfox-hl{padding:96px 28px 56px;order:1}
+  .wfox-hr{height:75vw;max-height:520px;order:2}
+  .wfox-prods{padding:80px 20px}
+  .wfox-pgrid{grid-template-columns:1fr}
+  .wfox-about{grid-template-columns:1fr}
+  .wfox-ac{padding:72px 28px}
+  .wfox-gal{grid-template-columns:1fr}
+  .wfox-stats{grid-template-columns:1fr 1fr}
+  .wfox-st{padding:36px 16px}
+  .wfox-sn{font-size:clamp(18px,5vw,52px)}
+  .wfox-ctab{flex-direction:column;padding:60px 28px}
+}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="container">
+      <div class="header-top">
+        <a class="brand" href="index.html">
+          <span class="brand-name">DOUBLEU</span>
+          <span class="brand-sub">Tennis Apparel</span>
+        </a>
+
+        <button class="mobile-toggle" aria-expanded="false" aria-label="Apri menu">&#9776;</button>
+
+        <nav class="header-nav" id="main-nav">
+          <ul>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="club.html" data-i18n="nav.club">Per i Club</a></li>
+            <li><a class="active" href="capsule.html" data-i18n="nav.capsule">Capsule</a></li>
+            <li><a href="casestudies.html" data-i18n="nav.casestudies">Case Studies</a></li>
+            <li><a href="lookbook.html" data-i18n="nav.lookbook">Lookbook</a></li>
+            <li><a href="contatti.html" data-i18n="nav.contatti">Contatti</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn primary" href="club.html" data-i18n="btn.startProject">Avvia un progetto club</a>
+          <a class="btn" href="capsule.html" data-i18n="btn.exploreCapsule">Esplora le capsule</a>
+        </div>
+      </div>
+      <div class="header-lang"><a href="#" data-lang="it">IT</a> | <a href="#" data-lang="en">EN</a> | <a href="#" data-lang="de">DE</a></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="wfox-hero">
+      <div class="wfox-hl">
+        <div class="wfox-hey" data-i18n="wfox.hero.eyebrow">Capsule Limited Edition — SS 2026</div>
+        <img src="wfox/img/logo.png" alt="WFOX" class="wfox-hlogo">
+        <p class="wfox-htag" data-i18n="wfox.hero.tagline">Be Your Nature</p>
+        <p class="wfox-hdesc" data-i18n="wfox.hero.desc">Una capsule nata dall'incontro tra tennis club, identità contemporanea e produzione artigianale Made in Italy.<br><br>On court. Off court. Always W.</p>
+        <div class="wfox-hact">
+          <a href="#wfox-about" class="wfox-gg" data-i18n="wfox.hero.cta">Scopri il progetto →</a>
+        </div>
+      </div>
+      <div class="wfox-hr">
+        <img src="wfox/img/hero.jpg" alt="WFOX — coppia al tennis club">
+        <div class="wfox-hbadge">
+          <span data-i18n="wfox.hero.badge1">MADE IN ITALY</span>
+          <span data-i18n="wfox.hero.badge2">ARTIGIANALE</span>
+        </div>
+        <div class="wfox-hscroll"><div class="wfox-sline"></div><span>Scroll</span></div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="wfox-mq"><div class="wfox-mqi">
+      <span class="wfox-mi">ON COURT</span><span class="wfox-md"></span>
+      <span class="wfox-mi">OFF COURT</span><span class="wfox-md"></span>
+      <span class="wfox-mi">ALWAYS W</span><span class="wfox-md"></span>
+      <span class="wfox-mi">MADE IN ITALY</span><span class="wfox-md"></span>
+      <span class="wfox-mi">HERITAGE TENNIS</span><span class="wfox-md"></span>
+      <span class="wfox-mi">BE YOUR NATURE</span><span class="wfox-md"></span>
+      <span class="wfox-mi">WFOX BY DOUBLEU</span><span class="wfox-md"></span>
+      <span class="wfox-mi">MADE IN ITALY</span><span class="wfox-md"></span>
+      <span class="wfox-mi">ON COURT</span><span class="wfox-md"></span>
+      <span class="wfox-mi">OFF COURT</span><span class="wfox-md"></span>
+      <span class="wfox-mi">ALWAYS W</span><span class="wfox-md"></span>
+      <span class="wfox-mi">MADE IN ITALY</span><span class="wfox-md"></span>
+      <span class="wfox-mi">HERITAGE TENNIS</span><span class="wfox-md"></span>
+      <span class="wfox-mi">BE YOUR NATURE</span><span class="wfox-md"></span>
+      <span class="wfox-mi">WFOX BY DOUBLEU</span><span class="wfox-md"></span>
+      <span class="wfox-mi">MADE IN ITALY</span><span class="wfox-md"></span>
+    </div></div>
+
+    <!-- PRODUCTS -->
+    <section class="wfox-prods" id="wfox-prods">
+      <div class="wfox-stl wfox-fu">
+        <div>
+          <div class="wfox-slbl" data-i18n="wfox.products.label">La Collezione</div>
+          <h2 class="wfox-sttl" data-i18n="wfox.products.title">WFOX COLLECTION</h2>
+        </div>
+        <p class="wfox-snote" data-i18n="wfox.products.season">SS 2026 — Pezzi limitati.</p>
+      </div>
+      <div class="wfox-pgrid">
+
+        <div class="wfox-pc wfox-fu">
+          <div class="wfox-ptag" data-i18n="wfox.product1.tag">Bestseller</div>
+          <img src="wfox/img/crew.jpg" alt="WFOX Crewneck Navy">
+          <div class="wfox-pco">
+            <div class="wfox-pn" data-i18n="wfox.product1.name">WFOX Crewneck — Navy</div>
+            <div class="wfox-pm" data-i18n="wfox.product1.material">100% Cotone — Wfox On Court</div>
+            <a href="https://www.doubleutennis.com/eshop-wfox/p/sweatshirt-wfox-by-doubleu" class="wfox-pcb" target="_blank" data-i18n="wfox.product1.cta">Acquista</a>
+          </div>
+        </div>
+
+        <div class="wfox-pc wfox-fu">
+          <div class="wfox-ptag" data-i18n="wfox.product2.tag">Limited</div>
+          <img src="https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/235cc635-483a-46c5-ad0a-7e95cf1386e3/ChatGPT+Image+13+mag+2026%2C+11_40_55.png?format=500w" alt="WFOX Tee White">
+          <div class="wfox-pco">
+            <div class="wfox-pn" data-i18n="wfox.product2.name">WFOX Tee — White</div>
+            <div class="wfox-pm" data-i18n="wfox.product2.material">100% Cotone — Wfox Off Court</div>
+            <a href="https://www.doubleutennis.com/eshop-wfox/p/wfox-off-court" class="wfox-pcb" target="_blank" data-i18n="wfox.product2.cta">Acquista</a>
+          </div>
+        </div>
+
+        <div class="wfox-pc wfox-fu">
+          <div class="wfox-ptag" data-i18n="wfox.product3.tag">Iconic</div>
+          <img src="https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/bee44570-7383-4eb1-82d3-6e94e267a918/ChatGPT+Image+12+mag+2026%2C+23_12_12.png?format=2500w" alt="Keep Off The Grass" style="min-height:480px">
+          <div class="wfox-pco">
+            <div class="wfox-pn" data-i18n="wfox.product3.name">KEEP OFF THE GRASS</div>
+            <div class="wfox-pm" data-i18n="wfox.product3.material">Forest Green — Tee</div>
+            <a href="https://www.doubleutennis.com/eshop-wfox/p/tjfx4mobblouzmipnl1ixqtr7s87zh" class="wfox-pcb" target="_blank" data-i18n="wfox.product3.cta">Acquista</a>
+          </div>
+        </div>
+
+        <div class="wfox-pc wfox-fu">
+          <div class="wfox-ptag" data-i18n="wfox.product4.tag">Essential</div>
+          <img src="https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/dae7cda0-07e2-4e55-ad1b-30e2b6f8ca8c/ChatGPT+Image+12+mag+2026%2C+23_55_44.png?format=500w" alt="WFOX Logo Tee">
+          <div class="wfox-pco">
+            <div class="wfox-pn" data-i18n="wfox.product4.name">WFOX LOGO TEE</div>
+            <div class="wfox-pm" data-i18n="wfox.product4.material">100% Cotone</div>
+            <a href="https://www.doubleutennis.com/eshop-wfox/p/wfox-logo-tee" class="wfox-pcb" target="_blank" data-i18n="wfox.product4.cta">Acquista</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="wfox-about" id="wfox-about">
+      <div class="wfox-av">
+        <img src="wfox/img/wear.jpg" alt="WFOX indossato">
+        <div class="wfox-avlbl">
+          <div class="wfox-avln" data-i18n="wfox.wear.name">WFOX Crewneck Navy</div>
+          <div class="wfox-avls" data-i18n="wfox.wear.sub">On court. Off court. Always W.</div>
+        </div>
+      </div>
+      <div class="wfox-ac wfox-fu">
+        <div class="wfox-atag" data-i18n="wfox.about.tag">Il Progetto</div>
+        <h2 class="wfox-ah" data-i18n-html="wfox.about.title">Una volpe<br>sul <em>campo.</em><br>Sempre.</h2>
+        <p class="wfox-ab" data-i18n="wfox.about.desc">WFOX è una capsule di DOUBLEU — brand artigianale Made in Italy con oltre dieci anni nel tennis e padel premium. Non è merchandising. È un'identità: per chi gioca, per chi vive il club, per chi non si accontenta del solito.</p>
+        <div class="wfox-pills">
+          <div class="wfox-pl">
+            <div class="wfox-plt" data-i18n="wfox.pill1.title">Heritage Tennis</div>
+            <div class="wfox-pld" data-i18n="wfox.pill1.desc">Estetica classica del club — esecuzione contemporanea.</div>
+          </div>
+          <div class="wfox-pl">
+            <div class="wfox-plt" data-i18n="wfox.pill2.title">Artigianale IT</div>
+            <div class="wfox-pld" data-i18n="wfox.pill2.desc">Prodotto in Italia. Nessun outsourcing.</div>
+          </div>
+          <div class="wfox-pl">
+            <div class="wfox-plt" data-i18n="wfox.pill3.title">Edizione Limitata</div>
+            <div class="wfox-pld" data-i18n="wfox.pill3.desc">Zero riassortimento. Il valore non si svaluta.</div>
+          </div>
+          <div class="wfox-pl">
+            <div class="wfox-plt" data-i18n="wfox.pill4.title">On + Off Court</div>
+            <div class="wfox-pld" data-i18n="wfox.pill4.desc">Dal campo alla città. Identità senza compromessi.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <div class="wfox-gal wfox-fu">
+      <div class="wfox-gi">
+        <img src="https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/235cc635-483a-46c5-ad0a-7e95cf1386e3/ChatGPT+Image+13+mag+2026%2C+11_40_55.png?format=500w" alt="WFOX Tee flat lay">
+        <div class="wfox-gc" data-i18n="wfox.gallery1.caption">WFOX Tee — White</div>
+      </div>
+      <div class="wfox-gi">
+        <img src="wfox/img/white.jpg" alt="WFOX Crewneck White">
+        <div class="wfox-gc" data-i18n="wfox.gallery2.caption">WFOX Crewneck — White Heritage</div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="wfox-stats wfox-fu">
+      <div class="wfox-st">
+        <div class="wfox-sn" data-i18n="wfox.stat1.num">12+</div>
+        <div class="wfox-sl" data-i18n="wfox.stat1.label">Anni di produzione artigianale</div>
+      </div>
+      <div class="wfox-st">
+        <div class="wfox-sn" data-i18n="wfox.stat2.num">100%</div>
+        <div class="wfox-sl" data-i18n="wfox.stat2.label">Made in Italy</div>
+      </div>
+      <div class="wfox-st">
+        <div class="wfox-sn" data-i18n="wfox.stat3.num">3</div>
+        <div class="wfox-sl" data-i18n="wfox.stat3.label">Pezzi capsule — zero riassortimento</div>
+      </div>
+      <div class="wfox-st">
+        <div class="wfox-sn" data-i18n="wfox.stat4.num">IT·DE·ES·BE·UK</div>
+        <div class="wfox-sl" data-i18n="wfox.stat4.label">Club clienti in 5 paesi</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="wfox-ctab wfox-fu" id="wfox-cta">
+      <div>
+        <h2 data-i18n="wfox.cta.title">FATTO IN ITALIA.<br>DAVVERO.</h2>
+        <p data-i18n="wfox.cta.desc">Stessa manifattura che veste i club più esigenti d'Europa. Ogni capo WFOX nasce nello stesso atelier DOUBLEU.</p>
+      </div>
+      <a href="https://www.doubleutennis.com/eshop-wfox" class="wfox-bn" target="_blank" data-i18n="wfox.cta.btn">Acquista Prima che Finisca</a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>
+        <a class="brand" href="index.html" style="display:flex;flex-direction:column;gap:2px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;letter-spacing:2px;">DOUBLEU</span>
+          <span style="font-size:8px;letter-spacing:3px;color:#6a8090;text-transform:uppercase;">Tennis Apparel</span>
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
+        <a href="termini.html" data-i18n="footer.terms">Termini e condizioni</a>
+        <a href="cookie.html" data-i18n="footer.cookie">Cookie Policy</a>
+        <a href="spedizioni.html" data-i18n="footer.shipping">Reso e Spedizioni</a>
+        <a href="pagamenti.html" data-i18n="footer.payments">Pagamenti</a>
+        <a href="garment-care.html" data-i18n="footer.care">Garment Care</a>
+      </div>
+      <div class="header-lang"><a href="#" data-lang="it">IT</a> | <a href="#" data-lang="en">EN</a> | <a href="#" data-lang="de">DE</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script>
+    // WFOX scroll animations
+    const wfoxObs = new IntersectionObserver((entries) => {
+      entries.forEach((en, i) => {
+        if (en.isIntersecting) setTimeout(() => en.target.classList.add('on'), i * 80);
+      });
+    }, { threshold: .1 });
+    document.querySelectorAll('.wfox-fu').forEach(el => wfoxObs.observe(el));
+  </script>
+</body>
+</html>

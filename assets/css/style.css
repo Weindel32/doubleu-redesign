@@ -155,7 +155,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .header-nav { flex: 1; }
-.header-nav ul { display: flex; gap: 20px; list-style: none; justify-content: center; }
+.header-nav ul { display: flex; gap: 32px; list-style: none; justify-content: center; }
 .header-nav a {
   font-size: 14px;
   color: var(--dw-text);

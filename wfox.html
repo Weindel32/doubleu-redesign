@@ -9,6 +9,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
+/* ── PROMO BAR ── */
+.promo-bar{background:var(--wfox-navy);color:var(--wfox-gold);text-align:center;padding:10px 20px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase}
+.promo-bar strong{color:var(--wfox-cream)}
+
+/* ── CART ICON ── */
+.cart-btn{position:relative;display:flex;align-items:center;gap:6px;background:none;border:1.5px solid var(--dw-bordeaux,#7A0F1B);padding:8px 14px;cursor:pointer;color:var(--dw-bordeaux,#7A0F1B);text-decoration:none;font-size:12px;letter-spacing:.04em;transition:background .2s,color .2s}
+.cart-btn:hover{background:var(--dw-bordeaux,#7A0F1B);color:#fff}
+.cart-btn svg{width:16px;height:16px;flex-shrink:0}
+.cart-badge{position:absolute;top:-7px;right:-7px;background:var(--wfox-gold);color:var(--wfox-navy);font-size:9px;font-weight:700;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;display:none}
+
 /* ── WFOX Capsule styles ── */
 :root{
   --wfox-navy:#0D1B2A;
@@ -127,6 +137,11 @@
 </head>
 <body>
 
+  <!-- PROMO BAR -->
+  <div class="promo-bar">
+    Spedizione gratuita per ordini superiori a €89 &mdash; codice <strong>DELY26</strong> al checkout
+  </div>
+
   <!-- HEADER -->
   <header class="topbar">
     <div class="container">
@@ -151,7 +166,11 @@
 
         <div class="header-actions">
           <a class="btn primary" href="club.html" data-i18n="btn.startProject">Avvia un progetto club</a>
-          <a class="btn" href="capsule.html" data-i18n="btn.exploreCapsule">Esplora le capsule</a>
+          <a class="cart-btn" href="carrello.html" aria-label="Carrello">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/></svg>
+            Carrello
+            <span class="cart-badge">0</span>
+          </a>
         </div>
       </div>
       <div class="header-lang"><a href="#" data-lang="it">IT</a> | <a href="#" data-lang="en">EN</a> | <a href="#" data-lang="de">DE</a></div>
@@ -212,45 +231,45 @@
       </div>
       <div class="wfox-pgrid">
 
-        <div class="wfox-pc wfox-fu">
+        <a class="wfox-pc wfox-fu" href="wfox-product.html?id=wfox-crewneck">
           <div class="wfox-ptag" data-i18n="wfox.product1.tag">Bestseller</div>
           <img src="wfox/img/crew.jpg" alt="WFOX Crewneck Navy">
           <div class="wfox-pco">
             <div class="wfox-pn" data-i18n="wfox.product1.name">WFOX Crewneck — Navy</div>
             <div class="wfox-pm" data-i18n="wfox.product1.material">100% Cotone — Wfox On Court</div>
-            <a href="https://www.doubleutennis.com/eshop-wfox/p/sweatshirt-wfox-by-doubleu" class="wfox-pcb" target="_blank" data-i18n="wfox.product1.cta">Acquista</a>
+            <span class="wfox-pcb" data-i18n="wfox.product1.cta">Scopri</span>
           </div>
-        </div>
+        </a>
 
-        <div class="wfox-pc wfox-fu">
+        <a class="wfox-pc wfox-fu" href="wfox-product.html?id=wfox-tee-white">
           <div class="wfox-ptag" data-i18n="wfox.product2.tag">Limited</div>
           <img src="https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/235cc635-483a-46c5-ad0a-7e95cf1386e3/ChatGPT+Image+13+mag+2026%2C+11_40_55.png?format=500w" alt="WFOX Tee White">
           <div class="wfox-pco">
             <div class="wfox-pn" data-i18n="wfox.product2.name">WFOX Tee — White</div>
             <div class="wfox-pm" data-i18n="wfox.product2.material">100% Cotone — Wfox Off Court</div>
-            <a href="https://www.doubleutennis.com/eshop-wfox/p/wfox-off-court" class="wfox-pcb" target="_blank" data-i18n="wfox.product2.cta">Acquista</a>
+            <span class="wfox-pcb" data-i18n="wfox.product2.cta">Scopri</span>
           </div>
-        </div>
+        </a>
 
-        <div class="wfox-pc wfox-fu">
+        <a class="wfox-pc wfox-fu" href="wfox-product.html?id=wfox-keep-off">
           <div class="wfox-ptag" data-i18n="wfox.product3.tag">Iconic</div>
           <img src="https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/bee44570-7383-4eb1-82d3-6e94e267a918/ChatGPT+Image+12+mag+2026%2C+23_12_12.png?format=2500w" alt="Keep Off The Grass" style="min-height:480px">
           <div class="wfox-pco">
             <div class="wfox-pn" data-i18n="wfox.product3.name">KEEP OFF THE GRASS</div>
             <div class="wfox-pm" data-i18n="wfox.product3.material">Forest Green — Tee</div>
-            <a href="https://www.doubleutennis.com/eshop-wfox/p/tjfx4mobblouzmipnl1ixqtr7s87zh" class="wfox-pcb" target="_blank" data-i18n="wfox.product3.cta">Acquista</a>
+            <span class="wfox-pcb" data-i18n="wfox.product3.cta">Scopri</span>
           </div>
-        </div>
+        </a>
 
-        <div class="wfox-pc wfox-fu">
+        <a class="wfox-pc wfox-fu" href="wfox-product.html?id=wfox-logo-tee">
           <div class="wfox-ptag" data-i18n="wfox.product4.tag">Essential</div>
           <img src="https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/dae7cda0-07e2-4e55-ad1b-30e2b6f8ca8c/ChatGPT+Image+12+mag+2026%2C+23_55_44.png?format=500w" alt="WFOX Logo Tee">
           <div class="wfox-pco">
             <div class="wfox-pn" data-i18n="wfox.product4.name">WFOX LOGO TEE</div>
             <div class="wfox-pm" data-i18n="wfox.product4.material">100% Cotone</div>
-            <a href="https://www.doubleutennis.com/eshop-wfox/p/wfox-logo-tee" class="wfox-pcb" target="_blank" data-i18n="wfox.product4.cta">Acquista</a>
+            <span class="wfox-pcb" data-i18n="wfox.product4.cta">Scopri</span>
           </div>
-        </div>
+        </a>
 
       </div>
     </section>
@@ -327,7 +346,7 @@
         <h2 data-i18n="wfox.cta.title">FATTO IN ITALIA.<br>DAVVERO.</h2>
         <p data-i18n="wfox.cta.desc">Stessa manifattura che veste i club più esigenti d'Europa. Ogni capo WFOX nasce nello stesso atelier DOUBLEU.</p>
       </div>
-      <a href="https://www.doubleutennis.com/eshop-wfox" class="wfox-bn" target="_blank" data-i18n="wfox.cta.btn">Acquista Prima che Finisca</a>
+      <a href="#wfox-prods" class="wfox-bn" data-i18n="wfox.cta.btn">Acquista Prima che Finisca</a>
     </div>
 
   </main>
@@ -353,6 +372,8 @@
     </div>
   </footer>
 
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/cart.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/i18n.js"></script>
   <script>

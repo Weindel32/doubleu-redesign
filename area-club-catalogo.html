@@ -80,6 +80,16 @@
     .cl-footer-lang { display: flex; gap: 8px; }
     .cl-footer-lang a { color: rgba(245,240,232,.3); }
     .cl-footer-lang a:hover { color: rgba(245,240,232,.8); }
+    .cl-footer-lang a.lang-active, .cl-header-lang a.lang-active { color: rgba(245,240,232,.9); font-weight: 600; }
+    .cl-header-lang { display: flex; gap: 4px; align-items: center; font-size: 11px; letter-spacing: .06em; }
+    .cl-header-lang a { color: rgba(13,27,42,.38); text-decoration: none; padding: 2px 4px; transition: color .2s; }
+    .cl-header-lang a:hover, .cl-header-lang a.lang-active { color: var(--club-accent); font-weight: 600; }
+
+    /* FOOTER LEGAL */
+    .cl-footer-legal { background: rgba(0,0,0,.18); padding: 14px 80px; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .cl-footer-legal a { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,240,232,.2); text-decoration: none; transition: color .2s; }
+    .cl-footer-legal a:hover { color: rgba(245,240,232,.55); }
+    @media (max-width: 900px) { .cl-footer-legal { padding: 14px 28px; gap: 14px; } }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
@@ -148,6 +158,14 @@
       <a href="#" data-lang="de">DE</a>
     </div>
   </footer>
+  <div class="cl-footer-legal">
+    <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
+    <a href="termini.html" data-i18n="footer.terms">Termini e condizioni</a>
+    <a href="cookie.html" data-i18n="footer.cookie">Cookie Policy</a>
+    <a href="spedizioni.html" data-i18n="footer.shipping">Reso e Spedizioni</a>
+    <a href="pagamenti.html" data-i18n="footer.payments">Pagamenti</a>
+    <a href="garment-care.html" data-i18n="footer.care">Garment Care</a>
+  </div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
@@ -231,16 +249,6 @@
 
       if (typeof applyTranslations === 'function') applyTranslations(lang);
     }
-
-    // Language switcher
-    document.querySelectorAll('[data-lang]').forEach(el => {
-      el.addEventListener('click', e => {
-        e.preventDefault();
-        setLang(el.dataset.lang);
-        applyTranslations(el.dataset.lang);
-        renderCatalog(getClubById(clubId));
-      });
-    });
 
     // Logout
     document.getElementById('logout-btn').addEventListener('click', async () => {

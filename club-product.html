@@ -162,11 +162,11 @@
         <small>Tennis Apparel</small>
       </a>
       <div class="cl-header-right">
-        <a href="area-club-catalogo.html" class="cl-back" id="back-to-catalog" data-i18n="club.area.catalog.back">← Torna al catalogo</a>
+        <a href="index.html" class="cl-back" data-i18n="club.area.back.site">← Torna al sito</a>
         <button class="cl-logout-btn" id="logout-btn" data-i18n="club.area.logout">Esci</button>
         <a class="cart-btn" href="carrello.html" aria-label="Carrello">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/></svg>
-          Carrello
+          <span data-i18n="shop.cart.title">Carrello</span>
           <span class="cart-badge">0</span>
         </a>
       </div>
@@ -253,9 +253,7 @@
         document.documentElement.style.setProperty('--club-accent', club.accentColor);
       }
 
-      const catalogUrl = `area-club-catalogo.html${clubSuffix}`;
-      document.getElementById('back-to-catalog').href = catalogUrl;
-      document.getElementById('breadcrumb-back').href = catalogUrl;
+      document.getElementById('breadcrumb-back').href = `area-club-catalogo.html${clubSuffix}`;
 
       document.title = `DOUBLEU | ${p.name}`;
       renderProduct(p, club);

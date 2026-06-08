@@ -250,8 +250,18 @@
   document.title = `DOUBLEU | Area ${clubName}`;
 
   // ── Handle redirect result from Google sign-in
-  auth.getRedirectResult().catch(() => {
-    document.getElementById('login-error').textContent = t('club.area.error.generic', getLang());
+  auth.getRedirectResult().then(result => {
+    if (result && result.user) {
+      window.location.href = `area-club-catalogo.html${clubSuffix}`;
+    }
+  }).catch(err => {
+    console.error('Google auth error:', err.code, err.message);
+    const errEl = document.getElementById('login-error');
+    if (err.code === 'auth/unauthorized-domain') {
+      errEl.textContent = 'Dominio non autorizzato. Contatta l\'amministratore.';
+    } else {
+      errEl.textContent = err.message || t('club.area.error.generic', getLang());
+    }
   });
 
   // ── If already logged in → go directly to catalog

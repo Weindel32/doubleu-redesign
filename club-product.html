@@ -40,9 +40,13 @@
     .cp-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 
     /* IMAGE */
-    .cp-gallery {}
+    .cp-gallery { display: flex; flex-direction: column; gap: 10px; }
     .cp-main-img { aspect-ratio: 3/4; overflow: hidden; background: var(--club-warm); border: 1px solid var(--club-border); display: flex; align-items: center; justify-content: center; }
-    .cp-main-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cp-main-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .2s; }
+    .cp-thumbs { display: flex; gap: 8px; }
+    .cp-thumb { width: 64px; height: 80px; overflow: hidden; border: 1.5px solid transparent; cursor: pointer; flex-shrink: 0; background: var(--club-warm); }
+    .cp-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cp-thumb.active { border-color: var(--club-accent); }
     .cp-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px; }
     .cp-placeholder svg { width: 64px; height: 64px; opacity: .15; }
     .cp-placeholder p { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: rgba(13,27,42,.35); text-align: center; }
@@ -226,9 +230,19 @@
         ? p.colors.map(c => `<option value="${c.name}">${c.name}</option>`).join('')
         : '';
 
+      // Build thumbnails from p.images
+      const allImages = p.images && p.images.length > 1 ? p.images : null;
+      const thumbsHtml = allImages
+        ? `<div class="cp-thumbs">${allImages.map((src, i) =>
+            `<div class="cp-thumb ${i === 0 ? 'active' : ''}" data-src="${src}">
+               <img src="${src}" alt="${p.name}" loading="lazy">
+             </div>`).join('')}</div>`
+        : '';
+
       document.getElementById('cp-inner').innerHTML = `
         <div class="cp-gallery">
-          <div class="cp-main-img">${imgHtml}</div>
+          <div class="cp-main-img" id="cp-main-img">${imgHtml}</div>
+          ${thumbsHtml}
         </div>
         <div class="cp-info">
           <span class="cp-tag">${p.tag} · ${club.name}</span>
@@ -267,11 +281,35 @@
           </div>
         </div>`;
 
+      // Thumbnail click → switch main image
+      document.querySelectorAll('.cp-thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          const src = thumb.dataset.src;
+          document.getElementById('cp-main-img').innerHTML = `<img src="${src}" alt="${p.name}">`;
+          document.querySelectorAll('.cp-thumb').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+        });
+      });
+
+      // Color change → switch main image if color has its own image
+      const colorSelect = document.getElementById('cp-color');
+      if (colorSelect && colorSelect.tagName === 'SELECT') {
+        colorSelect.addEventListener('change', () => {
+          const colorObj = p.colors.find(c => c.name === colorSelect.value);
+          if (colorObj?.image) {
+            document.getElementById('cp-main-img').innerHTML = `<img src="${colorObj.image}" alt="${p.name}">`;
+            document.querySelectorAll('.cp-thumb').forEach(t => {
+              t.classList.toggle('active', t.dataset.src === colorObj.image);
+            });
+          }
+        });
+      }
+
       // Add-to-cart handler
       document.getElementById('cp-btn-cart').addEventListener('click', () => {
-        const size   = document.getElementById('cp-size').value;
+        const size    = document.getElementById('cp-size').value;
         const colorEl = document.getElementById('cp-color');
-        const color  = colorEl?.value || p.colors[0]?.name || '';
+        const color   = colorEl?.value || p.colors[0]?.name || '';
 
         if (!size) {
           document.getElementById('cp-feedback').textContent = t('shop.product.size.select', getLang());
@@ -282,7 +320,7 @@
           id: p.id, name: p.name,
           color, size,
           price: colorObj?.price || p.basePrice,
-          image: p.gridImage || null,
+          image: colorObj?.image || p.gridImage || null,
           qty: 1,
         });
         const fb = document.getElementById('cp-feedback');

@@ -230,12 +230,12 @@
 <script src="assets/js/i18n.js"></script>
 <script>
   const firebaseConfig = {
-    apiKey:            "AIzaSyAw72PJD8t1S8CmZujln-n3UL-yoXkn2Lo",
+    apiKey:            "AIzaSyAw72PJD8t1S8CmZujln-n3UL-yoXknZLo",
     authDomain:        "doubleu---area---club.firebaseapp.com",
     projectId:         "doubleu---area---club",
     storageBucket:     "doubleu---area---club.firebasestorage.app",
     messagingSenderId: "345970183746",
-    appId:             "1:345970183746:web:9f18caf5bc96810243e7db"
+    appId:             "1:345970183746:web:9f10caf5bc96810243e7db"
   };
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
@@ -249,20 +249,20 @@
   document.getElementById('cl-badge').textContent = clubName;
   document.title = `DOUBLEU | Area ${clubName}`;
 
+  // ── Handle redirect result from Google sign-in
+  auth.getRedirectResult().catch(() => {
+    document.getElementById('login-error').textContent = t('club.area.error.generic', getLang());
+  });
+
   // ── If already logged in → go directly to catalog
   auth.onAuthStateChanged(user => {
     if (user) window.location.href = `area-club-catalogo.html${clubSuffix}`;
   });
 
-  // ── Google Sign-in
-  document.getElementById('google-btn').addEventListener('click', async () => {
+  // ── Google Sign-in (redirect — no popup)
+  document.getElementById('google-btn').addEventListener('click', () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    try {
-      await auth.signInWithPopup(provider);
-      // onAuthStateChanged handles redirect
-    } catch (err) {
-      document.getElementById('login-error').textContent = t('club.area.error.generic', getLang());
-    }
+    auth.signInWithRedirect(provider);
   });
 
   // ── Tab switching

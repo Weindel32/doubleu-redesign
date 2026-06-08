@@ -111,6 +111,20 @@
     .cl-lang a { font-size: 11px; letter-spacing: .08em; color: rgba(13,27,42,.38); text-decoration: none; margin: 0 5px; transition: color .2s; }
     .cl-lang a:hover, .cl-lang a.active { color: #0D1B2A; }
 
+    /* GOOGLE BUTTON */
+    .cl-google-btn {
+      width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 13px 16px; background: #fff; border: 1.5px solid rgba(13,27,42,.18);
+      font-size: 13px; font-family: 'Montserrat', sans-serif; font-weight: 500;
+      color: #0D1B2A; cursor: pointer; transition: border-color .2s, box-shadow .2s;
+      margin-bottom: 20px;
+    }
+    .cl-google-btn:hover { border-color: #0D1B2A; box-shadow: 0 2px 8px rgba(13,27,42,.08); }
+    .cl-google-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .cl-divider { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .cl-divider::before, .cl-divider::after { content: ''; flex: 1; height: 1px; background: rgba(13,27,42,.12); }
+    .cl-divider span { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: rgba(13,27,42,.35); }
+
     /* MOBILE */
     @media (max-width: 720px) {
       .cl-wrap { grid-template-columns: 1fr; }
@@ -144,6 +158,19 @@
 
       <div class="cl-badge" id="cl-badge">Club</div>
       <h1 class="cl-title" data-i18n="club.area.title">Area Riservata</h1>
+
+      <!-- Google Sign-in -->
+      <button class="cl-google-btn" id="google-btn" type="button">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        <span data-i18n="club.area.google">Accedi con Google</span>
+      </button>
+
+      <div class="cl-divider"><span data-i18n="club.area.or">oppure</span></div>
 
       <div class="cl-tabs">
         <button class="cl-tab active" id="tab-login" data-i18n="club.area.tab.login">Accedi</button>
@@ -198,25 +225,44 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="assets/js/i18n.js"></script>
 <script>
-  // ── Supabase config (da configurare)
-  const SUPABASE_URL      = 'https://bixayovstdptbgauvsgm.supabase.co';
-  const SUPABASE_ANON_KEY = 'sb_publishable_pKpjPbw4a0HSEIWbf2ZXvA_svT70I3v';
-  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const firebaseConfig = {
+    apiKey:            "AIzaSyAw72PJD8t1S8CmZujln-n3UL-yoXkn2Lo",
+    authDomain:        "doubleu---area---club.firebaseapp.com",
+    projectId:         "doubleu---area---club",
+    storageBucket:     "doubleu---area---club.firebasestorage.app",
+    messagingSenderId: "345970183746",
+    appId:             "1:345970183746:web:9f18caf5bc96810243e7db"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
 
   // ── Detect club from URL (?club=mtc | ?club=allround)
-  const params  = new URLSearchParams(location.search);
-  const clubId  = (params.get('club') || '').toLowerCase();
+  const params   = new URLSearchParams(location.search);
+  const clubId   = (params.get('club') || '').toLowerCase();
+  const clubSuffix = clubId ? `?club=${clubId}` : '';
   const CLUB_NAMES = { mtc: 'MTC Ausstellungspark', allround: 'All Round Sport & Wellness' };
   const clubName = CLUB_NAMES[clubId] || 'Tennis Club';
   document.getElementById('cl-badge').textContent = clubName;
   document.title = `DOUBLEU | Area ${clubName}`;
 
   // ── If already logged in → go directly to catalog
-  sb.auth.getSession().then(({ data: { session } }) => {
-    if (session) window.location.href = 'area-club-catalogo.html';
+  auth.onAuthStateChanged(user => {
+    if (user) window.location.href = `area-club-catalogo.html${clubSuffix}`;
+  });
+
+  // ── Google Sign-in
+  document.getElementById('google-btn').addEventListener('click', async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    try {
+      await auth.signInWithPopup(provider);
+      // onAuthStateChanged handles redirect
+    } catch (err) {
+      document.getElementById('login-error').textContent = t('club.area.error.generic', getLang());
+    }
   });
 
   // ── Tab switching
@@ -238,28 +284,26 @@
     fLogin.style.display = 'none';
   });
 
-  // ── Login
+  // ── Login email/password
   fLogin.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn  = document.getElementById('login-btn');
+    const btn   = document.getElementById('login-btn');
     const errEl = document.getElementById('login-error');
     errEl.textContent = '';
     btn.disabled = true;
-
-    const { error } = await sb.auth.signInWithPassword({
-      email:    document.getElementById('login-email').value.trim(),
-      password: document.getElementById('login-password').value,
-    });
-
-    if (error) {
+    try {
+      await auth.signInWithEmailAndPassword(
+        document.getElementById('login-email').value.trim(),
+        document.getElementById('login-password').value
+      );
+      // onAuthStateChanged handles redirect
+    } catch (err) {
       errEl.textContent = t('club.area.error.invalid', getLang());
       btn.disabled = false;
-    } else {
-      window.location.href = 'area-club-catalogo.html';
     }
   });
 
-  // ── Register
+  // ── Register email/password
   fRegister.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn   = document.getElementById('reg-btn');
@@ -276,31 +320,16 @@
       errEl.textContent = t('club.area.error.mismatch', getLang());
       return;
     }
-    if (!clubId) {
-      errEl.textContent = t('club.area.error.generic', getLang());
-      return;
-    }
 
     btn.disabled = true;
-    const { data, error } = await sb.auth.signUp({
-      email,
-      password: pw,
-      options: { data: { club: clubId } },
-    });
-
-    if (error) {
-      const isExisting = error.message.toLowerCase().includes('already');
+    try {
+      await auth.createUserWithEmailAndPassword(email, pw);
+      // onAuthStateChanged handles redirect
+    } catch (err) {
+      const isExisting = err.code === 'auth/email-already-in-use';
       errEl.textContent = isExisting
         ? t('club.area.error.exists', getLang())
         : t('club.area.error.generic', getLang());
-      btn.disabled = false;
-    } else if (data.session) {
-      // Email confirmation disabled in Supabase → direct redirect
-      window.location.href = 'area-club-catalogo.html';
-    } else {
-      // Email confirmation required
-      okEl.textContent = t('club.area.register.confirm', getLang());
-      okEl.style.display = 'block';
       btn.disabled = false;
     }
   });

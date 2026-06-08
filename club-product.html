@@ -272,6 +272,8 @@
 
     function renderProduct(p, club) {
       const lang = getLang();
+      const desc    = typeof p.description === 'object' ? (p.description[lang] || p.description.it) : p.description;
+      const fitText = typeof p.fit         === 'object' ? (p.fit[lang]         || p.fit.it)         : p.fit;
       const images = p.images?.length ? p.images : (p.gridImage ? [p.gridImage] : []);
       const firstImg = images[0] || null;
 
@@ -308,7 +310,7 @@
           <div class="cp-sub">${p.subtitle}</div>
           ${priceHtml}
           <div class="cp-divider"></div>
-          <p class="cp-desc">${p.description}</p>
+          <p class="cp-desc">${desc}</p>
 
           <div class="cp-field">
             <div class="cp-field-label" data-i18n="shop.product.size">${t('shop.product.size', lang)}</div>
@@ -333,7 +335,7 @@
           <div class="cp-feedback" id="cp-feedback"></div>
 
           <div class="cp-details">
-            <div class="cp-detail-row"><span class="cp-detail-key" data-i18n="shop.product.fit">${t('shop.product.fit', lang)}</span><span class="cp-detail-val">${p.fit}</span></div>
+            <div class="cp-detail-row"><span class="cp-detail-key" data-i18n="shop.product.fit">${t('shop.product.fit', lang)}</span><span class="cp-detail-val">${fitText}</span></div>
             <div class="cp-detail-row"><span class="cp-detail-key" data-i18n="shop.product.material">${t('shop.product.material', lang)}</span><span class="cp-detail-val">${p.material}</span></div>
             ${p.printSize ? `<div class="cp-detail-row"><span class="cp-detail-key" data-i18n="shop.product.print">${t('shop.product.print', lang)}</span><span class="cp-detail-val">${p.printSize}</span></div>` : ''}
           </div>

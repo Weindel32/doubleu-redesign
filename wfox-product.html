@@ -114,6 +114,9 @@
       .product-info { position: static; }
       .related-grid { grid-template-columns: 1fr 1fr; }
       .related-section { padding: 60px 20px; }
+      .selector-select { font-size: 16px; }
+      .color-swatch { width: 36px; height: 36px; }
+      .btn-cart, .btn-wishlist { min-height: 48px; }
     }
     @media (max-width: 600px) {
       .related-grid { grid-template-columns: 1fr; }
@@ -124,7 +127,7 @@
 
   <!-- PROMO BAR -->
   <div class="promo-bar">
-    Spedizione gratuita per ordini superiori a €89 &mdash; codice <strong>DELY26</strong> al checkout
+    <span data-i18n="shop.promo"></span>
   </div>
 
   <!-- HEADER -->
@@ -186,7 +189,7 @@
 
       <!-- RELATED PRODUCTS -->
       <div class="related-section" id="related-section" style="display:none">
-        <h2>Altri Pezzi della Capsule</h2>
+        <h2 id="related-title"></h2>
         <div class="related-grid" id="related-grid"></div>
       </div>
 
@@ -214,6 +217,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/products.js"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/main.js"></script>
@@ -286,30 +290,30 @@
             <div class="product-subtitle">${product.subtitle}</div>
             <div class="product-desc">${product.description}</div>
             <dl class="product-details">
-              <div class="detail-row"><dt>Vestibilità</dt><dd>${product.fit}</dd></div>
-              <div class="detail-row"><dt>Materiale</dt><dd>${product.material}</dd></div>
-              <div class="detail-row"><dt>Dimensione stampa</dt><dd>${product.printSize}</dd></div>
+              <div class="detail-row"><dt>${t('shop.product.fit', getLang())}</dt><dd>${product.fit}</dd></div>
+              <div class="detail-row"><dt>${t('shop.product.material', getLang())}</dt><dd>${product.material}</dd></div>
+              <div class="detail-row"><dt>${t('shop.product.print', getLang())}</dt><dd>${product.printSize}</dd></div>
             </dl>
 
             <div class="selector-group">
-              <label class="selector-label" for="size-select">Taglia</label>
+              <label class="selector-label" for="size-select">${t('shop.product.size', getLang())}</label>
               <select class="selector-select" id="size-select">
-                <option value="">Seleziona Taglia</option>
+                <option value="">${t('shop.product.size.select', getLang())}</option>
                 ${sizesHtml}
               </select>
             </div>
 
             <div class="selector-group">
-              <label class="selector-label">Colore</label>
+              <label class="selector-label">${t('shop.product.color', getLang())}</label>
               <div class="color-swatches" id="color-swatches">${swatchHtml}</div>
             </div>
 
             <div class="product-actions">
-              <button class="btn-cart" id="btn-add-cart" disabled>Aggiungi al Carrello</button>
+              <button class="btn-cart" id="btn-add-cart" disabled>${t('shop.product.add', getLang())}</button>
             </div>
             <div class="add-feedback" id="add-feedback">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
-              Aggiunto al carrello — <a href="carrello.html" style="color:var(--wfox-navy);font-weight:600;text-decoration:underline">Vai al carrello</a>
+              ${t('shop.product.added', getLang())} — <a href="carrello.html" style="color:var(--wfox-navy);font-weight:600;text-decoration:underline">${t('shop.product.goto.cart', getLang())}</a>
             </div>
           </div>`;
       }
@@ -379,11 +383,13 @@
 
       // Render main product
       render();
+      if (typeof applyTranslations === 'function') applyTranslations(getLang());
 
       // Related products (other WFOX items)
       const related = WFOX_PRODUCTS.filter(p => p.id !== product.id);
       if (related.length) {
         document.getElementById('related-section').style.display = '';
+        document.getElementById('related-title').textContent = t('shop.product.related.wfox', getLang());
         document.getElementById('related-grid').innerHTML = related.map(p => `
           <a class="related-card" href="wfox-product.html?id=${p.id}">
             <span class="related-tag">${p.tag}</span>

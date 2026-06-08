@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DOUBLEU | Ordine Confermato</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    :root { --wfox-navy:#0D1B2A; --wfox-cream:#F5F0E8; --wfox-gold:#C9A84C; --wfox-warm:#FDFAF5; --wfox-mid:#8B7355; }
+    body { background: var(--wfox-warm); min-height: 100vh; display: flex; flex-direction: column; }
+    .checkout-header { background: var(--wfox-navy); padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; }
+    .checkout-brand { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--wfox-cream); letter-spacing: 3px; text-decoration: none; }
+
+    .success-page { flex: 1; display: flex; align-items: center; justify-content: center; padding: 60px 20px; }
+    .success-card { max-width: 560px; width: 100%; text-align: center; }
+    .success-icon { width: 72px; height: 72px; background: var(--wfox-navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 32px; }
+    .success-icon svg { width: 36px; height: 36px; color: var(--wfox-gold); }
+    .success-eyebrow { font-size: 10px; letter-spacing: .35em; text-transform: uppercase; color: var(--wfox-gold); margin-bottom: 16px; }
+    .success-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 7vw, 72px); color: var(--wfox-navy); line-height: 1; margin-bottom: 20px; letter-spacing: .04em; }
+    .success-desc { font-size: 15px; line-height: 1.75; color: rgba(13,27,42,.6); margin-bottom: 12px; }
+    .success-email { font-size: 13px; color: var(--wfox-mid); margin-bottom: 40px; }
+    .success-email strong { color: var(--wfox-navy); }
+    .success-divider { border: none; border-top: 1px solid rgba(13,27,42,.1); margin: 32px 0; }
+    .success-order { background: var(--wfox-navy); padding: 24px 28px; text-align: left; margin-bottom: 36px; }
+    .success-order-label { font-size: 10px; letter-spacing: .25em; text-transform: uppercase; color: rgba(245,240,232,.4); margin-bottom: 6px; }
+    .success-order-id { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--wfox-gold); letter-spacing: .08em; }
+    .success-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .success-loading { font-size: 13px; color: var(--wfox-mid); letter-spacing: .08em; }
+  </style>
+</head>
+<body>
+
+  <header class="checkout-header">
+    <a href="index.html" class="checkout-brand">DOUBLEU</a>
+  </header>
+
+  <main class="success-page">
+    <div class="success-card" id="success-card">
+      <div class="success-loading">Verifica pagamento in corso…</div>
+    </div>
+  </main>
+
+  <script src="assets/js/cart.js"></script>
+  <script>
+    // IMPORTANT: replace with your real Stripe publishable key
+    const STRIPE_PUBLISHABLE_KEY = 'pk_test_INSERISCI_QUI_LA_TUA_CHIAVE_PUBBLICA';
+
+    const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+    const params = new URLSearchParams(location.search);
+    const clientSecret = params.get('payment_intent_client_secret');
+    const card = document.getElementById('success-card');
+
+    async function checkPayment() {
+      if (!clientSecret) {
+        card.innerHTML = `
+          <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126z"/></svg>
+          </div>
+          <h1 class="success-title">Pagina non valida</h1>
+          <p class="success-desc">Torna al sito e riprova.</p>
+          <a href="wfox.html" class="btn primary">Torna alla Collezione</a>`;
+        return;
+      }
+
+      const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
+
+      if (paymentIntent.status === 'succeeded') {
+        // Clear cart on successful payment
+        Cart.getAll(); // ensure cart module loaded
+        localStorage.removeItem('dw_cart');
+        Cart.syncBadge();
+
+        const orderId = paymentIntent.id.slice(-8).toUpperCase();
+
+        card.innerHTML = `
+          <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4.5 12.75 6 6 9-13.5"/></svg>
+          </div>
+          <div class="success-eyebrow">WFOX by DOUBLEU</div>
+          <h1 class="success-title">Ordine<br>Confermato</h1>
+          <p class="success-desc">Grazie per il tuo acquisto. Riceverai una conferma via e-mail con tutti i dettagli e le informazioni di spedizione.</p>
+          <p class="success-email">Produzione Made in Italy — spediamo entro <strong>3–5 giorni lavorativi</strong>.</p>
+          <div class="success-order">
+            <div class="success-order-label">Numero Ordine</div>
+            <div class="success-order-id">${orderId}</div>
+          </div>
+          <div class="success-actions">
+            <a href="wfox.html" class="btn primary">← Torna alla Collezione</a>
+            <a href="index.html" class="btn">Home</a>
+          </div>`;
+      } else {
+        card.innerHTML = `
+          <div class="success-icon" style="background:#c0392b">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6M6 6l12 12"/></svg>
+          </div>
+          <h1 class="success-title">Pagamento<br>Non Completato</h1>
+          <p class="success-desc">Il pagamento non è andato a buon fine. Nessun importo è stato addebitato.</p>
+          <div class="success-actions">
+            <a href="checkout.html" class="btn primary">Riprova</a>
+            <a href="carrello.html" class="btn">Torna al Carrello</a>
+          </div>`;
+      }
+    }
+
+    checkPayment();
+  </script>
+</body>
+</html>

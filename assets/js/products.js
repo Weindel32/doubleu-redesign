@@ -69,6 +69,88 @@ const WFOX_PRODUCTS = [
   },
 ];
 
+const SURFACES_PRODUCTS = [
+  {
+    id: 'surfaces-tshirt-clay',
+    collection: 'surfaces',
+    name: 'T-Shirt CLAY',
+    subtitle: 'SURFACES by DOUBLEU — REF 001',
+    tag: 'Clay',
+    basePrice: 55,
+    description: '100% cotone <strong>premium</strong> Made in Italy. Regular Fit, stampa 100 CLAY — ispirata alla superficie più lenta, profonda ed elegante del tennis. Off White, colore che racconta la storia del gioco.',
+    fit: 'Regular Fit',
+    material: '100% Cotone / Cotton',
+    printSize: 'Stampa 100 CLAY',
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    colors: [
+      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/tshirt.png', price: 55 },
+    ],
+    gridImage: 'surfaces/img/tshirt.png',
+  },
+  {
+    id: 'surfaces-sweatshirt-clay',
+    collection: 'surfaces',
+    name: 'Sweatshirt CLAY',
+    subtitle: 'SURFACES by DOUBLEU — REF 002',
+    tag: 'Clay',
+    basePrice: 89,
+    description: 'Felpa in cotone premium Made in Italy. Il comfort del post-partita incontra l\'identità della superficie più tecnica del tennis. Produzione artigianale, tiratura limitata.',
+    fit: 'Regular Fit',
+    material: '100% Cotone / Cotton',
+    printSize: 'Stampa CLAY',
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    colors: [
+      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/sweatshirt.png', price: 89 },
+      { name: 'Clay',      hex: '#8B1A1A', image: null,                           price: 89 },
+    ],
+    gridImage: 'surfaces/img/sweatshirt.png',
+  },
+  {
+    id: 'surfaces-polo-clay',
+    collection: 'surfaces',
+    name: 'Polo CLAY',
+    subtitle: 'SURFACES by DOUBLEU — REF 003',
+    tag: 'Clay',
+    basePrice: 69,
+    description: 'Polo in Piqué di cotone premium Made in Italy. Il capo tecnico della capsule — on court e off court. Ricamo SURFACES sul petto, etichette interne artigianali.',
+    fit: 'Regular Fit',
+    material: 'Piqué di Cotone Premium / Cotton Piqué',
+    printSize: 'Ricamo SURFACES',
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    colors: [
+      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/polo.jpg', price: 69 },
+      { name: 'Clay',      hex: '#8B1A1A', image: null,                     price: 69 },
+    ],
+    gridImage: 'surfaces/img/polo.jpg',
+  },
+  {
+    id: 'surfaces-cap-clay',
+    collection: 'surfaces',
+    name: 'Cap CLAY',
+    subtitle: 'SURFACES by DOUBLEU — REF 004',
+    tag: 'Clay',
+    basePrice: 39,
+    description: 'Cappellino da tennis Made in Italy. Struttura a 6 pannelli, chiusura regolabile, ricamo CLAY sul fronte. Il complemento perfetto alla capsule SURFACES.',
+    fit: 'Taglia Unica',
+    material: '100% Cotone / Cotton',
+    printSize: 'Ricamo CLAY',
+    sizes: ['Taglia Unica'],
+    colors: [
+      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/cap.jpg', price: 39 },
+      { name: 'Clay',      hex: '#8B1A1A', image: null,                    price: 39 },
+    ],
+    gridImage: 'surfaces/img/cap.jpg',
+  },
+];
+
 function getProductById(id) {
-  return WFOX_PRODUCTS.find(p => p.id === id) || null;
+  return WFOX_PRODUCTS.find(p => p.id === id)
+      || SURFACES_PRODUCTS.find(p => p.id === id)
+      || null;
+}
+
+function getCollectionProducts(collection) {
+  if (collection === 'wfox')     return WFOX_PRODUCTS;
+  if (collection === 'surfaces') return SURFACES_PRODUCTS;
+  return [];
 }

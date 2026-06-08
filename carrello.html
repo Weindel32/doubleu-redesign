@@ -41,7 +41,7 @@
     .cart-item-name { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: .06em; color: var(--wfox-navy); margin-bottom: 4px; }
     .cart-item-meta { font-size: 11.5px; color: var(--wfox-mid); letter-spacing: .04em; margin-bottom: 12px; }
     .cart-item-qty { display: flex; align-items: center; gap: 0; border: 1.5px solid rgba(13,27,42,.18); width: fit-content; }
-    .qty-btn { width: 32px; height: 32px; border: none; background: transparent; font-size: 16px; cursor: pointer; color: var(--wfox-navy); transition: background .15s; display: flex; align-items: center; justify-content: center; }
+    .qty-btn { width: 44px; height: 44px; border: none; background: transparent; font-size: 16px; cursor: pointer; color: var(--wfox-navy); transition: background .15s; display: flex; align-items: center; justify-content: center; }
     .qty-btn:hover { background: rgba(13,27,42,.06); }
     .qty-val { width: 36px; text-align: center; font-size: 13px; color: var(--wfox-navy); font-weight: 500; border: none; outline: none; background: transparent; }
     .cart-item-right { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
@@ -63,7 +63,7 @@
     .summary-total { display: flex; justify-content: space-between; font-size: 18px; color: var(--wfox-cream); font-weight: 500; margin-bottom: 8px; }
     .summary-tax { font-size: 11px; color: rgba(245,240,232,.35); text-align: right; margin-bottom: 24px; }
     .promo-input-row { display: flex; gap: 0; margin-bottom: 20px; }
-    .promo-input { flex: 1; padding: 11px 14px; background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.12); color: var(--wfox-cream); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; outline: none; }
+    .promo-input { flex: 1; padding: 11px 14px; background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.12); color: var(--wfox-cream); font-size: 16px; letter-spacing: .08em; text-transform: uppercase; outline: none; }
     .promo-input::placeholder { color: rgba(245,240,232,.3); }
     .promo-input:focus { border-color: var(--wfox-gold); }
     .promo-apply { background: var(--wfox-gold); border: none; color: var(--wfox-navy); padding: 11px 18px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: opacity .2s; }
@@ -85,7 +85,7 @@
 <body>
 
   <div class="promo-bar">
-    Spedizione gratuita per ordini superiori a €89 &mdash; codice <strong>DELY26</strong> al checkout
+    <span data-i18n="shop.promo"></span>
   </div>
 
   <header class="topbar">
@@ -122,7 +122,7 @@
   <main>
     <div class="cart-page">
       <div class="cart-page-inner">
-        <h1 class="cart-page-title">Carrello</h1>
+        <h1 class="cart-page-title" id="cart-page-title"></h1>
         <div class="cart-layout" id="cart-layout">
           <!-- filled by JS -->
         </div>
@@ -148,6 +148,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/products.js"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/main.js"></script>
@@ -172,9 +173,9 @@
       if (!items.length) {
         layout.innerHTML = `
           <div class="cart-empty">
-            <h2>Il carrello è vuoto</h2>
-            <p>Esplora la collezione WFOX e aggiungi i tuoi pezzi preferiti.</p>
-            <a href="wfox.html" class="btn primary">Vai alla Collezione WFOX</a>
+            <h2>${t('shop.cart.empty.title', getLang())}</h2>
+            <p>${t('shop.cart.empty.desc', getLang())}</p>
+            <a href="wfox.html" class="btn primary">${t('shop.cart.empty.cta', getLang())}</a>
           </div>`;
         return;
       }
@@ -210,22 +211,22 @@
       layout.innerHTML = `
         <div class="cart-items">${itemsHtml}</div>
         <div class="cart-summary">
-          <div class="summary-title">Riepilogo Ordine</div>
-          <div class="summary-row"><span>Subtotale</span><span>${formatPrice(subtotal)}</span></div>
-          <div class="summary-row shipping"><span>Spedizione</span><span>${shippingLabel}</span></div>
+          <div class="summary-title">${t('shop.cart.summary', getLang())}</div>
+          <div class="summary-row"><span>${t('shop.cart.subtotal', getLang())}</span><span>${formatPrice(subtotal)}</span></div>
+          <div class="summary-row shipping"><span>${t('shop.cart.shipping', getLang())}</span><span>${shippingLabel}</span></div>
           ${promoHint}
           <div class="promo-input-row">
-            <input class="promo-input" id="promo-input" type="text" placeholder="Codice sconto" maxlength="20" value="${promoApplied ? PROMO_CODE : ''}">
-            <button class="promo-apply" id="promo-btn">${promoApplied ? 'Applicato' : 'Applica'}</button>
+            <input class="promo-input" id="promo-input" type="text" placeholder="${t('shop.cart.promo.placeholder', getLang())}" maxlength="20" value="${promoApplied ? PROMO_CODE : ''}">
+            <button class="promo-apply" id="promo-btn">${promoApplied ? t('shop.cart.promo.applied', getLang()) : t('shop.cart.promo.apply', getLang())}</button>
           </div>
           <div class="promo-ok" id="promo-ok">✓ Codice DELY26 applicato</div>
           <hr class="summary-divider">
-          <div class="summary-total"><span>Totale</span><span>${formatPrice(total)}</span></div>
-          <div class="summary-tax">IVA inclusa · Spedizione calcolata al checkout</div>
-          <a class="btn-checkout" href="checkout.html${promoApplied ? '?promo=1' : ''}">Procedi al Pagamento</a>
+          <div class="summary-total"><span>${t('shop.cart.total', getLang())}</span><span>${formatPrice(total)}</span></div>
+          <div class="summary-tax">${t('shop.cart.tax', getLang())}</div>
+          <a class="btn-checkout" href="checkout.html${promoApplied ? '?promo=1' : ''}">${t('shop.cart.checkout', getLang())}</a>
           <div class="secure-note">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.955 11.955 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-            Pagamento sicuro &mdash; Powered by Stripe
+            ${t('shop.cart.secure', getLang())}
           </div>
         </div>`;
 
@@ -266,6 +267,8 @@
     }
 
     renderCart();
+    document.getElementById('cart-page-title').textContent = t('shop.cart.title', getLang());
+    if (typeof applyTranslations === 'function') applyTranslations(getLang());
   </script>
 </body>
 </html>

@@ -21,6 +21,10 @@
 
     body { background: var(--wfox-warm); }
 
+    /* PROMO BAR */
+    .promo-bar { background: var(--wfox-navy); color: var(--wfox-gold); text-align: center; padding: 10px 20px; font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; }
+    .promo-bar strong { color: var(--wfox-cream); }
+
     /* HEADER STRIP */
     .checkout-header { background: var(--wfox-navy); padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; }
     .checkout-brand { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--wfox-cream); letter-spacing: 3px; text-decoration: none; }
@@ -94,19 +98,29 @@
       .checkout-header { padding: 16px 20px; }
       .order-summary { position: static; }
       .form-row { grid-template-columns: 1fr; }
+      .form-input, .form-select { font-size: 16px; }
     }
+
+    /* iOS zoom prevention — always enforce 16px on focusable inputs */
+    .form-input { font-size: 16px; padding: 14px; }
+    .form-select { font-size: 16px; padding: 14px; }
   </style>
 </head>
 <body>
+
+  <!-- PROMO BAR -->
+  <div class="promo-bar">
+    <span data-i18n="shop.promo"></span>
+  </div>
 
   <!-- CHECKOUT HEADER -->
   <header class="checkout-header">
     <a href="index.html" class="checkout-brand">DOUBLEU</a>
     <div class="checkout-secure">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.955 11.955 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-      Pagamento Sicuro
+      <span data-i18n="shop.checkout.secure">Pagamento Sicuro</span>
     </div>
-    <a href="carrello.html" class="checkout-back">← Torna al carrello</a>
+    <a href="carrello.html" class="checkout-back" data-i18n="shop.checkout.back">← Torna al carrello</a>
   </header>
 
   <div class="checkout-page" id="checkout-page">
@@ -116,21 +130,21 @@
 
       <!-- STEPS -->
       <div class="checkout-steps">
-        <div class="step active" id="step-1"><div class="step-num">1</div> Email</div>
+        <div class="step active" id="step-1"><div class="step-num">1</div> <span data-i18n="shop.checkout.step.email">Email</span></div>
         <div class="step-sep"></div>
-        <div class="step" id="step-2"><div class="step-num">2</div> Consegna</div>
+        <div class="step" id="step-2"><div class="step-num">2</div> <span data-i18n="shop.checkout.step.delivery">Consegna</span></div>
         <div class="step-sep"></div>
-        <div class="step" id="step-3"><div class="step-num">3</div> Pagamento</div>
+        <div class="step" id="step-3"><div class="step-num">3</div> <span data-i18n="shop.checkout.step.payment">Pagamento</span></div>
       </div>
 
       <form id="checkout-form" novalidate>
 
         <!-- EMAIL -->
         <div class="form-section">
-          <div class="form-section-title">Il tuo indirizzo e-mail</div>
+          <div class="form-section-title" data-i18n="shop.checkout.email.title">Il tuo indirizzo e-mail</div>
           <div class="form-row full">
             <div class="form-group">
-              <label class="form-label" for="email">E-mail</label>
+              <label class="form-label" for="email" data-i18n="shop.checkout.email.label">E-mail</label>
               <input class="form-input" type="email" id="email" name="email" placeholder="nome@esempio.it" autocomplete="email" required>
             </div>
           </div>
@@ -138,36 +152,36 @@
 
         <!-- SHIPPING -->
         <div class="form-section">
-          <div class="form-section-title">Consegna</div>
+          <div class="form-section-title" data-i18n="shop.checkout.delivery">Consegna</div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="first-name">Nome</label>
+              <label class="form-label" for="first-name" data-i18n="shop.checkout.firstname">Nome</label>
               <input class="form-input" type="text" id="first-name" name="firstName" autocomplete="given-name" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="last-name">Cognome</label>
+              <label class="form-label" for="last-name" data-i18n="shop.checkout.lastname">Cognome</label>
               <input class="form-input" type="text" id="last-name" name="lastName" autocomplete="family-name" required>
             </div>
           </div>
           <div class="form-row full">
             <div class="form-group">
-              <label class="form-label" for="address">Indirizzo</label>
+              <label class="form-label" for="address" data-i18n="shop.checkout.address">Indirizzo</label>
               <input class="form-input" type="text" id="address" name="address" autocomplete="street-address" placeholder="Via / Piazza, numero civico" required>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="postal-code">CAP</label>
+              <label class="form-label" for="postal-code" data-i18n="shop.checkout.postalcode">CAP</label>
               <input class="form-input" type="text" id="postal-code" name="postalCode" autocomplete="postal-code" maxlength="10" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="city">Città</label>
+              <label class="form-label" for="city" data-i18n="shop.checkout.city">Città</label>
               <input class="form-input" type="text" id="city" name="city" autocomplete="address-level2" required>
             </div>
           </div>
           <div class="form-row full">
             <div class="form-group">
-              <label class="form-label" for="country">Paese</label>
+              <label class="form-label" for="country" data-i18n="shop.checkout.country">Paese</label>
               <select class="form-select" id="country" name="country" autocomplete="country" required>
                 <option value="IT">Italia</option>
                 <option value="DE">Germania</option>
@@ -185,7 +199,7 @@
 
         <!-- PAYMENT -->
         <div class="form-section">
-          <div class="form-section-title">Pagamento</div>
+          <div class="form-section-title" data-i18n="shop.checkout.payment">Pagamento</div>
           <div id="payment-element-wrap">
             <div class="stripe-loading" id="stripe-loading">Caricamento metodo di pagamento…</div>
             <div id="payment-element"></div>
@@ -195,12 +209,12 @@
 
         <button class="btn-pay" id="btn-pay" type="submit" disabled>
           <div class="spinner"></div>
-          <span class="btn-label" id="btn-label">Paga Ora</span>
+          <span class="btn-label" id="btn-label"></span>
         </button>
 
         <div class="secure-note">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.955 11.955 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-          Pagamento sicuro — Powered by Stripe
+          <span data-i18n="shop.checkout.secure">Pagamento sicuro</span> — Powered by Stripe
         </div>
 
       </form>
@@ -209,18 +223,19 @@
     <!-- RIGHT: ORDER SUMMARY -->
     <aside>
       <div class="order-summary" id="order-summary">
-        <div class="os-title">Riepilogo Ordine</div>
+        <div class="os-title" data-i18n="shop.cart.summary">Riepilogo Ordine</div>
         <div class="os-items" id="os-items"><!-- filled by JS --></div>
         <hr class="os-divider">
-        <div class="os-row"><span>Subtotale</span><span id="os-subtotal">–</span></div>
-        <div class="os-row" id="os-shipping-row"><span>Spedizione</span><span id="os-shipping">–</span></div>
+        <div class="os-row"><span data-i18n="shop.cart.subtotal">Subtotale</span><span id="os-subtotal">–</span></div>
+        <div class="os-row" id="os-shipping-row"><span data-i18n="shop.cart.shipping">Spedizione</span><span id="os-shipping">–</span></div>
         <hr class="os-divider">
-        <div class="os-row total"><span>Totale</span><span id="os-total">–</span></div>
+        <div class="os-row total"><span data-i18n="shop.cart.total">Totale</span><span id="os-total">–</span></div>
       </div>
     </aside>
 
   </div>
 
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/products.js"></script>
   <script src="assets/js/cart.js"></script>
   <script>
@@ -268,6 +283,10 @@
       shippingEl.textContent = fmt(SHIPPING_COST);
     }
 
+    // Set initial pay button label and apply translations
+    document.getElementById('btn-label').textContent = t('shop.checkout.pay', getLang()) + ' ' + fmt(total);
+    if (typeof applyTranslations === 'function') applyTranslations(getLang());
+
     // ── Update step labels ─────────────────────────────────────────────────
     const emailInput = document.getElementById('email');
     const allInputs  = document.querySelectorAll('.form-input, .form-select');
@@ -311,7 +330,7 @@
       // Update total with server-confirmed amount
       if (serverTotal) {
         document.getElementById('os-total').textContent = fmt(serverTotal);
-        document.getElementById('btn-label').textContent = `Paga ${fmt(serverTotal)}`;
+        document.getElementById('btn-label').textContent = t('shop.checkout.pay', getLang()) + ' ' + fmt(serverTotal);
       }
 
       // 2. Initialize Stripe Elements

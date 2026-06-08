@@ -9,6 +9,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
+/* ── PROMO BAR ── */
+.promo-bar{background:var(--surf-charcoal);color:rgba(245,240,232,.7);text-align:center;padding:10px 20px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase}
+.promo-bar strong{color:var(--surf-clay-light)}
+
+/* ── CART ICON ── */
+.cart-btn{position:relative;display:flex;align-items:center;gap:6px;background:none;border:1.5px solid var(--surf-clay);padding:8px 14px;cursor:pointer;color:var(--surf-clay);text-decoration:none;font-size:12px;letter-spacing:.04em;transition:background .2s,color .2s}
+.cart-btn:hover{background:var(--surf-clay);color:var(--surf-cream)}
+.cart-btn svg{width:16px;height:16px;flex-shrink:0}
+.cart-badge{position:absolute;top:-7px;right:-7px;background:var(--surf-clay);color:var(--surf-cream);font-size:9px;font-weight:700;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;display:none}
+
 /* ── SURFACES Capsule styles ── */
 :root {
   --surf-cream: #F5F0E8;
@@ -156,6 +166,11 @@
 </head>
 <body>
 
+  <!-- PROMO BAR -->
+  <div class="promo-bar">
+    <span data-i18n="shop.promo">Spedizione gratuita per ordini superiori a €89 &mdash; codice <strong>DELY26</strong> al checkout</span>
+  </div>
+
   <!-- HEADER -->
   <header class="topbar">
     <div class="container">
@@ -181,6 +196,11 @@
         <div class="header-actions">
           <a class="btn primary" href="club.html" data-i18n="btn.startProject">Avvia un progetto club</a>
           <a class="btn" href="capsule.html" data-i18n="btn.exploreCapsule">Esplora le capsule</a>
+          <a class="cart-btn" href="carrello.html" aria-label="Carrello">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/></svg>
+            Carrello
+            <span class="cart-badge">0</span>
+          </a>
         </div>
       </div>
       <div class="header-lang"><a href="#" data-lang="it">IT</a> | <a href="#" data-lang="en">EN</a> | <a href="#" data-lang="de">DE</a></div>
@@ -269,9 +289,9 @@
     <!-- PRODUCT SPOTLIGHT -->
     <section class="surf-ps" id="surf-product">
       <div class="surf-spot surf-reveal">
-        <div class="surf-pif">
+        <a class="surf-pif" href="surfaces-product.html?id=surfaces-tshirt-clay" style="display:block;">
           <img src="surfaces/img/tshirt.png" alt="T-Shirt CLAY SURFACES">
-        </div>
+        </a>
         <div class="surf-pi">
           <div class="surf-p-num" data-i18n="surfaces.product1.ref">REF · 001 · CLAY T-SHIRT</div>
           <h3 class="surf-p-name">
@@ -286,7 +306,7 @@
             <div class="surf-p-det" data-i18n="surfaces.product1.det3">Produzione artigianale Made in Italy</div>
             <div class="surf-p-det" data-i18n="surfaces.product1.det4">Disponibile in Colore Off White</div>
           </div>
-          <a href="https://www.doubleutennis.com" class="surf-p-cta" target="_blank" rel="noopener" data-i18n="surfaces.product1.cta">Scopri</a>
+          <a href="surfaces-product.html?id=surfaces-tshirt-clay" class="surf-p-cta" data-i18n="surfaces.product1.cta">Scopri</a>
         </div>
       </div>
     </section>
@@ -301,7 +321,7 @@
       </div>
       <div class="surf-pg">
 
-        <div class="surf-pg-card surf-reveal surf-rd1">
+        <a class="surf-pg-card surf-reveal surf-rd1" href="surfaces-product.html?id=surfaces-sweatshirt-clay" style="text-decoration:none;color:inherit;display:block;">
           <div class="surf-pg-img">
             <img src="surfaces/img/sweatshirt.png" alt="Sweatshirt CLAY SURFACES">
           </div>
@@ -311,9 +331,9 @@
             <em data-i18n="surfaces.product2.sub">CLAY</em>
           </div>
           <div class="surf-pg-det" data-i18n="surfaces.product2.det">Produzione artigianale Made in Italy</div>
-        </div>
+        </a>
 
-        <div class="surf-pg-card surf-reveal surf-rd2">
+        <a class="surf-pg-card surf-reveal surf-rd2" href="surfaces-product.html?id=surfaces-polo-clay" style="text-decoration:none;color:inherit;display:block;">
           <div class="surf-pg-img">
             <img src="surfaces/img/polo.jpg" alt="Polo CLAY SURFACES">
           </div>
@@ -323,9 +343,9 @@
             <em data-i18n="surfaces.product3.sub">CLAY</em>
           </div>
           <div class="surf-pg-det" data-i18n="surfaces.product3.det">Piquet di Cotone Premium · Made in Italy</div>
-        </div>
+        </a>
 
-        <div class="surf-pg-card surf-reveal surf-rd3">
+        <a class="surf-pg-card surf-reveal surf-rd3" href="surfaces-product.html?id=surfaces-cap-clay" style="text-decoration:none;color:inherit;display:block;">
           <div class="surf-pg-img">
             <img src="surfaces/img/cap.jpg" alt="Cap CLAY SURFACES">
           </div>
@@ -335,7 +355,7 @@
             <em data-i18n="surfaces.product4.sub">CLAY</em>
           </div>
           <div class="surf-pg-det" data-i18n="surfaces.product4.det">Produzione artigianale Made in Italy</div>
-        </div>
+        </a>
 
       </div>
     </section>
@@ -406,6 +426,8 @@
     </div>
   </footer>
 
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/cart.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/i18n.js"></script>
   <script>

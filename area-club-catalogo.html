@@ -149,41 +149,47 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="assets/js/club-products.js"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/i18n.js"></script>
   <script>
-    const SUPABASE_URL      = 'https://bixayovstdptbgauvsgm.supabase.co';
-    const SUPABASE_ANON_KEY = 'sb_publishable_pKpjPbw4a0HSEIWbf2ZXvA_svT70I3v';
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const firebaseConfig = {
+      apiKey:            "AIzaSyAw72PJD8t1S8CmZujln-n3UL-yoXkn2Lo",
+      authDomain:        "doubleu---area---club.firebaseapp.com",
+      projectId:         "doubleu---area---club",
+      storageBucket:     "doubleu---area---club.firebasestorage.app",
+      messagingSenderId: "345970183746",
+      appId:             "1:345970183746:web:9f18caf5bc96810243e7db"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
 
+    const params     = new URLSearchParams(location.search);
+    const clubId     = (params.get('club') || '').toLowerCase();
+    const clubSuffix = clubId ? `?club=${clubId}` : '';
     const CLUB_NAMES = { mtc: 'MTC Ausstellungspark', allround: 'All Round Sport & Wellness' };
 
-    async function init() {
-      const { data: { session } } = await sb.auth.getSession();
-      if (!session) {
-        window.location.href = 'area-club.html';
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = `area-club.html${clubSuffix}`;
         return;
       }
-
-      const clubId   = session.user.user_metadata?.club || '';
       const clubData = getClubById(clubId);
       const clubName = CLUB_NAMES[clubId] || clubId || 'Club';
 
-      // Update accent color
       if (clubData?.accentColor) {
         document.documentElement.style.setProperty('--club-accent', clubData.accentColor);
       }
 
-      // Header badge + hero
       document.getElementById('cl-header-badge').textContent = clubName;
       document.getElementById('cl-hero-title').textContent   = clubData?.fullName || clubName;
       document.getElementById('cl-hero').setAttribute('data-club', (clubData?.name || clubName).toUpperCase());
       document.title = `DOUBLEU | ${clubName}`;
 
       renderCatalog(clubData);
-    }
+    });
 
     function renderCatalog(clubData) {
       const grid = document.getElementById('cl-pg');
@@ -208,7 +214,7 @@
           : `<div class="cl-card-price placeholder">Prezzo da definire</div>`;
 
         return `
-          <a class="cl-card" href="club-product.html?id=${p.id}">
+          <a class="cl-card" href="club-product.html?id=${p.id}&club=${clubId}">
             <div class="cl-card-img">${imgHtml}</div>
             <div class="cl-card-body">
               <div class="cl-card-tag">${p.tag}</div>
@@ -223,13 +229,11 @@
       if (typeof applyTranslations === 'function') applyTranslations(lang);
     }
 
-    // Logout
-    document.getElementById('logout-btn').addEventListener('click', async () => {
-      await sb.auth.signOut();
-      window.location.href = 'area-club.html';
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      auth.signOut().then(() => {
+        window.location.href = `area-club.html${clubSuffix}`;
+      });
     });
-
-    init();
   </script>
 </body>
 </html>

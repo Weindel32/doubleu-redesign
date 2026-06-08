@@ -344,6 +344,14 @@
   });
 
   if (typeof applyTranslations === 'function') applyTranslations(getLang());
+
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      setLang(el.dataset.lang);
+      applyTranslations(el.dataset.lang);
+    });
+  });
 </script>
 </body>
 </html>

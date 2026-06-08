@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DOUBLEU | Area Riservata Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100vh; background: #F5F2ED; font-family: 'Montserrat', sans-serif; }
+
+    .cl-wrap { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+
+    /* LEFT PANEL */
+    .cl-left {
+      background: #0D1B2A;
+      display: flex; flex-direction: column;
+      padding: 48px 56px;
+      position: relative; overflow: hidden;
+    }
+    .cl-left::before {
+      content: 'DOUBLEU';
+      position: absolute; bottom: -40px; left: -20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22vw; font-weight: 300;
+      color: rgba(255,255,255,.03); white-space: nowrap;
+      pointer-events: none; line-height: 1;
+    }
+    .cl-left-logo { display: flex; flex-direction: column; gap: 3px; text-decoration: none; }
+    .cl-left-logo span { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; letter-spacing: .12em; color: #F5F0E8; }
+    .cl-left-logo small { font-size: 8px; letter-spacing: .35em; text-transform: uppercase; color: rgba(245,240,232,.32); }
+    .cl-left-body { flex: 1; display: flex; align-items: flex-end; }
+    .cl-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 3.8vw, 52px);
+      font-weight: 300; font-style: italic;
+      color: rgba(245,240,232,.72);
+      line-height: 1.2;
+      padding-bottom: 56px;
+    }
+
+    /* RIGHT PANEL */
+    .cl-right {
+      display: flex; align-items: center; justify-content: center;
+      padding: 48px 40px;
+      background: #F5F2ED;
+    }
+    .cl-form-wrap { width: 100%; max-width: 400px; }
+
+    .cl-badge {
+      display: inline-block;
+      font-size: 9px; font-weight: 500; letter-spacing: .32em; text-transform: uppercase;
+      color: #0D1B2A; border: 1px solid rgba(13,27,42,.25);
+      padding: 6px 14px; margin-bottom: 28px;
+    }
+    .cl-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-weight: 300; color: #0D1B2A;
+      margin-bottom: 32px; line-height: 1.1;
+    }
+
+    /* TABS */
+    .cl-tabs { display: flex; gap: 0; border-bottom: 1.5px solid rgba(13,27,42,.12); margin-bottom: 28px; }
+    .cl-tab {
+      flex: 1; background: none; border: none; padding: 12px 0;
+      font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+      cursor: pointer; color: rgba(13,27,42,.38); position: relative;
+      transition: color .2s;
+    }
+    .cl-tab::after {
+      content: ''; position: absolute; bottom: -1.5px; left: 0; right: 0;
+      height: 2px; background: #0D1B2A; transform: scaleX(0);
+      transition: transform .25s;
+    }
+    .cl-tab.active { color: #0D1B2A; }
+    .cl-tab.active::after { transform: scaleX(1); }
+
+    /* FORM */
+    .cl-field { margin-bottom: 18px; }
+    .cl-label { display: block; font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(13,27,42,.52); margin-bottom: 7px; }
+    .cl-input {
+      width: 100%; padding: 13px 16px;
+      background: #fff; border: 1.5px solid rgba(13,27,42,.14);
+      font-size: 16px; font-family: 'Montserrat', sans-serif;
+      color: #0D1B2A; outline: none;
+      transition: border-color .2s;
+      -webkit-appearance: none;
+    }
+    .cl-input:focus { border-color: #0D1B2A; }
+    .cl-input::placeholder { color: rgba(13,27,42,.28); }
+
+    .cl-error { font-size: 12px; color: #C0392B; margin-bottom: 14px; min-height: 18px; }
+    .cl-success { font-size: 12px; color: #1B3A2D; background: rgba(27,58,45,.07); padding: 10px 14px; margin-bottom: 14px; line-height: 1.5; }
+
+    .cl-submit {
+      width: 100%; padding: 16px;
+      background: #0D1B2A; border: none; color: #F5F0E8;
+      font-size: 10.5px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+      cursor: pointer; transition: background .2s, opacity .2s;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .cl-submit:hover { background: #1A2F44; }
+    .cl-submit:disabled { opacity: .4; cursor: not-allowed; }
+
+    .cl-lang { text-align: center; margin-top: 32px; }
+    .cl-lang a { font-size: 11px; letter-spacing: .08em; color: rgba(13,27,42,.38); text-decoration: none; margin: 0 5px; transition: color .2s; }
+    .cl-lang a:hover, .cl-lang a.active { color: #0D1B2A; }
+
+    /* MOBILE */
+    @media (max-width: 720px) {
+      .cl-wrap { grid-template-columns: 1fr; }
+      .cl-left { min-height: 180px; padding: 32px 28px; }
+      .cl-left::before { font-size: 40vw; }
+      .cl-left-body { display: none; }
+      .cl-right { padding: 40px 24px; }
+      .cl-form-wrap { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cl-wrap">
+
+  <!-- LEFT: brand panel -->
+  <div class="cl-left">
+    <a href="index.html" class="cl-left-logo">
+      <span>DOUBLEU</span>
+      <small>Tennis Apparel</small>
+    </a>
+    <div class="cl-left-body">
+      <p class="cl-tagline" data-i18n="club.area.tagline">L'area riservata<br>del tuo club.</p>
+    </div>
+  </div>
+
+  <!-- RIGHT: form -->
+  <div class="cl-right">
+    <div class="cl-form-wrap">
+
+      <div class="cl-badge" id="cl-badge">Club</div>
+      <h1 class="cl-title" data-i18n="club.area.title">Area Riservata</h1>
+
+      <div class="cl-tabs">
+        <button class="cl-tab active" id="tab-login" data-i18n="club.area.tab.login">Accedi</button>
+        <button class="cl-tab" id="tab-register" data-i18n="club.area.tab.register">Registrati</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="form-login">
+        <div class="cl-field">
+          <label class="cl-label" for="login-email" data-i18n="club.area.form.email">Email</label>
+          <input type="email" id="login-email" class="cl-input" required autocomplete="email" placeholder="email@club.it">
+        </div>
+        <div class="cl-field">
+          <label class="cl-label" for="login-password" data-i18n="club.area.form.password">Password</label>
+          <input type="password" id="login-password" class="cl-input" required autocomplete="current-password" placeholder="••••••••">
+        </div>
+        <div class="cl-error" id="login-error"></div>
+        <button type="submit" class="cl-submit" id="login-btn">
+          <span data-i18n="club.area.login.submit">Accedi</span>
+        </button>
+      </form>
+
+      <!-- REGISTER FORM -->
+      <form id="form-register" style="display:none">
+        <div class="cl-field">
+          <label class="cl-label" for="reg-email" data-i18n="club.area.form.email">Email</label>
+          <input type="email" id="reg-email" class="cl-input" required autocomplete="email" placeholder="email@club.it">
+        </div>
+        <div class="cl-field">
+          <label class="cl-label" for="reg-password" data-i18n="club.area.form.password">Password</label>
+          <input type="password" id="reg-password" class="cl-input" required autocomplete="new-password" placeholder="••••••••" minlength="6">
+        </div>
+        <div class="cl-field">
+          <label class="cl-label" for="reg-confirm" data-i18n="club.area.form.confirmPassword">Conferma password</label>
+          <input type="password" id="reg-confirm" class="cl-input" required autocomplete="new-password" placeholder="••••••••">
+        </div>
+        <div class="cl-error" id="reg-error"></div>
+        <div class="cl-success" id="reg-success" style="display:none"></div>
+        <button type="submit" class="cl-submit" id="reg-btn">
+          <span data-i18n="club.area.register.submit">Crea account</span>
+        </button>
+      </form>
+
+      <div class="cl-lang">
+        <a href="#" data-lang="it">IT</a> |
+        <a href="#" data-lang="en">EN</a> |
+        <a href="#" data-lang="de">DE</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/i18n.js"></script>
+<script>
+  // ── Supabase config (da configurare)
+  const SUPABASE_URL      = 'https://YOUR_PROJECT_REF.supabase.co';
+  const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY_HERE';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // ── Detect club from URL (?club=mtc | ?club=allround)
+  const params  = new URLSearchParams(location.search);
+  const clubId  = (params.get('club') || '').toLowerCase();
+  const CLUB_NAMES = { mtc: 'MTC Ausstellungspark', allround: 'All Round Sport & Wellness' };
+  const clubName = CLUB_NAMES[clubId] || 'Tennis Club';
+  document.getElementById('cl-badge').textContent = clubName;
+  document.title = `DOUBLEU | Area ${clubName}`;
+
+  // ── If already logged in → go directly to catalog
+  sb.auth.getSession().then(({ data: { session } }) => {
+    if (session) window.location.href = 'area-club-catalogo.html';
+  });
+
+  // ── Tab switching
+  const tabLogin    = document.getElementById('tab-login');
+  const tabRegister = document.getElementById('tab-register');
+  const fLogin      = document.getElementById('form-login');
+  const fRegister   = document.getElementById('form-register');
+
+  tabLogin.addEventListener('click', () => {
+    tabLogin.classList.add('active');
+    tabRegister.classList.remove('active');
+    fLogin.style.display = '';
+    fRegister.style.display = 'none';
+  });
+  tabRegister.addEventListener('click', () => {
+    tabRegister.classList.add('active');
+    tabLogin.classList.remove('active');
+    fRegister.style.display = '';
+    fLogin.style.display = 'none';
+  });
+
+  // ── Login
+  fLogin.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn  = document.getElementById('login-btn');
+    const errEl = document.getElementById('login-error');
+    errEl.textContent = '';
+    btn.disabled = true;
+
+    const { error } = await sb.auth.signInWithPassword({
+      email:    document.getElementById('login-email').value.trim(),
+      password: document.getElementById('login-password').value,
+    });
+
+    if (error) {
+      errEl.textContent = t('club.area.error.invalid', getLang());
+      btn.disabled = false;
+    } else {
+      window.location.href = 'area-club-catalogo.html';
+    }
+  });
+
+  // ── Register
+  fRegister.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn   = document.getElementById('reg-btn');
+    const errEl = document.getElementById('reg-error');
+    const okEl  = document.getElementById('reg-success');
+    errEl.textContent = '';
+    okEl.style.display = 'none';
+
+    const email   = document.getElementById('reg-email').value.trim();
+    const pw      = document.getElementById('reg-password').value;
+    const confirm = document.getElementById('reg-confirm').value;
+
+    if (pw !== confirm) {
+      errEl.textContent = t('club.area.error.mismatch', getLang());
+      return;
+    }
+    if (!clubId) {
+      errEl.textContent = t('club.area.error.generic', getLang());
+      return;
+    }
+
+    btn.disabled = true;
+    const { data, error } = await sb.auth.signUp({
+      email,
+      password: pw,
+      options: { data: { club: clubId } },
+    });
+
+    if (error) {
+      const isExisting = error.message.toLowerCase().includes('already');
+      errEl.textContent = isExisting
+        ? t('club.area.error.exists', getLang())
+        : t('club.area.error.generic', getLang());
+      btn.disabled = false;
+    } else if (data.session) {
+      // Email confirmation disabled in Supabase → direct redirect
+      window.location.href = 'area-club-catalogo.html';
+    } else {
+      // Email confirmation required
+      okEl.textContent = t('club.area.register.confirm', getLang());
+      okEl.style.display = 'block';
+      btn.disabled = false;
+    }
+  });
+
+  if (typeof applyTranslations === 'function') applyTranslations(getLang());
+</script>
+</body>
+</html>

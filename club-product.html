@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DOUBLEU | Club Product</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    :root {
+      --club-accent: #0D1B2A;
+      --club-cream:  #F5F0E8;
+      --club-warm:   #FDFAF5;
+      --club-mid:    #6B6358;
+      --club-border: rgba(13,27,42,.1);
+    }
+
+    .promo-bar { background: var(--club-accent); color: rgba(245,240,232,.7); text-align: center; padding: 10px 20px; font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; }
+
+    /* HEADER */
+    .cl-header { background: #fff; border-bottom: 1px solid var(--club-border); position: sticky; top: 0; z-index: 100; }
+    .cl-header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; gap: 20px; }
+    .cl-logo { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
+    .cl-logo span { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: .1em; color: var(--club-accent); }
+    .cl-logo small { font-size: 7px; letter-spacing: .3em; text-transform: uppercase; color: var(--club-mid); }
+    .cl-header-right { display: flex; align-items: center; gap: 12px; }
+    .cl-back { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--club-mid); text-decoration: none; transition: color .2s; }
+    .cl-back:hover { color: var(--club-accent); }
+    .cl-logout-btn { background: none; border: 1.5px solid var(--club-border); padding: 8px 14px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--club-mid); cursor: pointer; font-family: 'Montserrat', sans-serif; transition: border-color .2s, color .2s; }
+    .cl-logout-btn:hover { border-color: var(--club-accent); color: var(--club-accent); }
+    .cart-btn { position: relative; display: flex; align-items: center; gap: 6px; background: none; border: 1.5px solid var(--club-accent); padding: 8px 14px; cursor: pointer; color: var(--club-accent); text-decoration: none; font-size: 12px; letter-spacing: .04em; transition: background .2s, color .2s; }
+    .cart-btn:hover { background: var(--club-accent); color: #fff; }
+    .cart-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .cart-badge { position: absolute; top: -7px; right: -7px; background: var(--club-accent); color: var(--club-cream); font-size: 9px; font-weight: 700; width: 17px; height: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; display: none; }
+
+    /* PRODUCT */
+    .cp-page { background: var(--club-warm); min-height: 80vh; padding: 64px 80px; }
+    .cp-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+    /* IMAGE */
+    .cp-gallery {}
+    .cp-main-img { aspect-ratio: 3/4; overflow: hidden; background: var(--club-warm); border: 1px solid var(--club-border); display: flex; align-items: center; justify-content: center; }
+    .cp-main-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cp-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px; }
+    .cp-placeholder svg { width: 64px; height: 64px; opacity: .15; }
+    .cp-placeholder p { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: rgba(13,27,42,.35); text-align: center; }
+
+    /* INFO */
+    .cp-info { padding-top: 8px; }
+    .cp-tag { display: inline-block; font-size: 8.5px; font-weight: 500; letter-spacing: .32em; text-transform: uppercase; color: var(--club-accent); border: 1px solid rgba(13,27,42,.2); padding: 4px 10px; margin-bottom: 16px; }
+    .cp-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 3.8vw, 50px); font-weight: 300; line-height: 1.05; color: var(--club-accent); margin-bottom: 4px; }
+    .cp-sub { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--club-mid); margin-bottom: 20px; }
+    .cp-price { font-size: 26px; font-weight: 300; color: var(--club-accent); margin-bottom: 6px; }
+    .cp-price.placeholder { font-size: 13px; letter-spacing: .1em; color: rgba(13,27,42,.38); margin-bottom: 6px; }
+    .cp-divider { width: 36px; height: 2px; background: var(--club-accent); margin: 22px 0; }
+    .cp-desc { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: var(--club-mid); line-height: 1.8; margin-bottom: 28px; }
+
+    /* SELECTORS */
+    .cp-field { margin-bottom: 20px; }
+    .cp-field-label { font-size: 10px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: rgba(13,27,42,.5); margin-bottom: 8px; }
+    .cp-select {
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--club-border); background: #fff;
+      font-size: 16px; font-family: 'Montserrat', sans-serif;
+      color: var(--club-accent); outline: none;
+      appearance: none; -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230D1B2A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 16px center;
+      cursor: pointer; transition: border-color .2s;
+    }
+    .cp-select:focus { border-color: var(--club-accent); }
+
+    /* ADD TO CART */
+    .cp-btn-cart {
+      display: block; width: 100%; min-height: 56px; padding: 16px 24px;
+      background: var(--club-accent); border: none; color: var(--club-cream);
+      font-size: 10.5px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+      cursor: pointer; transition: background .2s, opacity .2s;
+      font-family: 'Montserrat', sans-serif; margin-bottom: 12px;
+    }
+    .cp-btn-cart:hover { opacity: .88; }
+    .cp-btn-cart:disabled { opacity: .4; cursor: not-allowed; }
+    .cp-feedback { font-size: 12px; color: var(--club-accent); min-height: 18px; letter-spacing: .06em; }
+    .cp-feedback a { color: var(--club-accent); font-weight: 600; }
+
+    /* DETAILS */
+    .cp-details { margin-top: 28px; border-top: 1px solid var(--club-border); padding-top: 22px; display: flex; flex-direction: column; gap: 10px; }
+    .cp-detail-row { display: flex; gap: 12px; font-size: 12.5px; }
+    .cp-detail-key { color: var(--club-mid); min-width: 110px; flex-shrink: 0; }
+    .cp-detail-val { color: var(--club-accent); font-weight: 500; }
+
+    /* RELATED */
+    .cp-related { background: #fff; padding: 64px 80px; border-top: 1px solid var(--club-border); }
+    .cp-related-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--club-accent); margin-bottom: 32px; }
+    .cp-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .cp-rel-card { text-decoration: none; color: inherit; display: block; }
+    .cp-rel-card:hover .cp-rel-img img { transform: scale(1.04); }
+    .cp-rel-img { aspect-ratio: 3/4; overflow: hidden; background: var(--club-warm); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; }
+    .cp-rel-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .cp-rel-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .cp-rel-placeholder svg { width: 32px; height: 32px; opacity: .12; }
+    .cp-rel-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--club-accent); }
+    .cp-rel-sub { font-family: 'Cormorant Garamond', serif; font-size: 12px; font-style: italic; color: var(--club-mid); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .cp-page { padding: 40px 28px; }
+      .cp-inner { grid-template-columns: 1fr; gap: 36px; }
+      .cl-header-inner { padding: 14px 20px; }
+      .cp-related { padding: 48px 28px; }
+      .cp-related-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .cp-related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PROMO BAR -->
+  <div class="promo-bar">
+    <span data-i18n="shop.promo">Spedizione gratuita per ordini superiori a €89 — codice DELY26 al checkout</span>
+  </div>
+
+  <!-- HEADER -->
+  <header class="cl-header">
+    <div class="cl-header-inner">
+      <a href="index.html" class="cl-logo">
+        <span>DOUBLEU</span>
+        <small>Tennis Apparel</small>
+      </a>
+      <div class="cl-header-right">
+        <a href="area-club-catalogo.html" class="cl-back" data-i18n="shop.back.cart">← Torna al catalogo</a>
+        <button class="cl-logout-btn" id="logout-btn" data-i18n="club.area.logout">Esci</button>
+        <a class="cart-btn" href="carrello.html" aria-label="Carrello">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/></svg>
+          Carrello
+          <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PRODUCT -->
+  <section class="cp-page" id="cp-page">
+    <div class="cp-inner" id="cp-inner">
+      <!-- rendered by JS -->
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="cp-related" id="cp-related" style="display:none">
+    <h2 class="cp-related-title" data-i18n="club.area.product.related">Altri prodotti del club</h2>
+    <div class="cp-related-grid" id="cp-related-grid"></div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/club-products.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script>
+    const SUPABASE_URL      = 'https://YOUR_PROJECT_REF.supabase.co';
+    const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY_HERE';
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const params    = new URLSearchParams(location.search);
+    const productId = params.get('id') || '';
+
+    async function init() {
+      const { data: { session } } = await sb.auth.getSession();
+      if (!session) { window.location.href = 'area-club.html'; return; }
+
+      const userClub = session.user.user_metadata?.club || '';
+      const result   = getClubProductById(productId);
+
+      if (!result || result.product.clubId !== userClub) {
+        document.getElementById('cp-inner').innerHTML =
+          `<p style="grid-column:1/-1;font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:#6B6358;padding:60px 0;">
+             Prodotto non trovato o non disponibile per il tuo club.
+           </p>`;
+        return;
+      }
+
+      const { product: p, club } = result;
+
+      // Set accent color
+      if (club?.accentColor) {
+        document.documentElement.style.setProperty('--club-accent', club.accentColor);
+      }
+
+      document.title = `DOUBLEU | ${p.name}`;
+      renderProduct(p, club);
+      renderRelated(p, club);
+
+      if (typeof applyTranslations === 'function') applyTranslations(getLang());
+    }
+
+    function renderProduct(p, club) {
+      const lang = getLang();
+      const hasImg = !!p.gridImage;
+      const imgHtml = hasImg
+        ? `<img src="${p.gridImage}" alt="${p.name}">`
+        : `<div class="cp-placeholder">
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+             <p>Preview<br>in arrivo</p>
+           </div>`;
+      const priceHtml = p.basePrice > 0
+        ? `<div class="cp-price">€ ${p.basePrice.toFixed(2).replace('.', ',')}</div>`
+        : `<div class="cp-price placeholder">Prezzo da definire</div>`;
+
+      const sizeOptions = p.sizes.map(s => `<option value="${s}">${s}</option>`).join('');
+      const colorOptions = p.colors.length > 1
+        ? p.colors.map(c => `<option value="${c.name}">${c.name}</option>`).join('')
+        : '';
+
+      document.getElementById('cp-inner').innerHTML = `
+        <div class="cp-gallery">
+          <div class="cp-main-img">${imgHtml}</div>
+        </div>
+        <div class="cp-info">
+          <span class="cp-tag">${p.tag} · ${club.name}</span>
+          <h1 class="cp-name">${p.name}</h1>
+          <div class="cp-sub">${p.subtitle}</div>
+          ${priceHtml}
+          <div class="cp-divider"></div>
+          <p class="cp-desc">${p.description}</p>
+
+          <div class="cp-field">
+            <div class="cp-field-label" data-i18n="shop.product.size">${t('shop.product.size', lang)}</div>
+            <select class="cp-select" id="cp-size">
+              <option value="">${t('shop.product.size.select', lang)}</option>
+              ${sizeOptions}
+            </select>
+          </div>
+
+          ${colorOptions ? `
+          <div class="cp-field">
+            <div class="cp-field-label" data-i18n="shop.product.color">${t('shop.product.color', lang)}</div>
+            <select class="cp-select" id="cp-color">
+              <option value="">${t('shop.product.color.select', lang)}</option>
+              ${colorOptions}
+            </select>
+          </div>` : `<input type="hidden" id="cp-color" value="${p.colors[0]?.name || ''}">`}
+
+          <button class="cp-btn-cart" id="cp-btn-cart" data-i18n="shop.product.add">
+            ${t('shop.product.add', lang)}
+          </button>
+          <div class="cp-feedback" id="cp-feedback"></div>
+
+          <div class="cp-details">
+            <div class="cp-detail-row"><span class="cp-detail-key" data-i18n="shop.product.fit">${t('shop.product.fit', lang)}</span><span class="cp-detail-val">${p.fit}</span></div>
+            <div class="cp-detail-row"><span class="cp-detail-key" data-i18n="shop.product.material">${t('shop.product.material', lang)}</span><span class="cp-detail-val">${p.material}</span></div>
+            ${p.printSize ? `<div class="cp-detail-row"><span class="cp-detail-key" data-i18n="shop.product.print">${t('shop.product.print', lang)}</span><span class="cp-detail-val">${p.printSize}</span></div>` : ''}
+          </div>
+        </div>`;
+
+      // Add-to-cart handler
+      document.getElementById('cp-btn-cart').addEventListener('click', () => {
+        const size   = document.getElementById('cp-size').value;
+        const colorEl = document.getElementById('cp-color');
+        const color  = colorEl?.value || p.colors[0]?.name || '';
+
+        if (!size) {
+          document.getElementById('cp-feedback').textContent = t('shop.product.size.select', getLang());
+          return;
+        }
+        const colorObj = p.colors.find(c => c.name === color) || p.colors[0];
+        Cart.add({
+          id: p.id, name: p.name,
+          color, size,
+          price: colorObj?.price || p.basePrice,
+          image: p.gridImage || null,
+          qty: 1,
+        });
+        const fb = document.getElementById('cp-feedback');
+        fb.innerHTML = `${t('shop.product.added', getLang())} <a href="carrello.html">${t('shop.product.goto.cart', getLang())}</a>`;
+      });
+    }
+
+    function renderRelated(currentProduct, club) {
+      const others = club.products.filter(p => p.id !== currentProduct.id);
+      if (!others.length) return;
+
+      const relSection = document.getElementById('cp-related');
+      const relGrid    = document.getElementById('cp-related-grid');
+      relSection.style.display = '';
+
+      relGrid.innerHTML = others.map(p => {
+        const imgHtml = p.gridImage
+          ? `<img src="${p.gridImage}" alt="${p.name}" loading="lazy">`
+          : `<div class="cp-rel-placeholder"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>`;
+        return `
+          <a class="cp-rel-card" href="club-product.html?id=${p.id}">
+            <div class="cp-rel-img">${imgHtml}</div>
+            <div class="cp-rel-name">${p.name}</div>
+            <div class="cp-rel-sub">${p.subtitle}</div>
+          </a>`;
+      }).join('');
+
+      if (typeof applyTranslations === 'function') applyTranslations(getLang());
+    }
+
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      await sb.auth.signOut();
+      window.location.href = 'area-club.html';
+    });
+
+    init();
+  </script>
+</body>
+</html>

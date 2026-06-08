@@ -40,13 +40,9 @@
     .cp-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 
     /* IMAGE */
-    .cp-gallery { display: flex; flex-direction: column; gap: 10px; }
+    .cp-gallery {}
     .cp-main-img { aspect-ratio: 3/4; overflow: hidden; background: var(--club-warm); border: 1px solid var(--club-border); display: flex; align-items: center; justify-content: center; }
-    .cp-main-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .2s; }
-    .cp-thumbs { display: flex; gap: 8px; }
-    .cp-thumb { width: 64px; height: 80px; overflow: hidden; border: 1.5px solid transparent; cursor: pointer; flex-shrink: 0; background: var(--club-warm); }
-    .cp-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .cp-thumb.active { border-color: var(--club-accent); }
+    .cp-main-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .cp-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px; }
     .cp-placeholder svg { width: 64px; height: 64px; opacity: .15; }
     .cp-placeholder p { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: rgba(13,27,42,.35); text-align: center; }
@@ -107,6 +103,13 @@
     .cp-rel-placeholder svg { width: 32px; height: 32px; opacity: .12; }
     .cp-rel-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--club-accent); }
     .cp-rel-sub { font-family: 'Cormorant Garamond', serif; font-size: 12px; font-style: italic; color: var(--club-mid); }
+
+    /* GALLERY THUMBNAILS */
+    .cp-thumbs { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .cp-thumb { width: 72px; aspect-ratio: 3/4; overflow: hidden; border: 1.5px solid var(--club-border); cursor: pointer; flex-shrink: 0; opacity: .55; transition: opacity .2s, border-color .2s; }
+    .cp-thumb.active { opacity: 1; border-color: var(--club-accent); }
+    .cp-thumb:hover { opacity: .85; }
+    .cp-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
@@ -170,40 +173,45 @@
   <script src="assets/js/i18n.js"></script>
   <script>
     const firebaseConfig = {
-      apiKey:            "AIzaSyAw72PJD8t1S8CmZujln-n3UL-yoXknZLo",
-      authDomain:        "doubleu---area---club.firebaseapp.com",
-      projectId:         "doubleu---area---club",
-      storageBucket:     "doubleu---area---club.firebasestorage.app",
+      apiKey: "AIzaSyAw72PJD8t1S8CmZujln-n3UL-yoXknZLo",
+      authDomain: "doubleu---area---club.firebaseapp.com",
+      projectId: "doubleu---area---club",
+      storageBucket: "doubleu---area---club.firebasestorage.app",
       messagingSenderId: "345970183746",
-      appId:             "1:345970183746:web:9f10caf5bc96810243e7db"
+      appId: "1:345970183746:web:9f10caf5bc96810243e7db"
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    const params    = new URLSearchParams(location.search);
-    const productId = params.get('id') || '';
-    const clubId    = (params.get('club') || '').toLowerCase();
+    const params     = new URLSearchParams(location.search);
+    const productId  = params.get('id') || '';
+    const clubId     = (params.get('club') || '').toLowerCase();
     const clubSuffix = clubId ? `?club=${clubId}` : '';
 
     auth.onAuthStateChanged(user => {
       if (!user) { window.location.href = `area-club.html${clubSuffix}`; return; }
+      init();
+    });
 
+    function init() {
       const result = getClubProductById(productId);
 
       if (!result) {
         document.getElementById('cp-inner').innerHTML =
           `<p style="grid-column:1/-1;font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:#6B6358;padding:60px 0;">
-             Prodotto non trovato o non disponibile per il tuo club.
+             Prodotto non trovato.
            </p>`;
         return;
       }
 
       const { product: p, club } = result;
 
-      // Set accent color
       if (club?.accentColor) {
         document.documentElement.style.setProperty('--club-accent', club.accentColor);
       }
+
+      // Fix "torna al catalogo" link
+      document.querySelector('.cl-back').href = `area-club-catalogo.html${clubSuffix}`;
 
       document.title = `DOUBLEU | ${p.name}`;
       renderProduct(p, club);
@@ -212,36 +220,44 @@
       if (typeof applyTranslations === 'function') applyTranslations(getLang());
     }
 
+    function setMainImage(src) {
+      const mainImg = document.querySelector('.cp-main-img img');
+      if (mainImg) mainImg.src = src;
+      document.querySelectorAll('.cp-thumb').forEach(th => {
+        th.classList.toggle('active', th.dataset.src === src);
+      });
+    }
+
     function renderProduct(p, club) {
       const lang = getLang();
-      const hasImg = !!p.gridImage;
-      const imgHtml = hasImg
-        ? `<img src="${p.gridImage}" alt="${p.name}">`
+      const images = p.images?.length ? p.images : (p.gridImage ? [p.gridImage] : []);
+      const firstImg = images[0] || null;
+
+      const imgHtml = firstImg
+        ? `<img src="${firstImg}" alt="${p.name}">`
         : `<div class="cp-placeholder">
              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
              <p>Preview<br>in arrivo</p>
            </div>`;
+
+      const thumbsHtml = images.length > 1
+        ? `<div class="cp-thumbs">${images.map((src, i) =>
+            `<div class="cp-thumb${i === 0 ? ' active' : ''}" data-src="${src}"><img src="${src}" alt=""></div>`
+          ).join('')}</div>`
+        : '';
+
       const priceHtml = p.basePrice > 0
         ? `<div class="cp-price">€ ${p.basePrice.toFixed(2).replace('.', ',')}</div>`
         : `<div class="cp-price placeholder">Prezzo da definire</div>`;
 
-      const sizeOptions = p.sizes.map(s => `<option value="${s}">${s}</option>`).join('');
+      const sizeOptions  = p.sizes.map(s => `<option value="${s}">${s}</option>`).join('');
       const colorOptions = p.colors.length > 1
-        ? p.colors.map(c => `<option value="${c.name}">${c.name}</option>`).join('')
-        : '';
-
-      // Build thumbnails from p.images
-      const allImages = p.images && p.images.length > 1 ? p.images : null;
-      const thumbsHtml = allImages
-        ? `<div class="cp-thumbs">${allImages.map((src, i) =>
-            `<div class="cp-thumb ${i === 0 ? 'active' : ''}" data-src="${src}">
-               <img src="${src}" alt="${p.name}" loading="lazy">
-             </div>`).join('')}</div>`
+        ? p.colors.map(c => `<option value="${c.name}" data-img="${c.image || ''}">${c.name}</option>`).join('')
         : '';
 
       document.getElementById('cp-inner').innerHTML = `
         <div class="cp-gallery">
-          <div class="cp-main-img" id="cp-main-img">${imgHtml}</div>
+          <div class="cp-main-img">${imgHtml}</div>
           ${thumbsHtml}
         </div>
         <div class="cp-info">
@@ -281,27 +297,18 @@
           </div>
         </div>`;
 
-      // Thumbnail click → switch main image
-      document.querySelectorAll('.cp-thumb').forEach(thumb => {
-        thumb.addEventListener('click', () => {
-          const src = thumb.dataset.src;
-          document.getElementById('cp-main-img').innerHTML = `<img src="${src}" alt="${p.name}">`;
-          document.querySelectorAll('.cp-thumb').forEach(t => t.classList.remove('active'));
-          thumb.classList.add('active');
-        });
+      // Thumbnail click
+      document.querySelectorAll('.cp-thumb').forEach(th => {
+        th.addEventListener('click', () => setMainImage(th.dataset.src));
       });
 
-      // Color change → switch main image if color has its own image
-      const colorSelect = document.getElementById('cp-color');
-      if (colorSelect && colorSelect.tagName === 'SELECT') {
-        colorSelect.addEventListener('change', () => {
-          const colorObj = p.colors.find(c => c.name === colorSelect.value);
-          if (colorObj?.image) {
-            document.getElementById('cp-main-img').innerHTML = `<img src="${colorObj.image}" alt="${p.name}">`;
-            document.querySelectorAll('.cp-thumb').forEach(t => {
-              t.classList.toggle('active', t.dataset.src === colorObj.image);
-            });
-          }
+      // Color change → switch image
+      const colorSel = document.getElementById('cp-color');
+      if (colorSel && colorSel.tagName === 'SELECT') {
+        colorSel.addEventListener('change', () => {
+          const opt = colorSel.options[colorSel.selectedIndex];
+          const img = opt?.dataset.img;
+          if (img) setMainImage(img);
         });
       }
 
@@ -317,11 +324,9 @@
         }
         const colorObj = p.colors.find(c => c.name === color) || p.colors[0];
         Cart.add({
-          id: p.id, name: p.name,
-          color, size,
+          id: p.id, name: p.name, color, size,
           price: colorObj?.price || p.basePrice,
-          image: colorObj?.image || p.gridImage || null,
-          qty: 1,
+          image: p.gridImage || null, qty: 1,
         });
         const fb = document.getElementById('cp-feedback');
         fb.innerHTML = `${t('shop.product.added', getLang())} <a href="carrello.html">${t('shop.product.goto.cart', getLang())}</a>`;
@@ -341,7 +346,7 @@
           ? `<img src="${p.gridImage}" alt="${p.name}" loading="lazy">`
           : `<div class="cp-rel-placeholder"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>`;
         return `
-          <a class="cp-rel-card" href="club-product.html?id=${p.id}&club=${clubId}">
+          <a class="cp-rel-card" href="club-product.html?id=${p.id}${clubId ? '&club=' + clubId : ''}">
             <div class="cp-rel-img">${imgHtml}</div>
             <div class="cp-rel-name">${p.name}</div>
             <div class="cp-rel-sub">${p.subtitle}</div>
@@ -351,10 +356,18 @@
       if (typeof applyTranslations === 'function') applyTranslations(getLang());
     }
 
-    document.getElementById('logout-btn').addEventListener('click', () => {
-      auth.signOut().then(() => {
-        window.location.href = `area-club.html${clubSuffix}`;
+    // Language switcher
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        setLang(el.dataset.lang);
+        applyTranslations(el.dataset.lang);
       });
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      await auth.signOut();
+      window.location.href = `area-club.html${clubSuffix}`;
     });
   </script>
 </body>

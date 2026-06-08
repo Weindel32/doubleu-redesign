@@ -156,12 +156,12 @@
   <script src="assets/js/i18n.js"></script>
   <script>
     const firebaseConfig = {
-      apiKey:            "AIzaSyAw72PJD8t1S8CmZujln-n3UL-yoXknZLo",
-      authDomain:        "doubleu---area---club.firebaseapp.com",
-      projectId:         "doubleu---area---club",
-      storageBucket:     "doubleu---area---club.firebasestorage.app",
+      apiKey: "AIzaSyAw72PJD8t1S8CmZujln-n3UL-yoXknZLo",
+      authDomain: "doubleu---area---club.firebaseapp.com",
+      projectId: "doubleu---area---club",
+      storageBucket: "doubleu---area---club.firebasestorage.app",
       messagingSenderId: "345970183746",
-      appId:             "1:345970183746:web:9f10caf5bc96810243e7db"
+      appId: "1:345970183746:web:9f10caf5bc96810243e7db"
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
@@ -169,13 +169,15 @@
     const params     = new URLSearchParams(location.search);
     const clubId     = (params.get('club') || '').toLowerCase();
     const clubSuffix = clubId ? `?club=${clubId}` : '';
+
     const CLUB_NAMES = { mtc: 'MTC Ausstellungspark', allround: 'All Round Sport & Wellness' };
 
     auth.onAuthStateChanged(user => {
-      if (!user) {
-        window.location.href = `area-club.html${clubSuffix}`;
-        return;
-      }
+      if (!user) { window.location.href = `area-club.html${clubSuffix}`; return; }
+      initCatalog();
+    });
+
+    function initCatalog() {
       const clubData = getClubById(clubId);
       const clubName = CLUB_NAMES[clubId] || clubId || 'Club';
 
@@ -189,12 +191,12 @@
       document.title = `DOUBLEU | ${clubName}`;
 
       renderCatalog(clubData);
-    });
+    }
 
     function renderCatalog(clubData) {
-      const grid = document.getElementById('cl-pg');
+      const grid     = document.getElementById('cl-pg');
       const products = clubData?.products || [];
-      const lang = getLang();
+      const lang     = getLang();
 
       if (!products.length) {
         grid.innerHTML = `<div class="cl-empty"><p>${t('club.area.catalog.empty', lang)}</p></div>`;
@@ -212,9 +214,10 @@
         const priceHtml = p.basePrice > 0
           ? `<div class="cl-card-price">€ ${p.basePrice.toFixed(2).replace('.', ',')}</div>`
           : `<div class="cl-card-price placeholder">Prezzo da definire</div>`;
+        const productUrl = `club-product.html?id=${p.id}${clubId ? '&club=' + clubId : ''}`;
 
         return `
-          <a class="cl-card" href="club-product.html?id=${p.id}&club=${clubId}">
+          <a class="cl-card" href="${productUrl}">
             <div class="cl-card-img">${imgHtml}</div>
             <div class="cl-card-body">
               <div class="cl-card-tag">${p.tag}</div>
@@ -229,10 +232,20 @@
       if (typeof applyTranslations === 'function') applyTranslations(lang);
     }
 
-    document.getElementById('logout-btn').addEventListener('click', () => {
-      auth.signOut().then(() => {
-        window.location.href = `area-club.html${clubSuffix}`;
+    // Language switcher
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        setLang(el.dataset.lang);
+        applyTranslations(el.dataset.lang);
+        renderCatalog(getClubById(clubId));
       });
+    });
+
+    // Logout
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      await auth.signOut();
+      window.location.href = `area-club.html${clubSuffix}`;
     });
   </script>
 </body>

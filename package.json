@@ -1,0 +1,8 @@
+{
+  "name": "doubleu-shop",
+  "version": "1.0.0",
+  "description": "DOUBLEU Tennis Apparel – Shop backend",
+  "dependencies": {
+    "stripe": "^16.0.0"
+  }
+}

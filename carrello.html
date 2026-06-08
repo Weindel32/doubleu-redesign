@@ -222,7 +222,7 @@
           <hr class="summary-divider">
           <div class="summary-total"><span>Totale</span><span>${formatPrice(total)}</span></div>
           <div class="summary-tax">IVA inclusa · Spedizione calcolata al checkout</div>
-          <a class="btn-checkout" href="checkout.html">Procedi al Pagamento</a>
+          <a class="btn-checkout" href="checkout.html${promoApplied ? '?promo=1' : ''}">Procedi al Pagamento</a>
           <div class="secure-note">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.955 11.955 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
             Pagamento sicuro &mdash; Powered by Stripe

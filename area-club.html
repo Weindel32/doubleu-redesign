@@ -134,6 +134,15 @@
       .cl-right { padding: 40px 24px; }
       .cl-form-wrap { max-width: 100%; }
     }
+
+    /* FOOTER LEGAL */
+    .cl-footer-legal { background: #0A1520; padding: 14px 40px; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; position: fixed; bottom: 0; left: 0; right: 0; z-index: 10; }
+    .cl-footer-legal a { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,240,232,.18); text-decoration: none; transition: color .2s; }
+    .cl-footer-legal a:hover { color: rgba(245,240,232,.5); }
+    @media (max-width: 720px) { .cl-footer-legal { display: none; } }
+
+    /* LANG ACTIVE */
+    .cl-lang a.lang-active { color: #0D1B2A; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -223,6 +232,16 @@
     </div>
   </div>
 
+</div>
+
+<!-- FOOTER LEGAL -->
+<div class="cl-footer-legal">
+  <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
+  <a href="termini.html" data-i18n="footer.terms">Termini e condizioni</a>
+  <a href="cookie.html" data-i18n="footer.cookie">Cookie Policy</a>
+  <a href="spedizioni.html" data-i18n="footer.shipping">Reso e Spedizioni</a>
+  <a href="pagamenti.html" data-i18n="footer.payments">Pagamenti</a>
+  <a href="garment-care.html" data-i18n="footer.care">Garment Care</a>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -344,14 +363,6 @@
   });
 
   if (typeof applyTranslations === 'function') applyTranslations(getLang());
-
-  document.querySelectorAll('[data-lang]').forEach(el => {
-    el.addEventListener('click', e => {
-      e.preventDefault();
-      setLang(el.dataset.lang);
-      applyTranslations(el.dataset.lang);
-    });
-  });
 </script>
 </body>
 </html>

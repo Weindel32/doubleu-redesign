@@ -742,6 +742,7 @@ const TRANSLATIONS = {
     "club.area.error.generic": "Si è verificato un errore. Riprova.",
     "club.area.tagline": "L'area riservata del tuo club.",
     "club.area.back.site": "← Torna al sito",
+    "club.area.catalog.back": "← Torna al catalogo",
     "club.area.google": "Accedi con Google",
     "club.area.or": "oppure",
   },
@@ -1474,6 +1475,7 @@ const TRANSLATIONS = {
     "club.area.error.generic": "An error occurred. Please try again.",
     "club.area.tagline": "The reserved area for your club.",
     "club.area.back.site": "← Back to site",
+    "club.area.catalog.back": "← Back to catalogue",
     "club.area.google": "Sign in with Google",
     "club.area.or": "or",
   },
@@ -2206,6 +2208,7 @@ const TRANSLATIONS = {
     "club.area.error.generic": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
     "club.area.tagline": "Der exklusive Bereich Ihres Clubs.",
     "club.area.back.site": "← Zurück zur Website",
+    "club.area.catalog.back": "← Zurück zum Katalog",
     "club.area.google": "Mit Google anmelden",
     "club.area.or": "oder",
   }

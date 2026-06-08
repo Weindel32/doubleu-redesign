@@ -249,30 +249,29 @@
   document.getElementById('cl-badge').textContent = clubName;
   document.title = `DOUBLEU | Area ${clubName}`;
 
-  // ── Handle redirect result from Google sign-in
-  auth.getRedirectResult().then(result => {
-    if (result && result.user) {
-      window.location.href = `area-club-catalogo.html${clubSuffix}`;
-    }
-  }).catch(err => {
-    console.error('Google auth error:', err.code, err.message);
-    const errEl = document.getElementById('login-error');
-    if (err.code === 'auth/unauthorized-domain') {
-      errEl.textContent = 'Dominio non autorizzato. Contatta l\'amministratore.';
-    } else {
-      errEl.textContent = err.message || t('club.area.error.generic', getLang());
-    }
-  });
-
   // ── If already logged in → go directly to catalog
   auth.onAuthStateChanged(user => {
     if (user) window.location.href = `area-club-catalogo.html${clubSuffix}`;
   });
 
-  // ── Google Sign-in (redirect — no popup)
-  document.getElementById('google-btn').addEventListener('click', () => {
+  // ── Google Sign-in (popup)
+  document.getElementById('google-btn').addEventListener('click', async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithRedirect(provider);
+    const errEl = document.getElementById('login-error');
+    errEl.textContent = '';
+    try {
+      await auth.signInWithPopup(provider);
+      // onAuthStateChanged handles redirect
+    } catch (err) {
+      console.error('Google auth error:', err.code, err.message);
+      if (err.code === 'auth/unauthorized-domain') {
+        errEl.textContent = 'Dominio non autorizzato su Firebase.';
+      } else if (err.code === 'auth/popup-closed-by-user') {
+        // user closed popup, do nothing
+      } else {
+        errEl.textContent = err.message || t('club.area.error.generic', getLang());
+      }
+    }
   });
 
   // ── Tab switching

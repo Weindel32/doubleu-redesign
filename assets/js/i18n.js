@@ -743,6 +743,7 @@ const TRANSLATIONS = {
     "club.area.tagline": "L'area riservata del tuo club.",
     "club.area.back.site": "← Torna al sito",
     "club.area.catalog.back": "← Torna al catalogo",
+    "club.area.catalog.cta": "Scopri →",
     "club.area.google": "Accedi con Google",
     "club.area.or": "oppure",
   },
@@ -1476,6 +1477,7 @@ const TRANSLATIONS = {
     "club.area.tagline": "The reserved area for your club.",
     "club.area.back.site": "← Back to site",
     "club.area.catalog.back": "← Back to catalogue",
+    "club.area.catalog.cta": "Discover →",
     "club.area.google": "Sign in with Google",
     "club.area.or": "or",
   },
@@ -2209,6 +2211,7 @@ const TRANSLATIONS = {
     "club.area.tagline": "Der exklusive Bereich Ihres Clubs.",
     "club.area.back.site": "← Zurück zur Website",
     "club.area.catalog.back": "← Zurück zum Katalog",
+    "club.area.catalog.cta": "Entdecken →",
     "club.area.google": "Mit Google anmelden",
     "club.area.or": "oder",
   }

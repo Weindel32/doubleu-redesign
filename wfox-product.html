@@ -153,7 +153,7 @@
         </nav>
 
         <div class="header-actions">
-          <a class="btn primary" href="wfox.html">← WFOX</a>
+          <a class="btn primary" href="wfox.html" data-i18n="wfox.product.back">← WFOX</a>
           <a class="cart-btn" href="carrello.html" aria-label="Carrello">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/></svg>
             Carrello
@@ -177,7 +177,7 @@
           <span>/</span>
           <a href="wfox.html">WFOX</a>
           <span>/</span>
-          <span id="bc-name">Prodotto</span>
+          <span id="bc-name" data-i18n="wfox.product.breadcrumb.default">Prodotto</span>
         </nav>
 
         <!-- PRODUCT -->
@@ -226,14 +226,17 @@
       const params  = new URLSearchParams(location.search);
       const product = getProductById(params.get('id'));
       const content = document.getElementById('product-content');
+      const lang    = typeof getLang === 'function' ? getLang() : 'it';
+      const tr      = (key) => typeof t === 'function' ? t(key, lang) : key;
 
       if (!product) {
         content.innerHTML = `
           <div class="product-error" style="grid-column:1/-1">
-            <h2>Prodotto non trovato</h2>
-            <p>Il prodotto che cerchi non esiste o non è più disponibile.</p>
-            <a href="wfox.html" class="btn primary">← Torna alla Collezione</a>
+            <h2>${tr('shop.product.notfound.title')}</h2>
+            <p>${tr('shop.product.notfound.desc')}</p>
+            <a href="wfox.html" class="btn primary">${tr('shop.product.back.wfox')}</a>
           </div>`;
+        if (typeof applyTranslations === 'function') applyTranslations(lang);
         return;
       }
 
@@ -258,7 +261,7 @@
 
       function priceLabel() {
         const prices = [...new Set(product.colors.map(c => c.price))];
-        return prices.length > 1 ? `da ${Math.min(...prices).toFixed(2).replace('.', ',')} €` : `${product.colors[0].price.toFixed(2).replace('.', ',')} €`;
+        return prices.length > 1 ? `${tr('shop.product.from')} ${Math.min(...prices).toFixed(2).replace('.', ',')} €` : `${product.colors[0].price.toFixed(2).replace('.', ',')} €`;
       }
 
       function buildGallery(imgs) {
@@ -404,7 +407,7 @@
             <img src="${p.gridImage}" alt="${p.name}" loading="lazy">
             <div class="related-overlay">
               <div class="related-name">${p.name}</div>
-              <div class="related-price">da ${p.basePrice.toFixed(2).replace('.', ',')} €</div>
+              <div class="related-price">${tr('shop.product.from')} ${p.basePrice.toFixed(2).replace('.', ',')} €</div>
             </div>
           </a>`).join('');
       }

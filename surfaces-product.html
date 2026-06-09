@@ -227,10 +227,10 @@
   <script>
     (function () {
       const params  = new URLSearchParams(location.search);
-      const product = getProductById(params.get('id'));
-      const content = document.getElementById('product-content');
       const lang    = typeof getLang === 'function' ? getLang() : 'it';
       const tr      = (key) => typeof t === 'function' ? t(key, lang) : key;
+      const product = getProductLocalized(params.get('id'), lang);
+      const content = document.getElementById('product-content');
 
       if (!product || product.collection !== 'surfaces') {
         content.innerHTML = `

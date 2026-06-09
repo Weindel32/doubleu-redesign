@@ -189,7 +189,7 @@
           }
           <div class="cart-item-info">
             <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-meta">Colore: ${item.color} &nbsp;·&nbsp; Taglia: ${item.size}</div>
+            <div class="cart-item-meta">${t('shop.cart.item.color', getLang())}: ${item.color} &nbsp;·&nbsp; ${t('shop.cart.item.size', getLang())}: ${item.size}</div>
             <div class="cart-item-qty">
               <button class="qty-btn" data-action="dec" data-idx="${idx}">−</button>
               <input class="qty-val" type="number" min="1" max="10" value="${item.qty}" data-idx="${idx}" readonly>
@@ -203,12 +203,12 @@
         </div>`).join('');
 
       const shippingLabel = shipping === 0
-        ? '<span style="color:#C9A84C">Gratuita (DELY26)</span>'
+        ? `<span style="color:#C9A84C">${t('shop.cart.shipping.free', getLang())}</span>`
         : formatPrice(SHIPPING_COST);
 
       const promoHint = !promoApplied
         ? `<p style="font-size:11px;color:rgba(245,240,232,.38);letter-spacing:.06em;margin-bottom:8px">
-             Ordina sopra €${FREE_SHIPPING_THRESHOLD} e usa <strong style="color:#C9A84C">DELY26</strong> per la spedizione gratuita
+             ${t('shop.cart.promo.hint', getLang()).replace('{threshold}', FREE_SHIPPING_THRESHOLD)}
            </p>`
         : '';
 
@@ -223,7 +223,7 @@
             <input class="promo-input" id="promo-input" type="text" placeholder="${t('shop.cart.promo.placeholder', getLang())}" maxlength="20" value="${promoApplied ? PROMO_CODE : ''}">
             <button class="promo-apply" id="promo-btn">${promoApplied ? t('shop.cart.promo.applied', getLang()) : t('shop.cart.promo.apply', getLang())}</button>
           </div>
-          <div class="promo-ok" id="promo-ok">✓ Codice DELY26 applicato</div>
+          <div class="promo-ok" id="promo-ok">${t('shop.cart.promo.ok', getLang())}</div>
           <hr class="summary-divider">
           <div class="summary-total"><span>${t('shop.cart.total', getLang())}</span><span>${formatPrice(total)}</span></div>
           <div class="summary-tax">${t('shop.cart.tax', getLang())}</div>
@@ -273,6 +273,14 @@
     renderCart();
     document.getElementById('cart-page-title').textContent = t('shop.cart.title', getLang());
     if (typeof applyTranslations === 'function') applyTranslations(getLang());
+
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      el.addEventListener('click', () => {
+        document.getElementById('cart-page-title').textContent = t('shop.cart.title', el.getAttribute('data-lang'));
+        renderCart();
+        if (typeof applyTranslations === 'function') applyTranslations(el.getAttribute('data-lang'));
+      });
+    });
   </script>
 </body>
 </html>

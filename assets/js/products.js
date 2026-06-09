@@ -102,7 +102,6 @@ const SURFACES_PRODUCTS = [
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
       { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/sweatshirt.png', price: 159 },
-      { name: 'Clay',      hex: '#8B1A1A', image: null,                           price: 159 },
     ],
     gridImage: 'surfaces/img/sweatshirt.png',
   },

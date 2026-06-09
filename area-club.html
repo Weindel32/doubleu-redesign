@@ -163,7 +163,7 @@
 
   <!-- RIGHT: form -->
   <div class="cl-right">
-    <div class="cl-form-wrap">
+    <div class="cl-form-wrap" id="cl-form-wrap">
 
       <div class="cl-badge" id="cl-badge">Club</div>
       <h1 class="cl-title" data-i18n="club.area.title">Area Riservata</h1>
@@ -264,105 +264,112 @@
   const clubId   = (params.get('club') || '').toLowerCase();
   const clubSuffix = clubId ? `?club=${clubId}` : '';
   const CLUB_NAMES = { mtc: 'MTC Ausstellungspark', allround: 'All Round Sport & Wellness' };
-  const clubName = CLUB_NAMES[clubId] || 'Tennis Club';
-  document.getElementById('cl-badge').textContent = clubName;
-  document.title = `DOUBLEU | Area ${clubName}`;
+  const clubName = CLUB_NAMES[clubId] || '';
+  document.title = `DOUBLEU | Area Riservata Club`;
 
-  // ── If already logged in → go directly to catalog
-  auth.onAuthStateChanged(user => {
-    if (user) window.location.href = `area-club-catalogo.html${clubSuffix}`;
-  });
+  // ── No club context → show neutral message, hide form
+  if (!clubId || !CLUB_NAMES[clubId]) {
+    document.getElementById('cl-badge').style.display = 'none';
+    document.getElementById('cl-form-wrap').innerHTML = `
+      <p style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:#0D1B2A;line-height:1.3;margin-bottom:20px;">Area Riservata Club</p>
+      <p style="font-size:13px;color:rgba(13,27,42,.55);line-height:1.7;margin-bottom:32px;">Per accedere all'area riservata del tuo club utilizza il link che ti è stato fornito direttamente dal tuo club.</p>
+      <a href="index.html" style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#0D1B2A;text-decoration:none;border-bottom:1px solid rgba(13,27,42,.25);padding-bottom:3px;">← Torna al sito</a>
+    `;
+  } else {
+    document.getElementById('cl-badge').textContent = clubName;
+    document.title = `DOUBLEU | Area ${clubName}`;
 
-  // ── Google Sign-in (popup)
-  document.getElementById('google-btn').addEventListener('click', async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const errEl = document.getElementById('login-error');
-    errEl.textContent = '';
-    try {
-      await auth.signInWithPopup(provider);
-      // onAuthStateChanged handles redirect
-    } catch (err) {
-      console.error('Google auth error:', err.code, err.message);
-      if (err.code === 'auth/unauthorized-domain') {
-        errEl.textContent = 'Dominio non autorizzato su Firebase.';
-      } else if (err.code === 'auth/popup-closed-by-user') {
-        // user closed popup, do nothing
-      } else {
-        errEl.textContent = err.message || t('club.area.error.generic', getLang());
+    // ── If already logged in → go directly to catalog
+    auth.onAuthStateChanged(user => {
+      if (user) window.location.href = `area-club-catalogo.html${clubSuffix}`;
+    });
+
+    // ── Google Sign-in (popup)
+    document.getElementById('google-btn').addEventListener('click', async () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      const errEl = document.getElementById('login-error');
+      errEl.textContent = '';
+      try {
+        await auth.signInWithPopup(provider);
+      } catch (err) {
+        console.error('Google auth error:', err.code, err.message);
+        if (err.code === 'auth/unauthorized-domain') {
+          errEl.textContent = 'Dominio non autorizzato su Firebase.';
+        } else if (err.code !== 'auth/popup-closed-by-user') {
+          errEl.textContent = err.message || t('club.area.error.generic', getLang());
+        }
       }
-    }
-  });
+    });
 
-  // ── Tab switching
-  const tabLogin    = document.getElementById('tab-login');
-  const tabRegister = document.getElementById('tab-register');
-  const fLogin      = document.getElementById('form-login');
-  const fRegister   = document.getElementById('form-register');
+    // ── Tab switching
+    const tabLogin    = document.getElementById('tab-login');
+    const tabRegister = document.getElementById('tab-register');
+    const fLogin      = document.getElementById('form-login');
+    const fRegister   = document.getElementById('form-register');
 
-  tabLogin.addEventListener('click', () => {
-    tabLogin.classList.add('active');
-    tabRegister.classList.remove('active');
-    fLogin.style.display = '';
-    fRegister.style.display = 'none';
-  });
-  tabRegister.addEventListener('click', () => {
-    tabRegister.classList.add('active');
-    tabLogin.classList.remove('active');
-    fRegister.style.display = '';
-    fLogin.style.display = 'none';
-  });
+    tabLogin.addEventListener('click', () => {
+      tabLogin.classList.add('active');
+      tabRegister.classList.remove('active');
+      fLogin.style.display = '';
+      fRegister.style.display = 'none';
+    });
+    tabRegister.addEventListener('click', () => {
+      tabRegister.classList.add('active');
+      tabLogin.classList.remove('active');
+      fRegister.style.display = '';
+      fLogin.style.display = 'none';
+    });
 
-  // ── Login email/password
-  fLogin.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn   = document.getElementById('login-btn');
-    const errEl = document.getElementById('login-error');
-    errEl.textContent = '';
-    btn.disabled = true;
-    try {
-      await auth.signInWithEmailAndPassword(
-        document.getElementById('login-email').value.trim(),
-        document.getElementById('login-password').value
-      );
-      // onAuthStateChanged handles redirect
-    } catch (err) {
-      errEl.textContent = t('club.area.error.invalid', getLang());
-      btn.disabled = false;
-    }
-  });
+    // ── Login email/password
+    fLogin.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn   = document.getElementById('login-btn');
+      const errEl = document.getElementById('login-error');
+      errEl.textContent = '';
+      btn.disabled = true;
+      try {
+        await auth.signInWithEmailAndPassword(
+          document.getElementById('login-email').value.trim(),
+          document.getElementById('login-password').value
+        );
+      } catch (err) {
+        errEl.textContent = t('club.area.error.invalid', getLang());
+        btn.disabled = false;
+      }
+    });
 
-  // ── Register email/password
-  fRegister.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn   = document.getElementById('reg-btn');
-    const errEl = document.getElementById('reg-error');
-    const okEl  = document.getElementById('reg-success');
-    errEl.textContent = '';
-    okEl.style.display = 'none';
+    // ── Register email/password
+    fRegister.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn   = document.getElementById('reg-btn');
+      const errEl = document.getElementById('reg-error');
+      const okEl  = document.getElementById('reg-success');
+      errEl.textContent = '';
+      okEl.style.display = 'none';
 
-    const email   = document.getElementById('reg-email').value.trim();
-    const pw      = document.getElementById('reg-password').value;
-    const confirm = document.getElementById('reg-confirm').value;
+      const email   = document.getElementById('reg-email').value.trim();
+      const pw      = document.getElementById('reg-password').value;
+      const confirm = document.getElementById('reg-confirm').value;
 
-    if (pw !== confirm) {
-      errEl.textContent = t('club.area.error.mismatch', getLang());
-      return;
-    }
+      if (pw !== confirm) {
+        errEl.textContent = t('club.area.error.mismatch', getLang());
+        return;
+      }
 
-    btn.disabled = true;
-    try {
-      await auth.createUserWithEmailAndPassword(email, pw);
-      // onAuthStateChanged handles redirect
-    } catch (err) {
-      const isExisting = err.code === 'auth/email-already-in-use';
-      errEl.textContent = isExisting
-        ? t('club.area.error.exists', getLang())
-        : t('club.area.error.generic', getLang());
-      btn.disabled = false;
-    }
-  });
+      btn.disabled = true;
+      try {
+        await auth.createUserWithEmailAndPassword(email, pw);
+      } catch (err) {
+        const isExisting = err.code === 'auth/email-already-in-use';
+        errEl.textContent = isExisting
+          ? t('club.area.error.exists', getLang())
+          : t('club.area.error.generic', getLang());
+        btn.disabled = false;
+      }
+    });
 
-  if (typeof applyTranslations === 'function') applyTranslations(getLang());
+    if (typeof applyTranslations === 'function') applyTranslations(getLang());
+  }
 </script>
 </body>
 </html>

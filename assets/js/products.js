@@ -11,13 +11,41 @@ const WFOX_PRODUCTS = [
     printSize: '23/25 cm',
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Blu Navy',      hex: '#0D1B2A', image: 'wfox/img/crew.jpg',   price: 99 },
-      { name: 'Bianco',        hex: '#E8E0D0', image: 'wfox/img/white.jpg',  price: 99 },
-      { name: 'Grigio Mélange',hex: '#9E9E9E', image: null,                   price: 99 },
-      { name: 'Verde',         hex: '#2E5E36', image: null,                   price: 99 },
-      { name: 'Bordeaux',      hex: '#7A0F1B', image: null,                   price: 99 },
+      { name: 'Blu Navy',       hex: '#0D1B2A', image: 'wfox/img/crew.jpg',  price: 99 },
+      { name: 'Bianco',         hex: '#E8E0D0', image: 'wfox/img/white.jpg', price: 99 },
+      { name: 'Grigio Mélange', hex: '#9E9E9E', image: null,                  price: 99 },
+      { name: 'Verde',          hex: '#2E5E36', image: null,                  price: 99 },
+      { name: 'Bordeaux',       hex: '#7A0F1B', image: null,                  price: 99 },
     ],
     gridImage: 'wfox/img/crew.jpg',
+    i18n: {
+      en: {
+        description: 'This 100% premium cotton sweatshirt Made in Italy blends style and comfort. The protagonist? WFOX, our fox in urban lifestyle mode, wearing a DOUBLEU hoodie, cap and backpack. A fresh, contemporary look that tells the story of someone who doesn\'t need to shout to be noticed.<br><br>Available in white, navy blue, grey marl, green and bordeaux — perfect to accompany you on and off the court, between a match and an aperitif in the city.',
+        fit: 'Regular Fit',
+        material: '100% Cotton',
+        printSize: '23/25 cm',
+        colors: [
+          { name: 'Navy Blue' },
+          { name: 'White' },
+          { name: 'Grey Marl' },
+          { name: 'Green' },
+          { name: 'Bordeaux' },
+        ],
+      },
+      de: {
+        description: 'Dieses Sweatshirt aus 100% Premium-Baumwolle Made in Italy vereint Stil und Komfort. Der Protagonist? WFOX, unser Fuchs im Urban-Lifestyle-Look mit DOUBLEU-Hoodie, Mütze und Rucksack. Ein frischer, zeitgenössischer Look für alle, die keine lauten Worte brauchen, um aufzufallen.<br><br>Erhältlich in Weiß, Marineblau, Graumeliert, Grün und Bordeaux — perfekt für drinnen und draußen, zwischen Match und Stadtbummel.',
+        fit: 'Regular Fit',
+        material: '100% Baumwolle / Cotton',
+        printSize: '23/25 cm',
+        colors: [
+          { name: 'Marineblau' },
+          { name: 'Weiß' },
+          { name: 'Graumeliert' },
+          { name: 'Grün' },
+          { name: 'Bordeaux' },
+        ],
+      },
+    },
   },
   {
     id: 'wfox-tee-white',
@@ -34,6 +62,22 @@ const WFOX_PRODUCTS = [
       { name: 'Bianco', hex: '#E8E0D0', image: 'https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/235cc635-483a-46c5-ad0a-7e95cf1386e3/ChatGPT+Image+13+mag+2026%2C+11_40_55.png?format=500w', price: 59 },
     ],
     gridImage: 'https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/235cc635-483a-46c5-ad0a-7e95cf1386e3/ChatGPT+Image+13+mag+2026%2C+11_40_55.png?format=500w',
+    i18n: {
+      en: {
+        description: 'The limited edition tee from the WFOX capsule. Pure white, premium construction, 100% cotton Made in Italy. Limited production, zero restocking. The piece that disappears before all the others.',
+        fit: 'Regular Fit',
+        material: '100% Cotton',
+        printSize: 'WFOX Off Court',
+        colors: [{ name: 'White' }],
+      },
+      de: {
+        description: 'Das Limited-Edition-T-Shirt der WFOX-Kapsel. Reinweiß, hochwertige Konstruktion, 100% Baumwolle Made in Italy. Limitierte Produktion, keine Nachbestellung. Das Stück, das als erstes verschwindet.',
+        fit: 'Regular Fit',
+        material: '100% Baumwolle / Cotton',
+        printSize: 'WFOX Off Court',
+        colors: [{ name: 'Weiß' }],
+      },
+    },
   },
   {
     id: 'wfox-keep-off',
@@ -50,6 +94,22 @@ const WFOX_PRODUCTS = [
       { name: 'Verde Scuro', hex: '#1B3A2D', image: 'https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/bee44570-7383-4eb1-82d3-6e94e267a918/ChatGPT+Image+12+mag+2026%2C+23_12_12.png?format=2500w', price: 59 },
     ],
     gridImage: 'https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/bee44570-7383-4eb1-82d3-6e94e267a918/ChatGPT+Image+12+mag+2026%2C+23_12_12.png?format=2500w',
+    i18n: {
+      en: {
+        description: 'The iconic piece from the WFOX capsule. Deep forest green, bold graphic, direct message. For those who know exactly where to put their feet — and where not to.<br><br>100% cotton Made in Italy. Limited production.',
+        fit: 'Regular Fit',
+        material: '100% Cotton',
+        printSize: 'Keep Off The Grass',
+        colors: [{ name: 'Dark Green' }],
+      },
+      de: {
+        description: 'Das ikonische Stück der WFOX-Kapsel. Tiefes Waldgrün, kühne Grafik, direkte Botschaft. Für diejenigen, die genau wissen, wohin sie ihre Füße setzen — und wohin nicht.<br><br>100% Baumwolle Made in Italy. Limitierte Produktion.',
+        fit: 'Regular Fit',
+        material: '100% Baumwolle / Cotton',
+        printSize: 'Keep Off The Grass',
+        colors: [{ name: 'Dunkelgrün' }],
+      },
+    },
   },
   {
     id: 'wfox-logo-tee',
@@ -66,6 +126,22 @@ const WFOX_PRODUCTS = [
       { name: 'Bianco', hex: '#E8E0D0', image: 'https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/dae7cda0-07e2-4e55-ad1b-30e2b6f8ca8c/ChatGPT+Image+12+mag+2026%2C+23_55_44.png?format=500w', price: 59 },
     ],
     gridImage: 'https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/dae7cda0-07e2-4e55-ad1b-30e2b6f8ca8c/ChatGPT+Image+12+mag+2026%2C+23_55_44.png?format=500w',
+    i18n: {
+      en: {
+        description: 'The essential t-shirt from the WFOX capsule. 100% cotton Made in Italy, with WFOX logo printed on the chest. Simple, direct, recognisable. The piece that never goes missing from the wardrobe of those who play seriously.',
+        fit: 'Regular Fit',
+        material: '100% Cotton',
+        printSize: 'WFOX Logo',
+        colors: [{ name: 'White' }],
+      },
+      de: {
+        description: 'Das wesentliche T-Shirt der WFOX-Kapsel. 100% Baumwolle Made in Italy, mit WFOX-Logo auf der Brust. Einfach, direkt, wiedererkennbar. Das Stück, das im Kleiderschrank derer nie fehlt, die es ernst meinen.',
+        fit: 'Regular Fit',
+        material: '100% Baumwolle / Cotton',
+        printSize: 'WFOX Logo',
+        colors: [{ name: 'Weiß' }],
+      },
+    },
   },
 ];
 
@@ -86,6 +162,22 @@ const SURFACES_PRODUCTS = [
       { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/tshirt.png', price: 69 },
     ],
     gridImage: 'surfaces/img/tshirt.png',
+    i18n: {
+      en: {
+        description: '100% premium cotton Made in Italy. Regular Fit, 100 CLAY print — inspired by the slowest, deepest and most elegant surface in tennis. Off White, a colour that tells the history of the game.',
+        fit: 'Regular Fit',
+        material: '100% Cotton',
+        printSize: '100 CLAY Print',
+        colors: [{ name: 'Off White' }],
+      },
+      de: {
+        description: '100% Premium-Baumwolle Made in Italy. Regular Fit, 100-CLAY-Druck — inspiriert von der langsamsten, tiefsten und elegantesten Oberfläche im Tennis. Off White, eine Farbe, die die Geschichte des Spiels erzählt.',
+        fit: 'Regular Fit',
+        material: '100% Baumwolle / Cotton',
+        printSize: '100-CLAY-Druck',
+        colors: [{ name: 'Off White' }],
+      },
+    },
   },
   {
     id: 'surfaces-sweatshirt-clay',
@@ -104,6 +196,28 @@ const SURFACES_PRODUCTS = [
       { name: 'Clay',      hex: '#8B1A1A', image: null,                           price: 159 },
     ],
     gridImage: 'surfaces/img/sweatshirt.png',
+    i18n: {
+      en: {
+        description: 'Premium cotton sweatshirt Made in Italy. Post-match comfort meets the identity of tennis\' most technical surface. Artisan production, limited edition.',
+        fit: 'Regular Fit',
+        material: '100% Cotton',
+        printSize: 'CLAY Print',
+        colors: [
+          { name: 'Off White' },
+          { name: 'Clay' },
+        ],
+      },
+      de: {
+        description: 'Premium-Baumwoll-Sweatshirt Made in Italy. Post-Match-Komfort trifft die Identität der technischsten Oberfläche im Tennis. Handwerkliche Produktion, limitierte Auflage.',
+        fit: 'Regular Fit',
+        material: '100% Baumwolle / Cotton',
+        printSize: 'CLAY-Druck',
+        colors: [
+          { name: 'Off White' },
+          { name: 'Clay' },
+        ],
+      },
+    },
   },
   {
     id: 'surfaces-polo-clay',
@@ -122,6 +236,28 @@ const SURFACES_PRODUCTS = [
       { name: 'Clay',      hex: '#8B1A1A', image: null,                     price: 99 },
     ],
     gridImage: 'surfaces/img/polo.jpg',
+    i18n: {
+      en: {
+        description: 'Premium Cotton Piqué polo Made in Italy. The technical piece of the capsule — on court and off court. SURFACES embroidery on the chest, artisan internal labels.',
+        fit: 'Regular Fit',
+        material: 'Premium Cotton Piqué',
+        printSize: 'SURFACES Embroidery',
+        colors: [
+          { name: 'Off White' },
+          { name: 'Clay' },
+        ],
+      },
+      de: {
+        description: 'Premium-Baumwoll-Piqué-Polo Made in Italy. Das technische Stück der Kapsel — auf und neben dem Platz. SURFACES-Stickerei auf der Brust, handwerkliche Innenaufkleber.',
+        fit: 'Regular Fit',
+        material: 'Premium-Baumwoll-Piqué',
+        printSize: 'SURFACES-Stickerei',
+        colors: [
+          { name: 'Off White' },
+          { name: 'Clay' },
+        ],
+      },
+    },
   },
   {
     id: 'surfaces-cap-clay',
@@ -140,6 +276,30 @@ const SURFACES_PRODUCTS = [
       { name: 'Clay',      hex: '#8B1A1A', image: null,                    price: 59 },
     ],
     gridImage: 'surfaces/img/cap.jpg',
+    i18n: {
+      en: {
+        description: 'Tennis cap Made in Italy. 6-panel construction, adjustable closure, CLAY embroidery on the front. The perfect complement to the SURFACES capsule.',
+        fit: 'One Size',
+        material: '100% Cotton',
+        printSize: 'CLAY Embroidery',
+        sizes: ['One Size'],
+        colors: [
+          { name: 'Off White' },
+          { name: 'Clay' },
+        ],
+      },
+      de: {
+        description: 'Tennis-Cap Made in Italy. 6-Panel-Konstruktion, verstellbarer Verschluss, CLAY-Stickerei vorne. Die perfekte Ergänzung zur SURFACES-Kapsel.',
+        fit: 'Einheitsgröße',
+        material: '100% Baumwolle / Cotton',
+        printSize: 'CLAY-Stickerei',
+        sizes: ['Einheitsgröße'],
+        colors: [
+          { name: 'Off White' },
+          { name: 'Clay' },
+        ],
+      },
+    },
   },
 ];
 
@@ -147,6 +307,25 @@ function getProductById(id) {
   return WFOX_PRODUCTS.find(p => p.id === id)
       || SURFACES_PRODUCTS.find(p => p.id === id)
       || null;
+}
+
+// Returns product with i18n fields merged for the given language
+function getProductLocalized(id, lang) {
+  const product = getProductById(id);
+  if (!product || !lang || lang === 'it') return product;
+  const override = product.i18n && product.i18n[lang];
+  if (!override) return product;
+  const localized = Object.assign({}, product, override);
+  // Merge color names, keeping hex/image/price from base
+  if (override.colors) {
+    localized.colors = product.colors.map((c, i) => {
+      const nameOverride = override.colors[i] && override.colors[i].name;
+      return nameOverride ? Object.assign({}, c, { name: nameOverride }) : c;
+    });
+  }
+  // Merge sizes if overridden
+  if (override.sizes) localized.sizes = override.sizes;
+  return localized;
 }
 
 function getCollectionProducts(collection) {

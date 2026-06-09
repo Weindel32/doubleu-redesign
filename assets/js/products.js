@@ -5,7 +5,7 @@ const WFOX_PRODUCTS = [
     subtitle: 'WFOX by DOUBLEU – Urban Fox Edition',
     tag: 'Bestseller',
     basePrice: 99,
-    description: 'Questa felpa in 100% cotone <strong>premium</strong> Made in Italy è un concentrato di stile e comfort. Il protagonista? WFOX, la nostra volpe in versione urban lifestyle, con felpa, cappellino e zaino DOUBLEU. Un look fresco, contemporaneo, che racconta la personalità di chi non ha bisogno di urlare per farsi notare.<br><br>Disponibile in blu navy e grigio — è perfetta per accompagnarti dentro e fuori dal campo, tra un match e un aperitivo in città.',
+    description: 'Eleganza senza tempo e spirito libero si incontrano in questa esclusiva felpa della collezione WFOX by DOUBLEU.<br><br>Realizzata in 100% cotone <strong>premium</strong> Made in Italy, questa felpa unisce comfort e stile in un capo che non passa inosservato. La grafica raffigura la nostra iconica volpe WFOX in tenuta da tennis old-school: un omaggio raffinato alle radici di questo sport, pensato per chi ama distinguersi con naturalezza.<br><br>Disponibile in blu navy e grigio mélange, è perfetta dentro e fuori dal campo, da abbinare a un pantalone sportivo o a un look più urbano.',
     fit: 'Regular Fit',
     material: '100% Cotone / Cotton',
     printSize: '23/25 cm',

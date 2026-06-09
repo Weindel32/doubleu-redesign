@@ -118,8 +118,8 @@ const SURFACES_PRODUCTS = [
     printSize: 'Ricamo SURFACES',
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/polo.jpg', price: 99 },
-      { name: 'Clay',      hex: '#8B1A1A', image: null,                     price: 99 },
+      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/polo.jpg',     price: 99 },
+      { name: 'Clay',      hex: '#8B1A1A', image: 'surfaces/img/polo_red.png', price: 99 },
     ],
     gridImage: 'surfaces/img/polo.jpg',
   },
@@ -136,8 +136,8 @@ const SURFACES_PRODUCTS = [
     printSize: 'Ricamo CLAY',
     sizes: ['Taglia Unica'],
     colors: [
-      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/cap.jpg', price: 59 },
-      { name: 'Clay',      hex: '#8B1A1A', image: null,                    price: 59 },
+      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/cap.jpg',     price: 59 },
+      { name: 'Clay',      hex: '#8B1A1A', image: 'surfaces/img/cap_red.png', price: 59 },
     ],
     gridImage: 'surfaces/img/cap.jpg',
   },

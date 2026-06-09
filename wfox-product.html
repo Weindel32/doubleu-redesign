@@ -385,16 +385,13 @@
       render();
       if (typeof applyTranslations === 'function') applyTranslations(getLang());
 
-      // Update description on language change
-      if (typeof product.description === 'object') {
-        document.querySelectorAll('[data-lang]').forEach(el => {
-          el.addEventListener('click', () => {
-            const lang = el.getAttribute('data-lang');
-            const descEl = document.querySelector('.product-desc');
-            if (descEl) descEl.innerHTML = product.description[lang] || product.description.it;
-          });
+      // Re-render everything on language change (labels, selectors, description)
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.addEventListener('click', () => {
+          render();
+          if (typeof applyTranslations === 'function') applyTranslations(el.getAttribute('data-lang'));
         });
-      }
+      });
 
       // Related products (other WFOX items)
       const related = WFOX_PRODUCTS.filter(p => p.id !== product.id);

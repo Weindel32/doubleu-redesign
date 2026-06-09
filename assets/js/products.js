@@ -5,44 +5,39 @@ const WFOX_PRODUCTS = [
     subtitle: 'WFOX by DOUBLEU – Urban Fox Edition',
     tag: 'Bestseller',
     basePrice: 99,
-    description: 'Questa felpa in 100% cotone <strong>premium</strong> Made in Italy è un concentrato di stile e comfort. Il protagonista? WFOX, la nostra volpe in versione urban lifestyle, con felpa, cappellino e zaino DOUBLEU. Un look fresco, contemporaneo, che racconta la personalità di chi non ha bisogno di urlare per farsi notare.<br><br>Disponibile in bianco, blu navy, grigio mélange, verde e bordeaux — è perfetta per accompagnarti dentro e fuori dal campo, tra un match e un aperitivo in città.',
+    description: {
+      it: 'Eleganza senza tempo e spirito libero si incontrano in questa esclusiva felpa della collezione WFOX by DOUBLEU.<br><br>Realizzata in 100% cotone <strong>premium</strong> Made in Italy, questa felpa unisce comfort e stile in un capo che non passa inosservato. La grafica raffigura la nostra iconica volpe WFOX in tenuta da tennis old-school: un omaggio raffinato alle radici di questo sport, pensato per chi ama distinguersi con naturalezza.<br><br>Disponibile in blu navy e grigio mélange, è perfetta dentro e fuori dal campo, da abbinare a un pantalone sportivo o a un look più urbano.',
+      en: 'Timeless elegance and free spirit come together in this exclusive sweatshirt from the WFOX by DOUBLEU collection.<br><br>Crafted in 100% <strong>premium</strong> cotton Made in Italy, this sweatshirt combines comfort and style in a piece that never goes unnoticed. The graphic features our iconic WFOX fox in an old-school tennis look: a refined tribute to the roots of this sport, designed for those who love to stand out naturally.<br><br>Available in navy blue and grey mélange, it\'s perfect on and off the court, paired with sports trousers or a more urban look.',
+      de: 'Zeitlose Eleganz und freier Geist vereinen sich in diesem exklusiven Sweatshirt der Kollektion WFOX by DOUBLEU.<br><br>Gefertigt aus 100% <strong>Premium</strong>-Baumwolle Made in Italy, verbindet dieses Sweatshirt Komfort und Stil in einem Stück, das nicht unbemerkt bleibt. Die Grafik zeigt unseren ikonischen WFOX-Fuchs im Old-School-Tennis-Look: eine raffinierte Hommage an die Wurzeln dieses Sports, für alle, die es lieben, auf natürliche Weise aufzufallen.<br><br>Erhältlich in Marineblau und Grau-Mélange, ist er perfekt auf und neben dem Platz — kombinierbar mit einer Sporthose oder einem urbanen Look.',
+    },
     fit: 'Regular Fit',
     material: '100% Cotone / Cotton',
     printSize: '23/25 cm',
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Blu Navy',       hex: '#0D1B2A', image: 'wfox/img/crew.jpg',  price: 99 },
-      { name: 'Bianco',         hex: '#E8E0D0', image: 'wfox/img/white.jpg', price: 99 },
-      { name: 'Grigio Mélange', hex: '#9E9E9E', image: null,                  price: 99 },
-      { name: 'Verde',          hex: '#2E5E36', image: null,                  price: 99 },
-      { name: 'Bordeaux',       hex: '#7A0F1B', image: null,                  price: 99 },
+      { name: 'Blu Navy', hex: '#0D1B2A', image: 'wfox/img/crew.jpg',      price: 99 },
+      { name: 'Grigio',   hex: '#9E9E9E', image: 'wfox/img/crew-grey.png', price: 99 },
     ],
     gridImage: 'wfox/img/crew.jpg',
     i18n: {
       en: {
-        description: 'This 100% premium cotton sweatshirt Made in Italy blends style and comfort. The protagonist? WFOX, our fox in urban lifestyle mode, wearing a DOUBLEU hoodie, cap and backpack. A fresh, contemporary look that tells the story of someone who doesn\'t need to shout to be noticed.<br><br>Available in white, navy blue, grey marl, green and bordeaux — perfect to accompany you on and off the court, between a match and an aperitif in the city.',
+        description: 'Timeless elegance and free spirit come together in this exclusive sweatshirt from the WFOX by DOUBLEU collection.<br><br>Crafted in 100% <strong>premium</strong> cotton Made in Italy, this sweatshirt combines comfort and style in a piece that never goes unnoticed. The graphic features our iconic WFOX fox in an old-school tennis look: a refined tribute to the roots of this sport, designed for those who love to stand out naturally.<br><br>Available in navy blue and grey — perfect on and off the court.',
         fit: 'Regular Fit',
         material: '100% Cotton',
         printSize: '23/25 cm',
         colors: [
           { name: 'Navy Blue' },
-          { name: 'White' },
-          { name: 'Grey Marl' },
-          { name: 'Green' },
-          { name: 'Bordeaux' },
+          { name: 'Grey' },
         ],
       },
       de: {
-        description: 'Dieses Sweatshirt aus 100% Premium-Baumwolle Made in Italy vereint Stil und Komfort. Der Protagonist? WFOX, unser Fuchs im Urban-Lifestyle-Look mit DOUBLEU-Hoodie, Mütze und Rucksack. Ein frischer, zeitgenössischer Look für alle, die keine lauten Worte brauchen, um aufzufallen.<br><br>Erhältlich in Weiß, Marineblau, Graumeliert, Grün und Bordeaux — perfekt für drinnen und draußen, zwischen Match und Stadtbummel.',
+        description: 'Zeitlose Eleganz und freier Geist vereinen sich in diesem exklusiven Sweatshirt der Kollektion WFOX by DOUBLEU.<br><br>Gefertigt aus 100% <strong>Premium</strong>-Baumwolle Made in Italy, verbindet dieses Sweatshirt Komfort und Stil in einem Stück, das nicht unbemerkt bleibt. Die Grafik zeigt unseren ikonischen WFOX-Fuchs im Old-School-Tennis-Look — für alle, die es lieben, auf natürliche Weise aufzufallen.<br><br>Erhältlich in Marineblau und Grau — perfekt auf und neben dem Platz.',
         fit: 'Regular Fit',
         material: '100% Baumwolle / Cotton',
         printSize: '23/25 cm',
         colors: [
           { name: 'Marineblau' },
-          { name: 'Weiß' },
-          { name: 'Graumeliert' },
-          { name: 'Grün' },
-          { name: 'Bordeaux' },
+          { name: 'Grau' },
         ],
       },
     },
@@ -193,7 +188,6 @@ const SURFACES_PRODUCTS = [
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
       { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/sweatshirt.png', price: 159 },
-      { name: 'Clay',      hex: '#8B1A1A', image: null,                           price: 159 },
     ],
     gridImage: 'surfaces/img/sweatshirt.png',
     i18n: {
@@ -232,8 +226,8 @@ const SURFACES_PRODUCTS = [
     printSize: 'Ricamo SURFACES',
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/polo.jpg', price: 99 },
-      { name: 'Clay',      hex: '#8B1A1A', image: null,                     price: 99 },
+      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/polo.jpg',     price: 99 },
+      { name: 'Clay',      hex: '#8B1A1A', image: 'surfaces/img/polo_red.png', price: 99 },
     ],
     gridImage: 'surfaces/img/polo.jpg',
     i18n: {
@@ -272,8 +266,8 @@ const SURFACES_PRODUCTS = [
     printSize: 'Ricamo CLAY',
     sizes: ['Taglia Unica'],
     colors: [
-      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/cap.jpg', price: 59 },
-      { name: 'Clay',      hex: '#8B1A1A', image: null,                    price: 59 },
+      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/cap.jpg',     price: 59 },
+      { name: 'Clay',      hex: '#8B1A1A', image: 'surfaces/img/cap_red.png', price: 59 },
     ],
     gridImage: 'surfaces/img/cap.jpg',
     i18n: {

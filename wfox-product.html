@@ -291,7 +291,7 @@
             <h1 class="product-title">${product.name}</h1>
             <div class="product-price" id="price-display">${priceLabel()}</div>
             <div class="product-subtitle">${product.subtitle}</div>
-            <div class="product-desc">${product.description}</div>
+            <div class="product-desc">${typeof product.description === 'object' ? (product.description[getLang()] || product.description.it) : product.description}</div>
             <dl class="product-details">
               <div class="detail-row"><dt>${t('shop.product.fit', getLang())}</dt><dd>${product.fit}</dd></div>
               <div class="detail-row"><dt>${t('shop.product.material', getLang())}</dt><dd>${product.material}</dd></div>
@@ -387,6 +387,14 @@
       // Render main product
       render();
       if (typeof applyTranslations === 'function') applyTranslations(getLang());
+
+      // Re-render everything on language change (labels, selectors, description)
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.addEventListener('click', () => {
+          render();
+          if (typeof applyTranslations === 'function') applyTranslations(el.getAttribute('data-lang'));
+        });
+      });
 
       // Related products (other WFOX items)
       const related = WFOX_PRODUCTS.filter(p => p.id !== product.id);

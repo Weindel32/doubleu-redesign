@@ -57,18 +57,18 @@
     .cart-empty p { color: var(--wfox-mid); font-size: 15px; margin-bottom: 32px; }
 
     /* SUMMARY */
-    .cart-summary { background: var(--wfox-navy); padding: 32px 28px; position: sticky; top: 100px; }
+    .cart-summary { background: var(--wfox-navy); padding: 32px 28px; position: sticky; top: 100px; overflow: hidden; }
     .summary-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .08em; color: var(--wfox-cream); margin-bottom: 24px; }
     .summary-row { display: flex; justify-content: space-between; font-size: 13px; color: rgba(245,240,232,.6); margin-bottom: 12px; }
     .summary-row.shipping { font-size: 12px; }
     .summary-divider { border: none; border-top: 1px solid rgba(245,240,232,.1); margin: 20px 0; }
     .summary-total { display: flex; justify-content: space-between; font-size: 18px; color: var(--wfox-cream); font-weight: 500; margin-bottom: 8px; }
     .summary-tax { font-size: 11px; color: rgba(245,240,232,.35); text-align: right; margin-bottom: 24px; }
-    .promo-input-row { display: flex; gap: 0; margin-bottom: 20px; }
-    .promo-input { flex: 1; padding: 11px 14px; background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.12); color: var(--wfox-cream); font-size: 16px; letter-spacing: .08em; text-transform: uppercase; outline: none; }
+    .promo-input-row { display: flex; gap: 0; margin-bottom: 20px; width: 100%; }
+    .promo-input { flex: 1; min-width: 0; padding: 11px 14px; background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.12); color: var(--wfox-cream); font-size: 16px; letter-spacing: .08em; text-transform: uppercase; outline: none; }
     .promo-input::placeholder { color: rgba(245,240,232,.3); }
     .promo-input:focus { border-color: var(--wfox-gold); }
-    .promo-apply { background: var(--wfox-gold); border: none; color: var(--wfox-navy); padding: 11px 18px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: opacity .2s; }
+    .promo-apply { flex-shrink: 0; background: var(--wfox-gold); border: none; color: var(--wfox-navy); padding: 11px 18px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: opacity .2s; }
     .promo-apply:hover { opacity: .85; }
     .promo-ok { font-size: 11px; color: var(--wfox-gold); letter-spacing: .08em; margin-bottom: 16px; display: none; }
     .btn-checkout { display: block; width: 100%; background: var(--wfox-gold); border: none; color: var(--wfox-navy); padding: 18px; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; font-weight: 700; cursor: pointer; transition: opacity .2s; text-align: center; text-decoration: none; }

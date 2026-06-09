@@ -269,11 +269,13 @@
 
   // ── No club context → show neutral message, hide form
   if (!clubId || !CLUB_NAMES[clubId]) {
+    const lang = typeof getLang === 'function' ? getLang() : 'it';
+    const tr   = (key) => typeof t === 'function' ? t(key, lang) : key;
     document.getElementById('cl-badge').style.display = 'none';
     document.getElementById('cl-form-wrap').innerHTML = `
-      <p style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:#0D1B2A;line-height:1.3;margin-bottom:20px;">Area Riservata Club</p>
-      <p style="font-size:13px;color:rgba(13,27,42,.55);line-height:1.7;margin-bottom:32px;">Per accedere all'area riservata del tuo club utilizza il link che ti è stato fornito direttamente dal tuo club.</p>
-      <a href="index.html" style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#0D1B2A;text-decoration:none;border-bottom:1px solid rgba(13,27,42,.25);padding-bottom:3px;">← Torna al sito</a>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:#0D1B2A;line-height:1.3;margin-bottom:20px;">${tr('club.area.noclub.title')}</p>
+      <p style="font-size:13px;color:rgba(13,27,42,.55);line-height:1.7;margin-bottom:32px;">${tr('club.area.noclub.message')}</p>
+      <a href="index.html" style="display:inline-block;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#0D1B2A;text-decoration:none;border-bottom:1px solid rgba(13,27,42,.25);padding-bottom:3px;">${tr('club.area.noclub.back')}</a>
     `;
   } else {
     document.getElementById('cl-badge').textContent = clubName;

@@ -226,10 +226,11 @@
   <script src="assets/js/i18n.js"></script>
   <script>
     (function () {
-      const params  = new URLSearchParams(location.search);
-      const lang    = typeof getLang === 'function' ? getLang() : 'it';
+      const params    = new URLSearchParams(location.search);
+      const productId = params.get('id');
+      let lang    = typeof getLang === 'function' ? getLang() : 'it';
       const tr      = (key) => typeof t === 'function' ? t(key, lang) : key;
-      const product = getProductLocalized(params.get('id'), lang);
+      let product = getProductLocalized(productId, lang);
       const content = document.getElementById('product-content');
 
       if (!product || product.collection !== 'surfaces') {
@@ -370,6 +371,16 @@
       }
 
       render();
+
+      // Re-render on language change
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.addEventListener('click', () => {
+          lang    = el.getAttribute('data-lang');
+          product = getProductLocalized(productId, lang);
+          render();
+          if (typeof applyTranslations === 'function') applyTranslations(lang);
+        });
+      });
 
       // Related products
       const related = SURFACES_PRODUCTS.filter(p => p.id !== product.id);

@@ -1527,8 +1527,8 @@ a { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 860px) {
-  .header-nav,
-  .header-actions { display: none; }
+  .header-nav { display: none; }
+  .header-actions { display: flex; }
   .mobile-toggle { display: block; }
   .header-nav.open { display: block; width: 100%; order: 10; }
   .header-nav.open ul { flex-direction: column; gap: 14px; padding: 14px 0 10px; }

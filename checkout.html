@@ -95,10 +95,17 @@
 
     @media (max-width: 880px) {
       .checkout-page { grid-template-columns: 1fr; padding: 32px 20px 60px; }
-      .checkout-header { padding: 16px 20px; }
+      .checkout-header { padding: 14px 16px; }
+      .checkout-secure { display: none; }
+      .checkout-brand { font-size: 22px; }
+      .checkout-back { font-size: 11px; }
       .order-summary { position: static; }
       .form-row { grid-template-columns: 1fr; }
       .form-input, .form-select { font-size: 16px; }
+      .checkout-steps { gap: 0; margin-bottom: 28px; }
+      .step { gap: 6px; font-size: 9px; letter-spacing: .08em; }
+      .step-sep { width: 16px; margin: 0 4px; }
+      .step-num { width: 18px; height: 18px; font-size: 9px; }
     }
 
     /* iOS zoom prevention — always enforce 16px on focusable inputs */

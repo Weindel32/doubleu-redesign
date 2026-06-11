@@ -656,7 +656,7 @@ const TRANSLATIONS = {
     "solution.3.desc": "Sistema di ordine collettivo — raccolta ordini entro un'unica data, consegna centralizzata al clubhouse. Costi di spedizione ridotti, impatto ambientale abbattuto, gestione semplice per il club.",
     "section.launch": "Il Lancio",
     "launch.title": "Una festa,<br>una collezione,<br>una community.",
-    "launch.desc": "In occasione della festa di Natale del club, tutti i giovani soci MTC hanno ricevuto in regalo i nuovi shirt esclusivi DOUBLEU. Un lancio che ha unito brand e community fin dal primo giorno — rendendo gli shirt non solo un prodotto, ma un momento condiviso.",
+    "launch.desc": "In occasione della festa di Natale del club, tutti i giovani soci MTC hanno ricevuto in regalo le nuove t-shirt esclusive DOUBLEU. Un lancio che ha unito brand e community fin dal primo giorno — rendendo le t-shirt non solo un prodotto, ma un momento condiviso.",
     "quote.text": "Grazie alla collaborazione con DOUBLEU e alla nostra MTC Club-Linie, abbiamo permesso ai nostri soci di scendere in campo come una squadra unita, portando sul campo l'identità e i colori del club.<br><br>I nostri giovani beneficiano di un rafforzato spirito di squadra e si sentono fortemente legati al club.<br><br>Le squadre adulte apprezzano in particolare l'alta qualità dei materiali, la cura per i dettagli e l'attenzione ai desideri di design individuali.<br><br>Disponibili, vicini al cliente e Made in Italy.",
     "quote.author": "Fabian Arnold<br>Sportvorstand MTC Ausstellungspark – Monaco di Baviera",
     "section.results": "I Risultati",

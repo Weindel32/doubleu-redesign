@@ -4,5 +4,12 @@
       "memory": 128,
       "maxDuration": 10
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/eshop-mtc",
+      "destination": "/area-club-catalogo.html?club=mtc",
+      "permanent": true
+    }
+  ]
 }

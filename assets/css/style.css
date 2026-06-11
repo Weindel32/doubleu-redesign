@@ -483,6 +483,22 @@ a { text-decoration: none; color: inherit; }
   background: #fff;
   overflow: hidden;
   border-radius: 6px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.case-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.case-card-link:hover .case-card,
+.case-card-link:focus .case-card {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+}
+.case-card-link:hover .case-link,
+.case-card-link:focus .case-link {
+  text-decoration: underline;
 }
 
 .case-card-img {
@@ -515,6 +531,14 @@ a { text-decoration: none; color: inherit; }
   font-weight: 500;
 }
 .case-link:hover { text-decoration: underline; }
+
+.capsule-section-desc {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0 0 28px 0;
+}
 
 
 /* ================================

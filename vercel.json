@@ -7,7 +7,7 @@
   },
   "redirects": [
     {
-      "source": "/eshop-mtc",
+      "source": "/eshop-mtc-ausstellungspark",
       "destination": "/area-club-catalogo.html?club=mtc",
       "permanent": true
     }

@@ -231,10 +231,17 @@
     const clubId     = (params.get('club') || '').toLowerCase();
     const clubSuffix = clubId ? `?club=${clubId}` : '';
 
-    auth.onAuthStateChanged(user => {
-      if (!user) { window.location.href = `area-club.html${clubSuffix}`; return; }
+    const PUBLIC_CLUBS = ['mtc'];
+
+    if (PUBLIC_CLUBS.includes(clubId)) {
+      document.getElementById('logout-btn').style.display = 'none';
       init();
-    });
+    } else {
+      auth.onAuthStateChanged(user => {
+        if (!user) { window.location.href = `area-club.html${clubSuffix}`; return; }
+        init();
+      });
+    }
 
     function init() {
       const result = getClubProductById(productId);

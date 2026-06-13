@@ -96,6 +96,12 @@
 .g-p-det::before{content:'';display:block;width:16px;height:1px;background:var(--g-green);flex-shrink:0}
 .g-p-cta{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--g-cream);background:var(--g-charcoal);padding:15px 34px;text-decoration:none;font-family:var(--g-sans);transition:background .3s}
 .g-p-cta:hover{background:var(--g-green)}
+/* Reversed row: testo allineato verso l'immagine (destra) */
+.g-prow-rev .g-pinfo{text-align:right}
+.g-prow-rev .g-p-line{margin-left:auto}
+.g-prow-rev .g-p-desc{margin-left:auto}
+.g-prow-rev .g-p-dets{align-items:flex-end}
+.g-prow-rev .g-p-det{flex-direction:row-reverse}
 
 /* ── WHY GRASS ── */
 .g-why{background:var(--g-charcoal);padding:96px 80px;display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
@@ -154,6 +160,10 @@
   .g-prow{grid-template-columns:1fr;gap:36px;margin-bottom:56px}
   .g-pimg{max-width:340px}
   .g-prow-rev .g-pimg{order:-1}
+  .g-prow-rev .g-pinfo{text-align:left}
+  .g-prow-rev .g-p-line,.g-prow-rev .g-p-desc{margin-left:0}
+  .g-prow-rev .g-p-dets{align-items:flex-start}
+  .g-prow-rev .g-p-det{flex-direction:row}
   .g-why{grid-template-columns:1fr;gap:48px}
   .g-pillars{grid-template-columns:1fr}
   .g-sg{grid-template-columns:1fr;height:auto}

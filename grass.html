@@ -79,20 +79,23 @@
 .g-sec-ttl{font-family:var(--g-serif);font-size:clamp(34px,3.8vw,52px);font-weight:300;line-height:1.05;color:var(--g-charcoal)}
 .g-sec-ttl em{font-style:italic;color:var(--g-warm-gray)}
 
-/* Asymmetric 2-column product grid */
-.g-col-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:start}
-.g-col-main{text-decoration:none;color:inherit;display:block}
-.g-col-side{margin-top:120px;text-decoration:none;color:inherit;display:block}
-.g-cg-img{overflow:hidden;background:var(--g-green-deep);margin-bottom:22px;position:relative}
-.g-col-main .g-cg-img{aspect-ratio:4/5}
-.g-col-side .g-cg-img{aspect-ratio:3/4}
-.g-cg-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
-.g-col-main:hover .g-cg-img img,.g-col-side:hover .g-cg-img img{transform:scale(1.04)}
-.g-cg-num{font-size:9px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--g-green);margin-bottom:10px;font-family:var(--g-sans)}
-.g-cg-name{font-family:var(--g-serif);font-size:clamp(24px,2.8vw,38px);font-weight:300;line-height:1.05;color:var(--g-charcoal);margin-bottom:18px}
-.g-cg-name em{font-style:italic;color:var(--g-warm-gray);display:block}
-.g-cg-cta{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--g-cream);background:var(--g-charcoal);padding:13px 30px;font-family:var(--g-sans);transition:background .3s}
-.g-col-main:hover .g-cg-cta,.g-col-side:hover .g-cg-cta{background:var(--g-green)}
+/* Zigzag product rows */
+.g-prow{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-bottom:80px}
+.g-prow:last-child{margin-bottom:0}
+.g-pimg{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--g-green-deep);display:block;width:100%;max-width:400px;margin:0 auto}
+.g-pimg img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+.g-pimg:hover img{transform:scale(1.04)}
+.g-pinfo{padding:16px 0}
+.g-p-num{font-size:9px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--g-green);margin-bottom:14px;font-family:var(--g-sans)}
+.g-p-name{font-family:var(--g-serif);font-size:clamp(34px,4vw,54px);font-weight:300;line-height:1;color:var(--g-charcoal);margin-bottom:6px}
+.g-p-name em{font-style:italic;display:block;color:var(--g-warm-gray)}
+.g-p-line{width:36px;height:2px;background:var(--g-green);margin:22px 0}
+.g-p-desc{font-family:var(--g-serif);font-size:16px;font-style:italic;color:var(--g-warm-gray);line-height:1.82;margin-bottom:28px;max-width:380px}
+.g-p-dets{display:flex;flex-direction:column;gap:9px;margin-bottom:36px}
+.g-p-det{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:300;color:var(--g-warm-gray);font-family:var(--g-sans)}
+.g-p-det::before{content:'';display:block;width:16px;height:1px;background:var(--g-green);flex-shrink:0}
+.g-p-cta{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--g-cream);background:var(--g-charcoal);padding:15px 34px;text-decoration:none;font-family:var(--g-sans);transition:background .3s}
+.g-p-cta:hover{background:var(--g-green)}
 
 /* ── WHY GRASS ── */
 .g-why{background:var(--g-charcoal);padding:96px 80px;display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
@@ -148,16 +151,15 @@
   .g-hero-right{display:none}
   .g-manifesto,.g-crafted,.g-shop,.g-why,.g-surf-sec,.g-cta-band{padding:80px 28px}
   .g-crafted{grid-template-columns:1fr;gap:60px}
-  .g-col-grid{grid-template-columns:1fr 1fr;gap:24px}
-  .g-col-side{margin-top:60px}
+  .g-prow{grid-template-columns:1fr;gap:36px;margin-bottom:56px}
+  .g-pimg{max-width:340px}
+  .g-prow-rev .g-pimg{order:-1}
   .g-why{grid-template-columns:1fr;gap:48px}
   .g-pillars{grid-template-columns:1fr}
   .g-sg{grid-template-columns:1fr;height:auto}
   .g-sc{height:260px}
 }
 @media(max-width:600px){
-  .g-col-grid{grid-template-columns:1fr}
-  .g-col-side{margin-top:0}
   .g-sg{grid-template-columns:1fr}
 }
   </style>
@@ -258,35 +260,50 @@
         </div>
       </div>
 
-      <!-- Asymmetric product grid -->
-      <div class="g-col-grid g-reveal">
-
-        <!-- Sweatshirt — main (sinistra, grande) -->
-        <a class="g-col-main" href="grass-product.html?id=grass-sweatshirt">
-          <div class="g-cg-img">
-            <img src="surfaces/img/grass-sweatshirt.png" alt="GRASS Sweatshirt — SURFACES by DOUBLEU">
-          </div>
-          <div class="g-cg-num" data-i18n="grass.product2.ref">REF · 006 · GRASS SWEATSHIRT</div>
-          <div class="g-cg-name">
+      <!-- Riga 1: Felpa — immagine sinistra, descrizione destra -->
+      <div class="g-prow g-reveal">
+        <a class="g-pimg" href="grass-product.html?id=grass-sweatshirt">
+          <img src="surfaces/img/grass-sweatshirt.png" alt="GRASS Sweatshirt — SURFACES by DOUBLEU">
+        </a>
+        <div class="g-pinfo">
+          <div class="g-p-num" data-i18n="grass.product2.ref">REF · 006 · GRASS SWEATSHIRT</div>
+          <h3 class="g-p-name">
             <span data-i18n="grass.product2.name">Sweatshirt</span>
             <em data-i18n="grass.product2.sub">GRASS.</em>
+          </h3>
+          <div class="g-p-line"></div>
+          <p class="g-p-desc" data-i18n="grass.product2.desc">Cotone premium — Regular Fit. Patch ricamata GRASS.</p>
+          <div class="g-p-dets">
+            <div class="g-p-det" data-i18n="grass.product2.det1">100% Cotone — Regular Fit</div>
+            <div class="g-p-det" data-i18n="grass.product2.det2">Patch ricamata GRASS</div>
+            <div class="g-p-det" data-i18n="grass.product2.det3">Produzione artigianale Made in Italy</div>
+            <div class="g-p-det" data-i18n="grass.product2.det4">Verde Scuro</div>
           </div>
-          <span class="g-cg-cta" data-i18n="grass.product2.cta">Scopri</span>
-        </a>
+          <a href="grass-product.html?id=grass-sweatshirt" class="g-p-cta" data-i18n="grass.product2.cta">Scopri</a>
+        </div>
+      </div>
 
-        <!-- T-Shirt — side (destra, offset in basso) -->
-        <a class="g-col-side" href="grass-product.html?id=grass-tee">
-          <div class="g-cg-img">
-            <img src="surfaces/img/grass-tshirt.png" alt="GRASS Tee — SURFACES by DOUBLEU">
-          </div>
-          <div class="g-cg-num" data-i18n="grass.product1.ref">REF · 005</div>
-          <div class="g-cg-name">
+      <!-- Riga 2: T-Shirt — descrizione sinistra, immagine destra -->
+      <div class="g-prow g-prow-rev g-reveal g-rd1">
+        <div class="g-pinfo">
+          <div class="g-p-num" data-i18n="grass.product1.ref">REF · 005 · GRASS TEE</div>
+          <h3 class="g-p-name">
             <span data-i18n="grass.product1.name">T-Shirt</span>
             <em data-i18n="grass.product1.sub">GRASS</em>
+          </h3>
+          <div class="g-p-line"></div>
+          <p class="g-p-desc" data-i18n="grass.product1.desc">Cotone premium — Regular Fit. Patch ricamata GRASS.</p>
+          <div class="g-p-dets">
+            <div class="g-p-det" data-i18n="grass.product1.det1">100% Cotone — Regular Fit</div>
+            <div class="g-p-det" data-i18n="grass.product1.det2">Patch ricamata GRASS</div>
+            <div class="g-p-det" data-i18n="grass.product1.det3">Produzione artigianale Made in Italy</div>
+            <div class="g-p-det" data-i18n="grass.product1.det4">Verde Campo</div>
           </div>
-          <span class="g-cg-cta" data-i18n="grass.product1.cta">Scopri</span>
+          <a href="grass-product.html?id=grass-tee" class="g-p-cta" data-i18n="grass.product1.cta">Scopri</a>
+        </div>
+        <a class="g-pimg" href="grass-product.html?id=grass-tee">
+          <img src="surfaces/img/grass-tshirt.png" alt="GRASS Tee — SURFACES by DOUBLEU">
         </a>
-
       </div>
 
     </section>

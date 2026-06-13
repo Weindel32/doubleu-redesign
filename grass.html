@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DOUBLEU | GRASS — A Surfaces Capsule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+/* ── PROMO BAR ── */
+.promo-bar{background:var(--g-deep);color:rgba(240,247,238,.6);text-align:center;padding:10px 20px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase}
+.promo-bar strong{color:var(--g-light)}
+
+/* ── CART BTN ── */
+.cart-btn{position:relative;display:flex;align-items:center;gap:6px;background:none;border:1.5px solid var(--g-green);padding:8px 14px;cursor:pointer;color:var(--g-green);text-decoration:none;font-size:12px;letter-spacing:.04em;transition:background .2s,color .2s}
+.cart-btn:hover{background:var(--g-green);color:var(--g-cream)}
+.cart-btn svg{width:16px;height:16px;flex-shrink:0}
+.cart-badge{position:absolute;top:-7px;right:-7px;background:var(--g-green);color:var(--g-cream);font-size:9px;font-weight:700;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;display:none}
+
+/* ── GRASS PALETTE ── */
+:root {
+  --g-cream:      #F0F4ED;
+  --g-cream-dark: #E4EBE0;
+  --g-green:      #2D5A27;
+  --g-green-deep: #1A3A16;
+  --g-green-mid:  #3D7A35;
+  --g-charcoal:   #121A10;
+  --g-warm-gray:  #5A6657;
+  --g-border:     rgba(18,26,16,0.12);
+  --surf-charcoal: #121A10;
+  --surf-cream:    #F0F4ED;
+  --g-serif:      'Cormorant Garamond', Georgia, serif;
+  --g-sans:       'Montserrat', sans-serif;
+}
+
+/* ── HERO ── */
+.g-hero{position:relative;height:100vh;min-height:680px;overflow:hidden;display:flex;align-items:flex-end}
+.g-hero-img{position:absolute;inset:0;background:linear-gradient(155deg,#2D5A27 0%,#1A3A16 45%,#0F2210 100%)}
+.g-hero-img img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.g-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,18,8,.85) 0%,rgba(10,18,8,.38) 38%,rgba(10,18,8,.1) 65%,transparent 100%),linear-gradient(to right,rgba(10,18,8,.2) 0%,transparent 40%)}
+.g-hero-content{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1fr auto;align-items:flex-end;padding:0 64px 72px;gap:48px}
+.g-hero-left{max-width:600px}
+.g-hero-eyebrow{font-size:9px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:rgba(240,247,238,.52);margin-bottom:20px;font-family:var(--g-sans)}
+.g-hero-title{font-family:var(--g-serif);font-size:clamp(56px,8.5vw,118px);font-weight:300;line-height:.88;color:var(--g-cream);margin-bottom:28px}
+.g-hero-title em{font-style:italic;color:rgba(240,247,238,.6);display:block}
+.g-hero-sub{font-family:var(--g-serif);font-size:17px;font-style:italic;color:rgba(240,247,238,.65);line-height:1.75;margin-bottom:44px;max-width:460px}
+.g-btn-primary{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--g-cream);background:var(--g-green);padding:15px 34px;text-decoration:none;font-family:var(--g-sans);transition:background .3s,transform .2s}
+.g-btn-primary:hover{background:var(--g-green-deep);transform:translateY(-1px)}
+.g-hero-right{text-align:right;padding-bottom:6px}
+.g-hero-badge-line{font-size:9px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:rgba(240,247,238,.38);margin-bottom:10px;font-family:var(--g-sans)}
+.g-hero-badge-text{font-family:var(--g-serif);font-size:20px;font-style:italic;color:rgba(240,247,238,.65);line-height:1.55}
+
+/* ── MANIFESTO ── */
+.g-manifesto{background:var(--g-charcoal);padding:112px 80px;text-align:center;position:relative;overflow:hidden}
+.g-m-tag{font-size:9px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--g-green-mid);margin-bottom:36px;font-family:var(--g-sans)}
+.g-m-title{font-family:var(--g-serif);font-size:clamp(30px,4.5vw,58px);font-weight:300;color:var(--g-cream);line-height:1.18;max-width:860px;margin:0 auto 36px;position:relative;z-index:1}
+.g-m-title em{font-style:italic;color:rgba(240,247,238,.45)}
+.g-m-body{font-size:14px;font-weight:300;color:rgba(240,247,238,.42);line-height:2.05;max-width:500px;margin:0 auto;position:relative;z-index:1;font-family:var(--g-sans)}
+
+/* ── CRAFTED SECTION ── */
+.g-crafted{background:var(--g-cream);padding:112px 80px;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center}
+.g-ci-wrap{position:relative}
+.g-ci{aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--g-green-deep);display:flex;align-items:center;justify-content:center}
+.g-ci img{width:100%;height:100%;object-fit:cover;display:block}
+.g-ci-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--g-serif);font-size:clamp(60px,10vw,120px);font-weight:300;color:rgba(240,247,238,.12);letter-spacing:.1em;font-style:italic}
+.g-ci-badge{position:absolute;bottom:-24px;right:-24px;width:136px;height:136px;background:var(--g-green);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px}
+.g-ci-badge .g-num{font-family:var(--g-serif);font-size:46px;font-weight:300;color:var(--g-cream);line-height:1}
+.g-ci-badge .g-lbl{font-size:8px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:rgba(240,247,238,.58);font-family:var(--g-sans)}
+.g-cc .g-sec-lbl{color:var(--g-green)}
+.g-sec-lbl{font-size:9px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--g-warm-gray);margin-bottom:10px;font-family:var(--g-sans)}
+.g-cc-title{font-family:var(--g-serif);font-size:clamp(34px,3.3vw,50px);font-weight:300;line-height:1.1;color:var(--g-charcoal);margin-bottom:28px}
+.g-cc-title em{font-style:italic;color:var(--g-warm-gray)}
+.g-cc-body{font-size:14px;font-weight:300;color:var(--g-warm-gray);line-height:2;margin-bottom:44px;font-family:var(--g-sans)}
+
+/* ── SHOP SECTION ── */
+.g-shop{background:var(--g-cream-dark);padding:112px 80px 80px}
+.g-shop-hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:56px;padding-bottom:24px;border-bottom:1px solid var(--g-border)}
+.g-sec-ttl{font-family:var(--g-serif);font-size:clamp(34px,3.8vw,52px);font-weight:300;line-height:1.05;color:var(--g-charcoal)}
+.g-sec-ttl em{font-style:italic;color:var(--g-warm-gray)}
+
+/* Product spotlight */
+.g-spot{display:grid;grid-template-columns:1fr 1fr;gap:84px;align-items:center;margin-bottom:84px}
+.g-pif{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--g-green-deep);display:block;text-decoration:none}
+.g-pif img{width:100%;height:100%;object-fit:cover;display:block}
+.g-pif-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--g-serif);font-size:clamp(48px,8vw,96px);font-weight:300;color:rgba(240,247,238,.1);letter-spacing:.05em;font-style:italic}
+.g-pi{padding:16px 0}
+.g-p-num{font-size:9px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:var(--g-green);margin-bottom:14px;font-family:var(--g-sans)}
+.g-p-name{font-family:var(--g-serif);font-size:clamp(36px,4.2vw,58px);font-weight:300;line-height:1;color:var(--g-charcoal);margin-bottom:6px}
+.g-p-name em{font-style:italic;display:block;color:var(--g-warm-gray)}
+.g-p-price{font-family:var(--g-serif);font-size:26px;font-weight:300;color:var(--g-charcoal);margin-bottom:6px}
+.g-p-line{width:36px;height:2px;background:var(--g-green);margin:22px 0}
+.g-p-desc{font-family:var(--g-serif);font-size:16px;font-style:italic;color:var(--g-warm-gray);line-height:1.82;margin-bottom:28px;max-width:380px}
+.g-p-dets{display:flex;flex-direction:column;gap:9px;margin-bottom:36px}
+.g-p-det{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:300;color:var(--g-warm-gray);font-family:var(--g-sans)}
+.g-p-det::before{content:'';display:block;width:16px;height:1px;background:var(--g-green);flex-shrink:0}
+.g-p-cta{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--g-cream);background:var(--g-charcoal);padding:15px 34px;text-decoration:none;font-family:var(--g-sans);transition:background .3s}
+.g-p-cta:hover{background:var(--g-green)}
+
+/* Product grid */
+.g-pg{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:720px}
+.g-pg-card{text-decoration:none;color:inherit;display:block}
+.g-pg-img{aspect-ratio:3/4;overflow:hidden;background:var(--g-green-deep);margin-bottom:18px;position:relative}
+.g-pg-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+.g-pg-card:hover .g-pg-img img{transform:scale(1.04)}
+.g-pg-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--g-serif);font-size:clamp(32px,5vw,64px);font-weight:300;color:rgba(240,247,238,.1);letter-spacing:.05em;font-style:italic;position:absolute;inset:0}
+.g-pg-num{font-size:8px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:var(--g-green);margin-bottom:6px;font-family:var(--g-sans)}
+.g-pg-name{font-family:var(--g-serif);font-size:22px;font-weight:300;color:var(--g-charcoal);line-height:1.1;margin-bottom:4px}
+.g-pg-name em{font-style:italic;color:var(--g-warm-gray);display:block}
+.g-pg-price{font-family:var(--g-serif);font-size:18px;font-weight:300;color:var(--g-charcoal);margin-top:6px}
+.g-pg-det{font-size:11px;font-weight:300;color:var(--g-warm-gray);margin-top:4px;font-family:var(--g-sans)}
+
+/* ── WHY GRASS ── */
+.g-why{background:var(--g-charcoal);padding:96px 80px;display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
+.g-why-left .g-sec-lbl{color:var(--g-green-mid)}
+.g-why-ttl{font-family:var(--g-serif);font-size:clamp(34px,3.5vw,52px);font-weight:300;line-height:1.1;color:var(--g-cream)}
+.g-why-ttl em{font-style:italic;color:rgba(240,247,238,.38)}
+.g-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.g-pillar{border-top:1px solid rgba(240,247,238,.1);padding-top:20px}
+.g-pl-icon{font-family:var(--g-serif);font-size:36px;font-weight:300;color:var(--g-green-mid);line-height:1;margin-bottom:12px}
+.g-pl-ttl{font-size:9px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--g-green-mid);margin-bottom:7px;font-family:var(--g-sans)}
+.g-pl-txt{font-size:13px;font-weight:300;color:rgba(240,247,238,.4);line-height:1.72;font-family:var(--g-sans)}
+
+/* ── SURFACES GRID ── */
+.g-surf-sec{padding:112px 80px;background:var(--g-cream)}
+.g-surf-hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:56px;padding-bottom:24px;border-bottom:1px solid var(--g-border)}
+.g-sg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;height:420px}
+.g-sc{position:relative;overflow:hidden;cursor:pointer}
+.g-sc-bg{position:absolute;inset:0;transition:transform .85s cubic-bezier(.25,.46,.45,.94)}
+.g-sc:hover .g-sc-bg{transform:scale(1.05)}
+.g-sc-clay .g-sc-bg{background:linear-gradient(155deg,#C4592A 0%,#8B2020 40%,#5C1010 100%)}
+.g-sc-clay .g-sc-bg::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(255,255,255,.016) 3px,rgba(255,255,255,.016) 6px)}
+.g-sc-grass .g-sc-bg{background:linear-gradient(155deg,#2D5A27 0%,#1A3A16 50%,#0F2210 100%)}
+.g-sc-hard .g-sc-bg{background:linear-gradient(155deg,#1A3A5C 0%,#0F2540 50%,#081525 100%)}
+.g-sc-ol{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 58%);z-index:1}
+.g-sc-grass .g-sc-ol{background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.15) 40%,transparent 70%)}
+.g-sc-cnt{position:absolute;bottom:0;left:0;right:0;padding:28px 24px;z-index:2}
+.g-sc-name{font-family:var(--g-serif);font-size:36px;font-weight:300;color:var(--g-cream);line-height:1;margin-bottom:8px}
+.g-sc-desc{font-family:var(--g-serif);font-size:13px;font-style:italic;color:rgba(240,247,238,.56);line-height:1.68;margin-bottom:18px}
+.g-sc-link{display:inline-flex;align-items:center;gap:12px;font-size:9px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--g-cream);text-decoration:none;font-family:var(--g-sans)}
+.g-sc-link::after{content:'';display:block;width:22px;height:1px;background:var(--g-cream);transition:width .3s}
+.g-sc:hover .g-sc-link::after{width:40px}
+.g-cs-badge{font-size:8px;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:rgba(240,247,238,.85);border:1px solid rgba(240,247,238,.5);padding:5px 12px;margin-bottom:14px;display:inline-block;font-family:var(--g-sans)}
+.g-sc-active-badge{font-size:8px;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:rgba(240,247,238,.95);border:1px solid rgba(240,247,238,.7);background:rgba(45,90,39,.4);padding:5px 12px;margin-bottom:14px;display:inline-block;font-family:var(--g-sans)}
+
+/* ── CTA BAND ── */
+.g-cta-band{background:var(--g-green);padding:96px 80px;text-align:center;position:relative;overflow:hidden}
+.g-cta-band::before{content:'GRASS';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--g-serif);font-size:21vw;font-weight:300;color:rgba(255,255,255,.045);white-space:nowrap;pointer-events:none;line-height:1}
+.g-ct-lbl{font-size:9px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:rgba(240,247,238,.5);margin-bottom:28px;position:relative;z-index:1;font-family:var(--g-sans)}
+.g-ct-title{font-family:var(--g-serif);font-size:clamp(38px,5vw,70px);font-weight:300;color:var(--g-cream);line-height:1.1;margin-bottom:44px;position:relative;z-index:1}
+.g-ct-title em{font-style:italic;opacity:.6}
+.g-btn-white{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--g-green);background:var(--g-cream);padding:17px 46px;text-decoration:none;transition:background .3s,color .3s;position:relative;z-index:1;font-family:var(--g-sans)}
+.g-btn-white:hover{background:var(--g-charcoal);color:var(--g-cream)}
+
+/* ── REVEAL ── */
+.g-reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.25,.46,.45,.94),transform .9s cubic-bezier(.25,.46,.45,.94)}
+.g-reveal.visible{opacity:1;transform:translateY(0)}
+.g-rd1{transition-delay:.15s}
+.g-rd2{transition-delay:.3s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .g-hero-content{grid-template-columns:1fr;padding:0 28px 60px}
+  .g-hero-right{display:none}
+  .g-manifesto,.g-crafted,.g-shop,.g-why,.g-surf-sec,.g-cta-band{padding:80px 28px}
+  .g-crafted{grid-template-columns:1fr;gap:60px}
+  .g-spot{grid-template-columns:1fr;gap:36px}
+  .g-pg{grid-template-columns:1fr 1fr;max-width:100%}
+  .g-why{grid-template-columns:1fr;gap:48px}
+  .g-pillars{grid-template-columns:1fr}
+  .g-sg{grid-template-columns:1fr;height:auto}
+  .g-sc{height:260px}
+}
+@media(max-width:600px){
+  .g-pg{grid-template-columns:1fr}
+  .g-sg{grid-template-columns:1fr}
+}
+  </style>
+</head>
+<body>
+
+  <!-- PROMO BAR -->
+  <div class="promo-bar">
+    <span data-i18n="shop.promo">Spedizione gratuita per ordini superiori a €89 &mdash; codice <strong>DELY26</strong> al checkout</span>
+  </div>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="container">
+      <div class="header-top">
+        <a class="brand" href="index.html">
+          <span class="brand-name">DOUBLEU</span>
+          <span class="brand-sub">Tennis Apparel</span>
+        </a>
+        <button class="mobile-toggle" aria-expanded="false" aria-label="Apri menu">&#9776;</button>
+        <nav class="header-nav" id="main-nav">
+          <ul>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="club.html" data-i18n="nav.club">Per i Club</a></li>
+            <li><a class="active" href="capsule.html" data-i18n="nav.capsule">Capsule</a></li>
+            <li><a href="casestudies.html" data-i18n="nav.casestudies">Case Studies</a></li>
+            <li><a href="lookbook.html" data-i18n="nav.lookbook">Lookbook</a></li>
+            <li><a href="contatti.html" data-i18n="nav.contatti">Contatti</a></li>
+            <li><a href="area-club.html" data-i18n="nav.members">Area Soci</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a class="cart-btn" href="carrello.html" aria-label="Carrello">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/></svg>
+            <span data-i18n="shop.cart.title">Carrello</span>
+            <span class="cart-badge">0</span>
+          </a>
+        </div>
+      </div>
+      <div class="header-lang"><a href="#" data-lang="it">IT</a> | <a href="#" data-lang="en">EN</a> | <a href="#" data-lang="de">DE</a></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="g-hero">
+      <div class="g-hero-img">
+        <!-- Placeholder: sostituire con <img src="surfaces/img/grass-hero.jpg" ...> -->
+      </div>
+      <div class="g-hero-grad"></div>
+      <div class="g-hero-content">
+        <div class="g-hero-left">
+          <div class="g-hero-eyebrow" data-i18n="grass.hero.eyebrow">GRASS Collection · SURFACES by DOUBLEU</div>
+          <h1 class="g-hero-title" data-i18n-html="grass.hero.title">La stagione<br><em>più breve.</em></h1>
+          <p class="g-hero-sub" data-i18n="grass.hero.sub">L'erba dura solo qualche settimana. GRASS è stata creata per catturare quella stagione e portarla oltre il campo.</p>
+          <a href="#g-shop" class="g-btn-primary" data-i18n="grass.hero.cta">Shop the Capsule</a>
+        </div>
+        <div class="g-hero-right">
+          <div class="g-hero-badge-line" data-i18n="grass.hero.badge.line">GRASS Collection · 2026</div>
+          <div class="g-hero-badge-text" data-i18n="grass.hero.badge.text">Veloce. Imprevedibile. Solo per i più audaci.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="g-manifesto g-reveal">
+      <div class="g-m-tag" data-i18n="grass.manifesto.tag">The Concept</div>
+      <h2 class="g-m-title" data-i18n-html="grass.manifesto.title">Definita dalla velocità.<br><em>Raccontata da DOUBLEU.</em></h2>
+      <p class="g-m-body" data-i18n="grass.manifesto.body">L'erba è la superficie più rapida, più imprevista, più elegante del tennis. Una stagione che dura poche settimane — e lascia il segno per sempre. GRASS nasce per catturare quella atmosfera e trasformarla in qualcosa da indossare.</p>
+    </section>
+
+    <!-- CRAFTED SECTION -->
+    <section class="g-crafted g-reveal">
+      <div class="g-ci-wrap">
+        <div class="g-ci">
+          <!-- Placeholder immagine close-up patch ricamata -->
+          <div class="g-ci-placeholder">grass</div>
+        </div>
+        <div class="g-ci-badge">
+          <span class="g-num">2026</span>
+          <span class="g-lbl">Grass Court</span>
+        </div>
+      </div>
+      <div class="g-cc">
+        <div class="g-sec-lbl" data-i18n="grass.crafted.tag">Artigianato</div>
+        <h2 class="g-cc-title" data-i18n-html="grass.crafted.title">Costruita per la stagione<br><em>sull'erba.</em></h2>
+        <p class="g-cc-body" data-i18n="grass.crafted.body">Ogni pezzo GRASS presenta una texture ricamata a rilievo, ispirata al manto verde del campo. Una superficie che si sente oltre che si vede. Produzione artigianale Made in Italy, tiratura limitata.</p>
+      </div>
+    </section>
+
+    <!-- SHOP THE CAPSULE -->
+    <section class="g-shop" id="g-shop">
+
+      <div class="g-shop-hdr g-reveal">
+        <div>
+          <div class="g-sec-lbl" data-i18n="grass.shop.label">GRASS Collection</div>
+          <h2 class="g-sec-ttl" data-i18n-html="grass.shop.title">Shop the<br><em>Capsule.</em></h2>
+        </div>
+      </div>
+
+      <!-- T-Shirt spotlight -->
+      <div class="g-spot g-reveal">
+        <a class="g-pif" href="grass-product.html?id=grass-tee">
+          <!-- Placeholder: sostituire con <img src="surfaces/img/grass-tee.jpg" ...> -->
+          <div class="g-pif-placeholder">Tee</div>
+        </a>
+        <div class="g-pi">
+          <div class="g-p-num" data-i18n="grass.product1.ref">REF · 005 · GRASS TEE</div>
+          <h3 class="g-p-name">
+            <span data-i18n="grass.product1.name">T-Shirt</span>
+            <em data-i18n="grass.product1.sub">GRASS.</em>
+          </h3>
+          <div class="g-p-price" data-i18n="grass.product1.price">€69</div>
+          <div class="g-p-line"></div>
+          <p class="g-p-desc" data-i18n="grass.product1.desc">100% Cotone — Regular Fit. Stampa GRASS.</p>
+          <div class="g-p-dets">
+            <div class="g-p-det" data-i18n="grass.product1.det1">100% Cotone — Regular Fit</div>
+            <div class="g-p-det" data-i18n="grass.product1.det2">Stampa GRASS</div>
+            <div class="g-p-det" data-i18n="grass.product1.det3">Produzione artigianale Made in Italy</div>
+            <div class="g-p-det" data-i18n="grass.product1.det4">Verde Campo</div>
+          </div>
+          <a href="grass-product.html?id=grass-tee" class="g-p-cta" data-i18n="grass.product1.cta">Scopri</a>
+        </div>
+      </div>
+
+      <!-- Product grid: Sweatshirt -->
+      <div class="g-reveal g-rd1">
+        <div class="g-pg">
+
+          <a class="g-pg-card" href="grass-product.html?id=grass-sweatshirt">
+            <div class="g-pg-img">
+              <!-- Placeholder: sostituire con <img src="surfaces/img/grass-sweatshirt.jpg" ...> -->
+              <div class="g-pg-placeholder">Sweat</div>
+            </div>
+            <div class="g-pg-num" data-i18n="grass.product2.ref">REF · 006</div>
+            <div class="g-pg-name">
+              <span data-i18n="grass.product2.name">Sweatshirt</span>
+              <em data-i18n="grass.product2.sub">GRASS</em>
+            </div>
+            <div class="g-pg-price" data-i18n="grass.product2.price">€159</div>
+            <div class="g-pg-det" data-i18n="grass.product2.det3">Produzione artigianale Made in Italy</div>
+          </a>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- WHY GRASS -->
+    <section class="g-why g-reveal">
+      <div class="g-why-left">
+        <div class="g-sec-lbl" data-i18n="grass.why.label">Why GRASS</div>
+        <h2 class="g-why-ttl" data-i18n-html="grass.why.title">La superficie<br><em>più esclusiva.</em></h2>
+      </div>
+      <div class="g-pillars">
+        <div class="g-pillar">
+          <div class="g-pl-icon">◈</div>
+          <div class="g-pl-ttl" data-i18n="grass.why1.title">Limitata</div>
+          <p class="g-pl-txt" data-i18n="grass.why1.desc">Prodotta in piccole quantità.</p>
+        </div>
+        <div class="g-pillar">
+          <div class="g-pl-icon">◈</div>
+          <div class="g-pl-ttl" data-i18n="grass.why2.title">Made in Italy</div>
+          <p class="g-pl-txt" data-i18n="grass.why2.desc">Disegnata e prodotta interamente in Italia.</p>
+        </div>
+        <div class="g-pillar">
+          <div class="g-pl-icon">◈</div>
+          <div class="g-pl-ttl" data-i18n="grass.why3.title">SURFACES</div>
+          <p class="g-pl-txt" data-i18n="grass.why3.desc">Parte del ciclo completo delle tre superfici.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SURFACES GRID -->
+    <section class="g-surf-sec g-reveal">
+      <div class="g-surf-hdr">
+        <div>
+          <div class="g-sec-lbl" data-i18n="grass.surfaces.label">Le Superfici</div>
+          <h2 class="g-sec-ttl" data-i18n-html="grass.surfaces.title">Una collezione<br><em>ispirata dal gioco.</em></h2>
+        </div>
+      </div>
+      <div class="g-sg">
+
+        <!-- CLAY -->
+        <a class="g-sc g-sc-clay" href="surfaces.html" style="text-decoration:none">
+          <div class="g-sc-bg"></div>
+          <div class="g-sc-ol"></div>
+          <div class="g-sc-cnt">
+            <div class="g-sc-active-badge" data-i18n="grass.surfaces.clay.badge">Disponibile</div>
+            <div class="g-sc-name" data-i18n="grass.surfaces.clay.name">CLAY</div>
+            <p class="g-sc-desc" data-i18n="grass.surfaces.clay.desc">Lenta. Profonda. Elegante.</p>
+            <span class="g-sc-link" data-i18n="grass.surfaces.clay.link">Scopri</span>
+          </div>
+        </a>
+
+        <!-- GRASS — active/current -->
+        <div class="g-sc g-sc-grass" style="cursor:default">
+          <div class="g-sc-bg"></div>
+          <div class="g-sc-ol"></div>
+          <div class="g-sc-cnt">
+            <div class="g-sc-active-badge" data-i18n="grass.surfaces.grass.badge">Disponibile</div>
+            <div class="g-sc-name" data-i18n="grass.surfaces.grass.name">GRASS</div>
+            <p class="g-sc-desc" data-i18n="grass.surfaces.grass.desc">Veloce. Imprevedibile. Solo per i più audaci.</p>
+          </div>
+        </div>
+
+        <!-- HARD — coming soon -->
+        <div class="g-sc g-sc-hard" style="cursor:default">
+          <div class="g-sc-bg"></div>
+          <div class="g-sc-ol"></div>
+          <div class="g-sc-cnt">
+            <div class="g-cs-badge" data-i18n="grass.surfaces.hard.badge">Coming Soon</div>
+            <div class="g-sc-name" data-i18n="grass.surfaces.hard.name">— 3</div>
+            <p class="g-sc-desc" data-i18n="grass.surfaces.hard.desc">Dura. Diretta. Senza compromessi.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <section class="g-cta-band g-reveal">
+      <div class="g-ct-lbl" data-i18n="grass.cta.label">Entra nella Community</div>
+      <h2 class="g-ct-title" data-i18n-html="grass.cta.title">GRASS non è solo una capsule.<br><em>È una stagione.</em></h2>
+      <a href="#g-shop" class="g-btn-white" data-i18n="grass.cta.btn">Shop the Capsule</a>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>
+        <a class="brand" href="index.html" style="display:flex;flex-direction:column;gap:2px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;letter-spacing:2px;">DOUBLEU</span>
+          <span style="font-size:8px;letter-spacing:3px;color:#6a8090;text-transform:uppercase;">Tennis Apparel</span>
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
+        <a href="termini.html" data-i18n="footer.terms">Termini e condizioni</a>
+        <a href="cookie.html" data-i18n="footer.cookie">Cookie Policy</a>
+        <a href="spedizioni.html" data-i18n="footer.shipping">Reso e Spedizioni</a>
+        <a href="pagamenti.html" data-i18n="footer.payments">Pagamenti</a>
+        <a href="garment-care.html" data-i18n="footer.care">Garment Care</a>
+      </div>
+      <div class="header-lang"><a href="#" data-lang="it">IT</a> | <a href="#" data-lang="en">EN</a> | <a href="#" data-lang="de">DE</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script>
+    const gObs = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.g-reveal').forEach(el => gObs.observe(el));
+  </script>
+</body>
+</html>

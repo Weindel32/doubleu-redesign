@@ -299,9 +299,79 @@ const SURFACES_PRODUCTS = [
   },
 ];
 
+const GRASS_PRODUCTS = [
+  {
+    id: 'grass-tee',
+    collection: 'grass',
+    name: 'GRASS Tee',
+    subtitle: 'SURFACES by DOUBLEU — REF 005',
+    tag: 'Grass',
+    basePrice: 69,
+    description: '100% cotone <strong>premium</strong> Made in Italy. Regular Fit, stampa GRASS — ispirata alla superficie più veloce e imprevedibile del tennis. Verde campo, il colore dell\'erba di Wimbledon.',
+    fit: 'Regular Fit',
+    material: '100% Cotone / Cotton',
+    printSize: 'Stampa GRASS',
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    colors: [
+      { name: 'Verde Campo', hex: '#2D5A27', image: 'surfaces/img/grass-tee-placeholder.jpg', price: 69 },
+    ],
+    gridImage: 'surfaces/img/grass-tee-placeholder.jpg',
+    i18n: {
+      en: {
+        description: '100% premium cotton Made in Italy. Regular Fit, GRASS print — inspired by the fastest and most unpredictable surface in tennis. Court green, the colour of Wimbledon grass.',
+        fit: 'Regular Fit',
+        material: '100% Cotton',
+        printSize: 'GRASS Print',
+        colors: [{ name: 'Court Green' }],
+      },
+      de: {
+        description: '100% Premium-Baumwolle Made in Italy. Regular Fit, GRASS-Druck — inspiriert von der schnellsten und unberechenbarsten Oberfläche im Tennis. Feldgrün, die Farbe des Wimbledon-Rasens.',
+        fit: 'Regular Fit',
+        material: '100% Baumwolle / Cotton',
+        printSize: 'GRASS-Druck',
+        colors: [{ name: 'Feldgrün' }],
+      },
+    },
+  },
+  {
+    id: 'grass-sweatshirt',
+    collection: 'grass',
+    name: 'GRASS Sweatshirt',
+    subtitle: 'SURFACES by DOUBLEU — REF 006',
+    tag: 'Grass',
+    basePrice: 159,
+    description: 'Felpa in cotone premium Made in Italy. La stagione più breve del tennis, la più elegante. Patch ricamata GRASS sul petto. Produzione artigianale, tiratura limitata.',
+    fit: 'Regular Fit',
+    material: '100% Cotone / Cotton',
+    printSize: 'Patch ricamata GRASS',
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    colors: [
+      { name: 'Verde Scuro', hex: '#1A3A16', image: 'surfaces/img/grass-sweatshirt-placeholder.jpg', price: 159 },
+    ],
+    gridImage: 'surfaces/img/grass-sweatshirt-placeholder.jpg',
+    i18n: {
+      en: {
+        description: 'Premium cotton sweatshirt Made in Italy. The shortest season in tennis, the most elegant. Embroidered GRASS patch on the chest. Artisan production, limited edition.',
+        fit: 'Regular Fit',
+        material: '100% Cotton',
+        printSize: 'Embroidered GRASS Patch',
+        colors: [{ name: 'Dark Green' }],
+      },
+      de: {
+        description: 'Premium-Baumwoll-Sweatshirt Made in Italy. Die kürzeste Saison im Tennis, die eleganteste. Gestickter GRASS-Patch auf der Brust. Handwerkliche Produktion, limitierte Auflage.',
+        fit: 'Regular Fit',
+        material: '100% Baumwolle / Cotton',
+        printSize: 'Gestickter GRASS-Patch',
+        colors: [{ name: 'Dunkelgrün' }],
+      },
+    },
+  },
+];
+
 function getProductById(id) {
   return WFOX_PRODUCTS.find(p => p.id === id)
       || SURFACES_PRODUCTS.find(p => p.id === id)
+      || GRASS_PRODUCTS.find(p => p.id === id)
       || null;
 }
 
@@ -327,5 +397,6 @@ function getProductLocalized(id, lang) {
 function getCollectionProducts(collection) {
   if (collection === 'wfox')     return WFOX_PRODUCTS;
   if (collection === 'surfaces') return SURFACES_PRODUCTS;
+  if (collection === 'grass')    return GRASS_PRODUCTS;
   return [];
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DOUBLEU | SURFACES — A Decade On Court</title>
+  <title>DOUBLEU | CLAY — A Surfaces Capsule</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -55,36 +55,6 @@
 .surf-hero-badge-line { font-size: 9px; font-weight: 500; letter-spacing: .38em; text-transform: uppercase; color: rgba(245,240,232,.38); margin-bottom: 10px; }
 .surf-hero-badge-text { font-family: var(--surf-serif); font-size: 20px; font-style: italic; color: rgba(245,240,232,.65); line-height: 1.55; }
 
-/* MANIFESTO */
-.surf-manifesto { background: var(--surf-charcoal); padding: 112px 80px; text-align: center; position: relative; overflow: hidden; }
-.surf-m-tag { font-size: 9px; font-weight: 500; letter-spacing: .42em; text-transform: uppercase; color: var(--surf-clay-light); margin-bottom: 36px; }
-.surf-m-title { font-family: var(--surf-serif); font-size: clamp(30px,4.5vw,58px); font-weight: 300; color: var(--surf-cream); line-height: 1.18; max-width: 860px; margin: 0 auto 36px; position: relative; z-index: 1; }
-.surf-m-title em { font-style: italic; color: rgba(245,240,232,.48); }
-.surf-m-body { font-size: 14px; font-weight: 300; color: rgba(245,240,232,.42); line-height: 2.05; max-width: 500px; margin: 0 auto; position: relative; z-index: 1; }
-
-/* SURFACES GRID */
-.surf-surfaces-sec { padding: 112px 80px; background: var(--surf-cream); }
-.surf-sec-hdr { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; padding-bottom: 24px; border-bottom: 1px solid var(--surf-border); }
-.surf-sec-lbl { font-size: 9px; font-weight: 500; letter-spacing: .42em; text-transform: uppercase; color: var(--surf-warm-gray); margin-bottom: 10px; }
-.surf-sec-ttl { font-family: var(--surf-serif); font-size: clamp(34px,3.8vw,52px); font-weight: 300; line-height: 1.05; color: var(--surf-charcoal); }
-.surf-sec-ttl em { font-style: italic; color: var(--surf-warm-gray); }
-.surf-sg { display: grid; grid-template-columns: 1.45fr 1fr 1fr; gap: 2px; height: 520px; }
-.surf-sc { position: relative; overflow: hidden; cursor: pointer; }
-.surf-sc-bg { position: absolute; inset: 0; transition: transform .85s cubic-bezier(.25,.46,.45,.94); }
-.surf-sc:hover .surf-sc-bg { transform: scale(1.05); }
-.surf-sc-clay .surf-sc-bg { background: linear-gradient(155deg, #C4592A 0%, #8B2020 40%, #5C1010 100%); }
-.surf-sc-clay .surf-sc-bg::after { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(255,255,255,.016) 3px, rgba(255,255,255,.016) 6px); }
-.surf-sc-grass .surf-sc-bg { background: linear-gradient(155deg, #2D5A27 0%, #1A3A16 50%, #0F2210 100%); }
-.surf-sc-hard .surf-sc-bg { background: linear-gradient(155deg, #1A3A5C 0%, #0F2540 50%, #081525 100%); }
-.surf-sc-ol { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 58%); z-index: 1; }
-.surf-sc-cnt { position: absolute; bottom: 0; left: 0; right: 0; padding: 36px 32px; z-index: 2; }
-.surf-sc-name { font-family: var(--surf-serif); font-size: 42px; font-weight: 300; color: var(--surf-cream); line-height: 1; margin-bottom: 10px; }
-.surf-sc-desc { font-family: var(--surf-serif); font-size: 13px; font-style: italic; color: rgba(245,240,232,.56); line-height: 1.68; margin-bottom: 22px; }
-.surf-sc-link { display: inline-flex; align-items: center; gap: 12px; font-size: 9px; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; color: var(--surf-cream); text-decoration: none; }
-.surf-sc-link::after { content: ''; display: block; width: 22px; height: 1px; background: var(--surf-cream); transition: width .3s; }
-.surf-sc:hover .surf-sc-link::after { width: 40px; }
-.surf-cs-badge { display: inline-block; font-size: 8px; font-weight: 500; letter-spacing: .35em; text-transform: uppercase; color: rgba(245,240,232,.85); border: 1px solid rgba(245,240,232,.5); padding: 5px 12px; margin: 0 auto 16px; display: table; }
-
 /* PRODUCT SPOTLIGHT */
 .surf-ps { background: var(--surf-cream-dark); padding: 112px 80px 80px; }
 .surf-spot { display: grid; grid-template-columns: 1fr 1fr; gap: 84px; align-items: center; margin-bottom: 84px; }
@@ -105,6 +75,9 @@
 /* PRODUCT GRID */
 .surf-pgs { background: var(--surf-cream); padding: 80px; }
 .surf-pgs-hdr { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; padding-bottom: 20px; border-bottom: 1px solid var(--surf-border); }
+.surf-sec-lbl { font-size: 9px; font-weight: 500; letter-spacing: .42em; text-transform: uppercase; color: var(--surf-warm-gray); margin-bottom: 10px; }
+.surf-sec-ttl { font-family: var(--surf-serif); font-size: clamp(34px,3.8vw,52px); font-weight: 300; line-height: 1.05; color: var(--surf-charcoal); }
+.surf-sec-ttl em { font-style: italic; color: var(--surf-warm-gray); }
 .surf-pg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .surf-pg-card { }
 .surf-pg-img { aspect-ratio: 3/4; overflow: hidden; background: var(--surf-cream-dark); margin-bottom: 18px; }
@@ -114,32 +87,6 @@
 .surf-pg-name { font-family: var(--surf-serif); font-size: 22px; font-weight: 300; color: var(--surf-charcoal); line-height: 1.1; margin-bottom: 4px; }
 .surf-pg-name em { font-style: italic; color: var(--surf-warm-gray); display: block; }
 .surf-pg-det { font-size: 11px; font-weight: 300; color: var(--surf-warm-gray); margin-top: 8px; }
-
-/* CRAFT */
-.surf-craft { background: var(--surf-charcoal); padding: 112px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: center; }
-.surf-ci-wrap { position: relative; }
-.surf-ci { aspect-ratio: 3/4; position: relative; overflow: hidden; background: #1A0A0A; }
-.surf-ci img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.surf-ci-badge { position: absolute; bottom: -24px; right: -24px; width: 136px; height: 136px; background: var(--surf-clay); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 3px; }
-.surf-ci-badge .surf-num { font-family: var(--surf-serif); font-size: 46px; font-weight: 300; color: var(--surf-cream); line-height: 1; }
-.surf-ci-badge .surf-lbl { font-size: 8px; font-weight: 500; letter-spacing: .25em; text-transform: uppercase; color: rgba(245,240,232,.58); }
-.surf-cc .surf-sec-lbl { color: var(--surf-clay-light); }
-.surf-cc-title { font-family: var(--surf-serif); font-size: clamp(34px,3.3vw,50px); font-weight: 300; line-height: 1.1; color: var(--surf-cream); margin-bottom: 28px; }
-.surf-cc-title em { font-style: italic; color: rgba(245,240,232,.38); }
-.surf-cc-body { font-size: 14px; font-weight: 300; color: rgba(245,240,232,.48); line-height: 2; margin-bottom: 44px; }
-.surf-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 36px; }
-.surf-pillar { border-top: 1px solid rgba(245,240,232,.1); padding-top: 18px; }
-.surf-pl-ttl { font-size: 9px; font-weight: 500; letter-spacing: .25em; text-transform: uppercase; color: var(--surf-clay-light); margin-bottom: 7px; }
-.surf-pl-txt { font-size: 13px; font-weight: 300; color: rgba(245,240,232,.4); line-height: 1.72; }
-
-/* CTA BAND */
-.surf-cta-band { background: var(--surf-clay); padding: 96px 80px; text-align: center; position: relative; overflow: hidden; }
-.surf-cta-band::before { content: 'SURFACES'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: var(--surf-serif); font-size: 21vw; font-weight: 300; color: rgba(255,255,255,.052); white-space: nowrap; pointer-events: none; line-height: 1; }
-.surf-ct-lbl { font-size: 9px; font-weight: 500; letter-spacing: .42em; text-transform: uppercase; color: rgba(245,240,232,.5); margin-bottom: 28px; position: relative; z-index: 1; }
-.surf-ct-title { font-family: var(--surf-serif); font-size: clamp(38px,5vw,70px); font-weight: 300; color: var(--surf-cream); line-height: 1.1; margin-bottom: 44px; position: relative; z-index: 1; }
-.surf-ct-title em { font-style: italic; opacity: .6; }
-.surf-btn-white { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: .25em; text-transform: uppercase; color: var(--surf-clay); background: var(--surf-cream); padding: 17px 46px; text-decoration: none; transition: background .3s, color .3s; position: relative; z-index: 1; }
-.surf-btn-white:hover { background: var(--surf-charcoal); color: var(--surf-cream); }
 
 /* REVEAL */
 .surf-reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.25,.46,.45,.94), transform .9s cubic-bezier(.25,.46,.45,.94); }
@@ -152,12 +99,9 @@
 @media (max-width: 960px) {
   .surf-hero-content { grid-template-columns: 1fr; padding: 0 28px 60px; }
   .surf-hero-right { display: none; }
-  .surf-manifesto, .surf-surfaces-sec, .surf-ps, .surf-pgs, .surf-craft, .surf-cta-band { padding: 80px 28px; }
-  .surf-sg { grid-template-columns: 1fr; height: auto; }
-  .surf-sc { height: 280px; }
+  .surf-ps, .surf-pgs { padding: 80px 28px; }
   .surf-spot { grid-template-columns: 1fr; gap: 36px; }
   .surf-pg { grid-template-columns: 1fr 1fr; gap: 16px; }
-  .surf-craft { grid-template-columns: 1fr; gap: 60px; }
 }
 @media (max-width: 600px) {
   .surf-pg { grid-template-columns: 1fr; }
@@ -211,114 +155,98 @@
     <!-- HERO -->
     <section class="surf-hero">
       <div class="surf-hero-img">
-        <img src="surfaces/img/hero-surfaces.jpg" alt="SURFACES Collection — DOUBLEU">
+        <img src="surfaces/img/hero.jpg" alt="CLAY — A Surfaces Capsule">
       </div>
       <div class="surf-hero-grad"></div>
       <div class="surf-hero-content">
         <div class="surf-hero-left">
           <div class="surf-hero-eyebrow" data-i18n="surfaces.hero.eyebrow">SURFACES Collection · DOUBLEU</div>
-          <h1 class="surf-hero-title" data-i18n-html="surfaces.hub.claim">Inspired by the courts<br><em>that define the game.</em></h1>
+          <h1 class="surf-hero-title" data-i18n-html="surfaces.hero.title">A decade<br><em>on court.</em></h1>
+          <p class="surf-hero-sub" data-i18n="surfaces.hero.sub">La terra, l'erba, il cemento. Non sono solo superfici.</p>
           <div class="surf-hero-actions">
-            <a href="#surf-collection" class="surf-btn-primary" data-i18n="surfaces.hub.cta">Esplora le collezioni</a>
+            <a href="#surf-product" class="surf-btn-primary" data-i18n="surfaces.hero.cta1">Scopri CLAY</a>
+            <a href="#surf-product" class="surf-btn-ghost" data-i18n="surfaces.hero.cta2">La collezione</a>
           </div>
+        </div>
+        <div class="surf-hero-right">
+          <div class="surf-hero-badge-line" data-i18n="surfaces.hero.badge.line">CLAY Collection · 2026</div>
+          <div class="surf-hero-badge-text" data-i18n="surfaces.hero.badge.text">Lenta. Profonda. Elegante.</div>
         </div>
       </div>
     </section>
 
-    <!-- MANIFESTO -->
-    <section class="surf-manifesto surf-reveal">
-      <div class="surf-m-tag" data-i18n="surfaces.manifesto.tag">The Concept</div>
-      <h2 class="surf-m-title" data-i18n-html="surfaces.manifesto.title">Tre superfici.<br><em>Tre modi di stare in campo.</em></h2>
-      <p class="surf-m-body" data-i18n="surfaces.manifesto.body">Ogni superficie ha le sue regole, il suo ritmo, la sua estetica. SURFACES è il nostro omaggio alla cultura del tennis nella sua forma più autentica.</p>
+    <!-- PRODUCT SPOTLIGHT -->
+    <section class="surf-ps" id="surf-product">
+      <div class="surf-spot surf-reveal">
+        <a class="surf-pif" href="surfaces-product.html?id=surfaces-tshirt-clay" style="display:block;">
+          <img src="surfaces/img/tshirt.png" alt="T-Shirt CLAY SURFACES">
+        </a>
+        <div class="surf-pi">
+          <div class="surf-p-num" data-i18n="surfaces.product1.ref">REF · 001 · CLAY T-SHIRT</div>
+          <h3 class="surf-p-name">
+            <span data-i18n="surfaces.product1.name">T-Shirt</span>
+            <em data-i18n="surfaces.product1.sub">CLAY.</em>
+          </h3>
+          <div class="surf-p-line"></div>
+          <p class="surf-p-desc" data-i18n="surfaces.product1.desc">100% Cotone — Regular Fit. Stampa 100 CLAY.</p>
+          <div class="surf-p-dets">
+            <div class="surf-p-det" data-i18n="surfaces.product1.det1">100% Cotone — Regular Fit</div>
+            <div class="surf-p-det" data-i18n="surfaces.product1.det2">Stampa 100 CLAY</div>
+            <div class="surf-p-det" data-i18n="surfaces.product1.det3">Produzione artigianale Made in Italy</div>
+            <div class="surf-p-det" data-i18n="surfaces.product1.det4">Disponibile in Colore Off White</div>
+          </div>
+          <a href="surfaces-product.html?id=surfaces-tshirt-clay" class="surf-p-cta" data-i18n="surfaces.product1.cta">Scopri</a>
+        </div>
+      </div>
     </section>
 
-    <!-- SURFACES GRID -->
-    <section class="surf-surfaces-sec" id="surf-collection">
-      <div class="surf-sec-hdr surf-reveal">
+    <!-- PRODUCT GRID -->
+    <section class="surf-pgs surf-reveal">
+      <div class="surf-pgs-hdr">
         <div>
-          <div class="surf-sec-lbl" data-i18n="surfaces.collection.label">Le superfici</div>
-          <h2 class="surf-sec-ttl" data-i18n-html="surfaces.collection.title">Tre capitoli,<br><em>un solo gioco.</em></h2>
+          <div class="surf-sec-lbl" data-i18n="surfaces.pgs.label">CLAY Collection</div>
+          <h2 class="surf-sec-ttl" data-i18n-html="surfaces.pgs.title">La collezione<br><em>completa.</em></h2>
         </div>
       </div>
-      <div class="surf-sg surf-reveal surf-rd1">
+      <div class="surf-pg">
 
-        <!-- CLAY -->
-        <a class="surf-sc surf-sc-clay" href="clay.html" style="text-decoration:none">
-          <div class="surf-sc-bg"></div>
-          <div class="surf-sc-ol"></div>
-          <div class="surf-sc-cnt">
-            <div class="surf-sc-name" data-i18n="surfaces.clay.name">CLAY</div>
-            <p class="surf-sc-desc" data-i18n="surfaces.clay.desc">Lenta. Profonda. Elegante. Richiede pazienza e carattere. È tradizione, è intensità.</p>
-            <span class="surf-sc-link" data-i18n="surfaces.clay.link">Scopri</span>
+        <a class="surf-pg-card surf-reveal surf-rd1" href="surfaces-product.html?id=surfaces-sweatshirt-clay" style="text-decoration:none;color:inherit;display:block;">
+          <div class="surf-pg-img">
+            <img src="surfaces/img/sweatshirt.png" alt="Sweatshirt CLAY SURFACES">
           </div>
+          <div class="surf-pg-num" data-i18n="surfaces.product2.ref">REF · 002</div>
+          <div class="surf-pg-name">
+            <span data-i18n="surfaces.product2.name">Sweatshirt</span>
+            <em data-i18n="surfaces.product2.sub">CLAY</em>
+          </div>
+          <div class="surf-pg-det" data-i18n="surfaces.product2.det">Produzione artigianale Made in Italy</div>
         </a>
 
-        <!-- GRASS -->
-        <a class="surf-sc surf-sc-grass" href="grass.html" style="text-decoration:none">
-          <div class="surf-sc-bg"></div>
-          <div class="surf-sc-ol"></div>
-          <div class="surf-sc-cnt">
-            <div class="surf-sc-name">GRASS</div>
-            <p class="surf-sc-desc" data-i18n="surfaces.grass.desc">Veloce. Imprevedibile. Solo per i più audaci.</p>
-            <span class="surf-sc-link" data-i18n="surfaces.clay.link">Scopri</span>
+        <a class="surf-pg-card surf-reveal surf-rd2" href="surfaces-product.html?id=surfaces-polo-clay" style="text-decoration:none;color:inherit;display:block;">
+          <div class="surf-pg-img">
+            <img src="surfaces/img/polo.jpg" alt="Polo CLAY SURFACES">
           </div>
+          <div class="surf-pg-num" data-i18n="surfaces.product3.ref">REF · 003</div>
+          <div class="surf-pg-name">
+            <span data-i18n="surfaces.product3.name">Polo</span>
+            <em data-i18n="surfaces.product3.sub">CLAY</em>
+          </div>
+          <div class="surf-pg-det" data-i18n="surfaces.product3.det">Piquet di Cotone Premium · Made in Italy</div>
         </a>
 
-        <!-- HARD -->
-        <div class="surf-sc surf-sc-hard">
-          <div class="surf-sc-bg"></div>
-          <div class="surf-sc-ol"></div>
-          <div class="surf-sc-cnt">
-            <div class="surf-cs-badge" data-i18n="surfaces.hard.badge">Coming Soon</div>
-            <div class="surf-sc-name" data-i18n="surfaces.hard.name">— 3</div>
-            <p class="surf-sc-desc" data-i18n="surfaces.hard.desc">Dura. Diretta. Senza compromessi.</p>
+        <a class="surf-pg-card surf-reveal surf-rd3" href="surfaces-product.html?id=surfaces-cap-clay" style="text-decoration:none;color:inherit;display:block;">
+          <div class="surf-pg-img">
+            <img src="surfaces/img/cap.jpg" alt="Cap CLAY SURFACES">
           </div>
-        </div>
+          <div class="surf-pg-num" data-i18n="surfaces.product4.ref">REF · 004</div>
+          <div class="surf-pg-name">
+            <span data-i18n="surfaces.product4.name">Cap</span>
+            <em data-i18n="surfaces.product4.sub">CLAY</em>
+          </div>
+          <div class="surf-pg-det" data-i18n="surfaces.product4.det">Produzione artigianale Made in Italy</div>
+        </a>
 
       </div>
-    </section>
-
-    <!-- CRAFT -->
-    <section class="surf-craft surf-reveal">
-      <div class="surf-ci-wrap">
-        <div class="surf-ci">
-          <img src="surfaces/img/il-progetto.png" alt="Il progetto SURFACES">
-        </div>
-        <div class="surf-ci-badge">
-          <span class="surf-num" data-i18n="surfaces.craft.badge.num">10+</span>
-          <span class="surf-lbl" data-i18n="surfaces.craft.badge.label">On Court</span>
-        </div>
-      </div>
-      <div class="surf-cc">
-        <div class="surf-sec-lbl" data-i18n="surfaces.craft.label">Il Progetto</div>
-        <h2 class="surf-cc-title" data-i18n-html="surfaces.craft.title">Prodotto in Italia.<br><em>Ispirato dal gioco.</em><br>Pensato per durare.</h2>
-        <p class="surf-cc-body" data-i18n="surfaces.craft.body">SURFACES nasce da dieci anni di campo. Non è una collezione lifestyle qualunque — è un archivio materiale di ciò che significa giocare a tennis su ogni superficie. Ogni capo realizzato in Italia, con i migliori laboratori artigianali, usando materiali selezionati per qualità, resistenza e comfort nel tempo.</p>
-        <div class="surf-pillars">
-          <div class="surf-pillar">
-            <div class="surf-pl-ttl" data-i18n="surfaces.pillar1.title">Produzione Italiana</div>
-            <p class="surf-pl-txt" data-i18n="surfaces.pillar1.desc">Ogni capo personalizzato con cura nei migliori laboratori italiani.</p>
-          </div>
-          <div class="surf-pillar">
-            <div class="surf-pl-ttl" data-i18n="surfaces.pillar2.title">Ricami e Dettagli</div>
-            <p class="surf-pl-txt" data-i18n="surfaces.pillar2.desc">Patch ricamata, etichette interne, dettagli che fanno la differenza.</p>
-          </div>
-          <div class="surf-pillar">
-            <div class="surf-pl-ttl" data-i18n="surfaces.pillar3.title">Materiali Premium</div>
-            <p class="surf-pl-txt" data-i18n="surfaces.pillar3.desc">Tessuti selezionati per comfort, qualità e resistenza nel tempo.</p>
-          </div>
-          <div class="surf-pillar">
-            <div class="surf-pl-ttl" data-i18n="surfaces.pillar4.title">Cultura 'Non Solo Sport'</div>
-            <p class="surf-pl-txt" data-i18n="surfaces.pillar4.desc">SURFACES è uno stile di vita. Il tennis è cultura, è identità.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA BAND -->
-    <section class="surf-cta-band surf-reveal">
-      <div class="surf-ct-lbl" data-i18n="surfaces.cta.label">Entra nella Community</div>
-      <h2 class="surf-ct-title" data-i18n-html="surfaces.cta.title">SURFACES non è una collezione.<br><em>È una community.</em></h2>
-      <a href="contatti.html" class="surf-btn-white" data-i18n="surfaces.cta.btn">Scopri di più</a>
     </section>
 
   </main>

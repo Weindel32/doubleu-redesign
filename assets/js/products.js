@@ -313,9 +313,9 @@ const GRASS_PRODUCTS = [
     printSize: 'Stampa GRASS',
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Verde Campo', hex: '#2D5A27', image: 'surfaces/img/grass-tshirt.png', price: 69 },
+      { name: 'Verde Campo', hex: '#2D5A27', image: 'surfaces/img/grass-tee-placeholder.jpg', price: 69 },
     ],
-    gridImage: 'surfaces/img/grass-tshirt.png',
+    gridImage: 'surfaces/img/grass-tee-placeholder.jpg',
     i18n: {
       en: {
         description: '100% premium cotton Made in Italy. Regular Fit, GRASS print — inspired by the fastest and most unpredictable surface in tennis. Court green, the colour of Wimbledon grass.',
@@ -346,9 +346,9 @@ const GRASS_PRODUCTS = [
     printSize: 'Patch ricamata GRASS',
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Verde Scuro', hex: '#1A3A16', image: 'surfaces/img/grass-sweatshirt.png', price: 159 },
+      { name: 'Verde Scuro', hex: '#1A3A16', image: 'surfaces/img/grass-sweatshirt-placeholder.jpg', price: 159 },
     ],
-    gridImage: 'surfaces/img/grass-sweatshirt.png',
+    gridImage: 'surfaces/img/grass-sweatshirt-placeholder.jpg',
     i18n: {
       en: {
         description: 'Premium cotton sweatshirt Made in Italy. The shortest season in tennis, the most elegant. Embroidered GRASS patch on the chest. Artisan production, limited edition.',

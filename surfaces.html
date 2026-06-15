@@ -55,6 +55,13 @@
 .surf-hero-badge-line { font-size: 9px; font-weight: 500; letter-spacing: .38em; text-transform: uppercase; color: rgba(245,240,232,.38); margin-bottom: 10px; }
 .surf-hero-badge-text { font-family: var(--surf-serif); font-size: 20px; font-style: italic; color: rgba(245,240,232,.65); line-height: 1.55; }
 
+/* HERO — centered hub variant */
+.surf-hero--center { align-items: center; }
+.surf-hero--center .surf-hero-content { grid-template-columns: 1fr; justify-items: center; text-align: center; padding: 0 28px; }
+.surf-hero--center .surf-hero-left { max-width: 640px; }
+.surf-hero--center .surf-hero-title { font-size: clamp(30px,4vw,58px); margin-bottom: 32px; }
+.surf-hero--center .surf-hero-actions { justify-content: center; }
+
 /* MANIFESTO */
 .surf-manifesto { background: var(--surf-charcoal); padding: 112px 80px; text-align: center; position: relative; overflow: hidden; }
 .surf-m-tag { font-size: 9px; font-weight: 500; letter-spacing: .42em; text-transform: uppercase; color: var(--surf-clay-light); margin-bottom: 36px; }
@@ -209,7 +216,7 @@
   <main>
 
     <!-- HERO -->
-    <section class="surf-hero">
+    <section class="surf-hero surf-hero--center">
       <div class="surf-hero-img">
         <img src="surfaces/img/hero-surfaces.jpg" alt="SURFACES Collection — DOUBLEU">
       </div>

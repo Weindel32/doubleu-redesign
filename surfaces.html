@@ -55,6 +55,13 @@
 .surf-hero-badge-line { font-size: 9px; font-weight: 500; letter-spacing: .38em; text-transform: uppercase; color: rgba(245,240,232,.38); margin-bottom: 10px; }
 .surf-hero-badge-text { font-family: var(--surf-serif); font-size: 20px; font-style: italic; color: rgba(245,240,232,.65); line-height: 1.55; }
 
+/* HERO — centered hub variant */
+.surf-hero--center { align-items: center; }
+.surf-hero--center .surf-hero-content { grid-template-columns: 1fr; justify-items: center; text-align: center; padding: 0 28px; }
+.surf-hero--center .surf-hero-left { max-width: 640px; }
+.surf-hero--center .surf-hero-title { font-size: clamp(30px,4vw,58px); margin-bottom: 32px; }
+.surf-hero--center .surf-hero-actions { justify-content: center; }
+
 /* MANIFESTO */
 .surf-manifesto { background: var(--surf-charcoal); padding: 112px 80px; text-align: center; position: relative; overflow: hidden; }
 .surf-m-tag { font-size: 9px; font-weight: 500; letter-spacing: .42em; text-transform: uppercase; color: var(--surf-clay-light); margin-bottom: 36px; }
@@ -209,24 +216,18 @@
   <main>
 
     <!-- HERO -->
-    <section class="surf-hero">
+    <section class="surf-hero surf-hero--center">
       <div class="surf-hero-img">
-        <img src="surfaces/img/hero.jpg" alt="SURFACES — A Decade On Court">
+        <img src="surfaces/img/hero-surfaces.jpg" alt="SURFACES Collection — DOUBLEU">
       </div>
       <div class="surf-hero-grad"></div>
       <div class="surf-hero-content">
         <div class="surf-hero-left">
           <div class="surf-hero-eyebrow" data-i18n="surfaces.hero.eyebrow">SURFACES Collection · DOUBLEU</div>
-          <h1 class="surf-hero-title" data-i18n-html="surfaces.hero.title">A decade<br><em>on court.</em></h1>
-          <p class="surf-hero-sub" data-i18n="surfaces.hero.sub">La terra, l'erba, il cemento. Non sono solo superfici.</p>
+          <h1 class="surf-hero-title" data-i18n-html="surfaces.hub.claim">Inspired by the courts<br><em>that define the game.</em></h1>
           <div class="surf-hero-actions">
-            <a href="#surf-collection" class="surf-btn-primary" data-i18n="surfaces.hero.cta1">Scopri CLAY</a>
-            <a href="#surf-collection" class="surf-btn-ghost" data-i18n="surfaces.hero.cta2">La collezione</a>
+            <a href="#surf-collection" class="surf-btn-primary" data-i18n="surfaces.hub.cta">Esplora le collezioni</a>
           </div>
-        </div>
-        <div class="surf-hero-right">
-          <div class="surf-hero-badge-line" data-i18n="surfaces.hero.badge.line">CLAY Collection · 2026</div>
-          <div class="surf-hero-badge-text" data-i18n="surfaces.hero.badge.text">Lenta. Profonda. Elegante.</div>
         </div>
       </div>
     </section>
@@ -245,20 +246,19 @@
           <div class="surf-sec-lbl" data-i18n="surfaces.collection.label">Le superfici</div>
           <h2 class="surf-sec-ttl" data-i18n-html="surfaces.collection.title">Tre capitoli,<br><em>un solo gioco.</em></h2>
         </div>
-        <a href="#surf-product" class="surf-btn-primary" data-i18n="surfaces.collection.cta">Acquista ora</a>
       </div>
       <div class="surf-sg surf-reveal surf-rd1">
 
         <!-- CLAY -->
-        <div class="surf-sc surf-sc-clay">
+        <a class="surf-sc surf-sc-clay" href="clay.html" style="text-decoration:none">
           <div class="surf-sc-bg"></div>
           <div class="surf-sc-ol"></div>
           <div class="surf-sc-cnt">
             <div class="surf-sc-name" data-i18n="surfaces.clay.name">CLAY</div>
             <p class="surf-sc-desc" data-i18n="surfaces.clay.desc">Lenta. Profonda. Elegante. Richiede pazienza e carattere. È tradizione, è intensità.</p>
-            <a href="#surf-product" class="surf-sc-link" data-i18n="surfaces.clay.link">Scopri</a>
+            <span class="surf-sc-link" data-i18n="surfaces.clay.link">Scopri</span>
           </div>
-        </div>
+        </a>
 
         <!-- GRASS -->
         <a class="surf-sc surf-sc-grass" href="grass.html" style="text-decoration:none">
@@ -281,80 +281,6 @@
             <p class="surf-sc-desc" data-i18n="surfaces.hard.desc">Dura. Diretta. Senza compromessi.</p>
           </div>
         </div>
-
-      </div>
-    </section>
-
-    <!-- PRODUCT SPOTLIGHT -->
-    <section class="surf-ps" id="surf-product">
-      <div class="surf-spot surf-reveal">
-        <a class="surf-pif" href="surfaces-product.html?id=surfaces-tshirt-clay" style="display:block;">
-          <img src="surfaces/img/tshirt.png" alt="T-Shirt CLAY SURFACES">
-        </a>
-        <div class="surf-pi">
-          <div class="surf-p-num" data-i18n="surfaces.product1.ref">REF · 001 · CLAY T-SHIRT</div>
-          <h3 class="surf-p-name">
-            <span data-i18n="surfaces.product1.name">T-Shirt</span>
-            <em data-i18n="surfaces.product1.sub">CLAY.</em>
-          </h3>
-          <div class="surf-p-line"></div>
-          <p class="surf-p-desc" data-i18n="surfaces.product1.desc">100% Cotone — Regular Fit. Stampa 100 CLAY.</p>
-          <div class="surf-p-dets">
-            <div class="surf-p-det" data-i18n="surfaces.product1.det1">100% Cotone — Regular Fit</div>
-            <div class="surf-p-det" data-i18n="surfaces.product1.det2">Stampa 100 CLAY</div>
-            <div class="surf-p-det" data-i18n="surfaces.product1.det3">Produzione artigianale Made in Italy</div>
-            <div class="surf-p-det" data-i18n="surfaces.product1.det4">Disponibile in Colore Off White</div>
-          </div>
-          <a href="surfaces-product.html?id=surfaces-tshirt-clay" class="surf-p-cta" data-i18n="surfaces.product1.cta">Scopri</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRODUCT GRID -->
-    <section class="surf-pgs surf-reveal">
-      <div class="surf-pgs-hdr">
-        <div>
-          <div class="surf-sec-lbl" data-i18n="surfaces.pgs.label">CLAY Collection</div>
-          <h2 class="surf-sec-ttl" data-i18n-html="surfaces.pgs.title">La collezione<br><em>completa.</em></h2>
-        </div>
-      </div>
-      <div class="surf-pg">
-
-        <a class="surf-pg-card surf-reveal surf-rd1" href="surfaces-product.html?id=surfaces-sweatshirt-clay" style="text-decoration:none;color:inherit;display:block;">
-          <div class="surf-pg-img">
-            <img src="surfaces/img/sweatshirt.png" alt="Sweatshirt CLAY SURFACES">
-          </div>
-          <div class="surf-pg-num" data-i18n="surfaces.product2.ref">REF · 002</div>
-          <div class="surf-pg-name">
-            <span data-i18n="surfaces.product2.name">Sweatshirt</span>
-            <em data-i18n="surfaces.product2.sub">CLAY</em>
-          </div>
-          <div class="surf-pg-det" data-i18n="surfaces.product2.det">Produzione artigianale Made in Italy</div>
-        </a>
-
-        <a class="surf-pg-card surf-reveal surf-rd2" href="surfaces-product.html?id=surfaces-polo-clay" style="text-decoration:none;color:inherit;display:block;">
-          <div class="surf-pg-img">
-            <img src="surfaces/img/polo.jpg" alt="Polo CLAY SURFACES">
-          </div>
-          <div class="surf-pg-num" data-i18n="surfaces.product3.ref">REF · 003</div>
-          <div class="surf-pg-name">
-            <span data-i18n="surfaces.product3.name">Polo</span>
-            <em data-i18n="surfaces.product3.sub">CLAY</em>
-          </div>
-          <div class="surf-pg-det" data-i18n="surfaces.product3.det">Piquet di Cotone Premium · Made in Italy</div>
-        </a>
-
-        <a class="surf-pg-card surf-reveal surf-rd3" href="surfaces-product.html?id=surfaces-cap-clay" style="text-decoration:none;color:inherit;display:block;">
-          <div class="surf-pg-img">
-            <img src="surfaces/img/cap.jpg" alt="Cap CLAY SURFACES">
-          </div>
-          <div class="surf-pg-num" data-i18n="surfaces.product4.ref">REF · 004</div>
-          <div class="surf-pg-name">
-            <span data-i18n="surfaces.product4.name">Cap</span>
-            <em data-i18n="surfaces.product4.sub">CLAY</em>
-          </div>
-          <div class="surf-pg-det" data-i18n="surfaces.product4.det">Produzione artigianale Made in Italy</div>
-        </a>
 
       </div>
     </section>

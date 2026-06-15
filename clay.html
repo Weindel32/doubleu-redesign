@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DOUBLEU | CLAY — A Surfaces Capsule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+/* ── PROMO BAR ── */
+.promo-bar{background:var(--surf-charcoal);color:rgba(245,240,232,.7);text-align:center;padding:10px 20px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase}
+.promo-bar strong{color:var(--surf-clay-light)}
+
+/* ── CART ICON ── */
+.cart-btn{position:relative;display:flex;align-items:center;gap:6px;background:none;border:1.5px solid var(--surf-clay);padding:8px 14px;cursor:pointer;color:var(--surf-clay);text-decoration:none;font-size:12px;letter-spacing:.04em;transition:background .2s,color .2s}
+.cart-btn:hover{background:var(--surf-clay);color:var(--surf-cream)}
+.cart-btn svg{width:16px;height:16px;flex-shrink:0}
+.cart-badge{position:absolute;top:-7px;right:-7px;background:var(--surf-clay);color:var(--surf-cream);font-size:9px;font-weight:700;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;display:none}
+
+/* ── SURFACES Capsule styles ── */
+:root {
+  --surf-cream: #F5F0E8;
+  --surf-cream-dark: #EDE7D9;
+  --surf-clay: #8B1A1A;
+  --surf-clay-deep: #6B1212;
+  --surf-clay-light: #B52525;
+  --surf-charcoal: #1A1714;
+  --surf-warm-gray: #6B6358;
+  --surf-border: rgba(26,23,20,0.12);
+  --surf-serif: 'Cormorant Garamond', Georgia, serif;
+  --surf-sans: 'Montserrat', sans-serif;
+}
+
+/* HERO */
+.surf-hero { position: relative; height: 100vh; min-height: 680px; overflow: hidden; display: flex; align-items: flex-end; }
+.surf-hero-img { position: absolute; inset: 0; }
+.surf-hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+.surf-hero-grad { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,7,5,.82) 0%, rgba(10,7,5,.35) 38%, rgba(10,7,5,.08) 65%, transparent 100%), linear-gradient(to right, rgba(10,7,5,.18) 0%, transparent 40%); }
+.surf-hero-content { position: relative; z-index: 2; width: 100%; display: grid; grid-template-columns: 1fr auto; align-items: flex-end; padding: 0 64px 72px; gap: 48px; }
+.surf-hero-left { max-width: 600px; }
+.surf-hero-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: .42em; text-transform: uppercase; color: rgba(245,240,232,.52); margin-bottom: 20px; }
+.surf-hero-title { font-family: var(--surf-serif); font-size: clamp(56px,8.5vw,118px); font-weight: 300; line-height: .88; color: var(--surf-cream); margin-bottom: 28px; }
+.surf-hero-title em { font-style: italic; color: rgba(245,240,232,.6); display: block; }
+.surf-hero-sub { font-family: var(--surf-serif); font-size: 17px; font-style: italic; color: rgba(245,240,232,.65); line-height: 1.75; margin-bottom: 44px; }
+.surf-hero-actions { display: flex; gap: 14px; align-items: center; }
+.surf-btn-primary { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: .25em; text-transform: uppercase; color: var(--surf-cream); background: var(--surf-clay); padding: 15px 34px; text-decoration: none; transition: background .3s, transform .2s; }
+.surf-btn-primary:hover { background: var(--surf-clay-deep); transform: translateY(-1px); }
+.surf-btn-ghost { display: inline-flex; align-items: center; gap: 14px; font-size: 10px; font-weight: 500; letter-spacing: .25em; text-transform: uppercase; color: rgba(245,240,232,.72); text-decoration: none; transition: color .3s; }
+.surf-btn-ghost::after { content: ''; display: block; width: 32px; height: 1px; background: currentColor; transition: width .3s; }
+.surf-btn-ghost:hover { color: var(--surf-cream); }
+.surf-btn-ghost:hover::after { width: 48px; }
+.surf-hero-right { text-align: right; padding-bottom: 6px; }
+.surf-hero-badge-line { font-size: 9px; font-weight: 500; letter-spacing: .38em; text-transform: uppercase; color: rgba(245,240,232,.38); margin-bottom: 10px; }
+.surf-hero-badge-text { font-family: var(--surf-serif); font-size: 20px; font-style: italic; color: rgba(245,240,232,.65); line-height: 1.55; }
+
+/* PRODUCT SPOTLIGHT */
+.surf-ps { background: var(--surf-cream-dark); padding: 112px 80px 80px; }
+.surf-spot { display: grid; grid-template-columns: 1fr 1fr; gap: 84px; align-items: center; margin-bottom: 84px; }
+.surf-pif { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--surf-cream); }
+.surf-pif img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.surf-pi { padding: 16px 0; }
+.surf-p-num { font-size: 9px; font-weight: 500; letter-spacing: .42em; text-transform: uppercase; color: var(--surf-clay); margin-bottom: 14px; }
+.surf-p-name { font-family: var(--surf-serif); font-size: clamp(36px,4.2vw,58px); font-weight: 300; line-height: 1; color: var(--surf-charcoal); margin-bottom: 6px; }
+.surf-p-name em { font-style: italic; display: block; color: var(--surf-warm-gray); }
+.surf-p-line { width: 36px; height: 2px; background: var(--surf-clay); margin: 22px 0; }
+.surf-p-desc { font-family: var(--surf-serif); font-size: 16px; font-style: italic; color: var(--surf-warm-gray); line-height: 1.82; margin-bottom: 28px; max-width: 380px; }
+.surf-p-dets { display: flex; flex-direction: column; gap: 9px; margin-bottom: 36px; }
+.surf-p-det { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 300; color: var(--surf-warm-gray); }
+.surf-p-det::before { content: ''; display: block; width: 16px; height: 1px; background: var(--surf-clay); flex-shrink: 0; }
+.surf-p-cta { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: .25em; text-transform: uppercase; color: var(--surf-cream); background: var(--surf-charcoal); padding: 15px 34px; text-decoration: none; transition: background .3s; }
+.surf-p-cta:hover { background: var(--surf-clay); }
+
+/* PRODUCT GRID */
+.surf-pgs { background: var(--surf-cream); padding: 80px; }
+.surf-pgs-hdr { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; padding-bottom: 20px; border-bottom: 1px solid var(--surf-border); }
+.surf-sec-lbl { font-size: 9px; font-weight: 500; letter-spacing: .42em; text-transform: uppercase; color: var(--surf-warm-gray); margin-bottom: 10px; }
+.surf-sec-ttl { font-family: var(--surf-serif); font-size: clamp(34px,3.8vw,52px); font-weight: 300; line-height: 1.05; color: var(--surf-charcoal); }
+.surf-sec-ttl em { font-style: italic; color: var(--surf-warm-gray); }
+.surf-pg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.surf-pg-card { }
+.surf-pg-img { aspect-ratio: 3/4; overflow: hidden; background: var(--surf-cream-dark); margin-bottom: 18px; }
+.surf-pg-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.25,.46,.45,.94); }
+.surf-pg-card:hover .surf-pg-img img { transform: scale(1.04); }
+.surf-pg-num { font-size: 8px; font-weight: 500; letter-spacing: .38em; text-transform: uppercase; color: var(--surf-clay); margin-bottom: 6px; }
+.surf-pg-name { font-family: var(--surf-serif); font-size: 22px; font-weight: 300; color: var(--surf-charcoal); line-height: 1.1; margin-bottom: 4px; }
+.surf-pg-name em { font-style: italic; color: var(--surf-warm-gray); display: block; }
+.surf-pg-det { font-size: 11px; font-weight: 300; color: var(--surf-warm-gray); margin-top: 8px; }
+
+/* REVEAL */
+.surf-reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.25,.46,.45,.94), transform .9s cubic-bezier(.25,.46,.45,.94); }
+.surf-reveal.visible { opacity: 1; transform: translateY(0); }
+.surf-rd1 { transition-delay: .15s; }
+.surf-rd2 { transition-delay: .3s; }
+.surf-rd3 { transition-delay: .45s; }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .surf-hero-content { grid-template-columns: 1fr; padding: 0 28px 60px; }
+  .surf-hero-right { display: none; }
+  .surf-ps, .surf-pgs { padding: 80px 28px; }
+  .surf-spot { grid-template-columns: 1fr; gap: 36px; }
+  .surf-pg { grid-template-columns: 1fr 1fr; gap: 16px; }
+}
+@media (max-width: 600px) {
+  .surf-pg { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+
+  <!-- PROMO BAR -->
+  <div class="promo-bar">
+    <span data-i18n="shop.promo">Spedizione gratuita per ordini superiori a €89 &mdash; codice <strong>DELY26</strong> al checkout</span>
+  </div>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="container">
+      <div class="header-top">
+        <a class="brand" href="index.html">
+          <span class="brand-name">DOUBLEU</span>
+          <span class="brand-sub">Tennis Apparel</span>
+        </a>
+
+        <button class="mobile-toggle" aria-expanded="false" aria-label="Apri menu">&#9776;</button>
+
+        <nav class="header-nav" id="main-nav">
+          <ul>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="club.html" data-i18n="nav.club">Per i Club</a></li>
+            <li><a class="active" href="capsule.html" data-i18n="nav.capsule">Capsule</a></li>
+            <li><a href="casestudies.html" data-i18n="nav.casestudies">Case Studies</a></li>
+            <li><a href="lookbook.html" data-i18n="nav.lookbook">Lookbook</a></li>
+            <li><a href="contatti.html" data-i18n="nav.contatti">Contatti</a></li>
+            <li><a href="area-club.html" data-i18n="nav.members">Area Soci</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a class="cart-btn" href="carrello.html" aria-label="Carrello">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/></svg>
+            <span data-i18n="shop.cart.title">Carrello</span>
+            <span class="cart-badge">0</span>
+          </a>
+        </div>
+      </div>
+      <div class="header-lang"><a href="#" data-lang="it">IT</a> | <a href="#" data-lang="en">EN</a> | <a href="#" data-lang="de">DE</a></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="surf-hero">
+      <div class="surf-hero-img">
+        <img src="surfaces/img/hero.jpg" alt="CLAY — A Surfaces Capsule">
+      </div>
+      <div class="surf-hero-grad"></div>
+      <div class="surf-hero-content">
+        <div class="surf-hero-left">
+          <div class="surf-hero-eyebrow" data-i18n="surfaces.hero.eyebrow">SURFACES Collection · DOUBLEU</div>
+          <h1 class="surf-hero-title" data-i18n-html="surfaces.hero.title">A decade<br><em>on court.</em></h1>
+          <p class="surf-hero-sub" data-i18n="surfaces.hero.sub">La terra, l'erba, il cemento. Non sono solo superfici.</p>
+          <div class="surf-hero-actions">
+            <a href="#surf-product" class="surf-btn-primary" data-i18n="surfaces.hero.cta1">Scopri CLAY</a>
+            <a href="#surf-product" class="surf-btn-ghost" data-i18n="surfaces.hero.cta2">La collezione</a>
+          </div>
+        </div>
+        <div class="surf-hero-right">
+          <div class="surf-hero-badge-line" data-i18n="surfaces.hero.badge.line">CLAY Collection · 2026</div>
+          <div class="surf-hero-badge-text" data-i18n="surfaces.hero.badge.text">Lenta. Profonda. Elegante.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT SPOTLIGHT -->
+    <section class="surf-ps" id="surf-product">
+      <div class="surf-spot surf-reveal">
+        <a class="surf-pif" href="surfaces-product.html?id=surfaces-tshirt-clay" style="display:block;">
+          <img src="surfaces/img/tshirt.png" alt="T-Shirt CLAY SURFACES">
+        </a>
+        <div class="surf-pi">
+          <div class="surf-p-num" data-i18n="surfaces.product1.ref">REF · 001 · CLAY T-SHIRT</div>
+          <h3 class="surf-p-name">
+            <span data-i18n="surfaces.product1.name">T-Shirt</span>
+            <em data-i18n="surfaces.product1.sub">CLAY.</em>
+          </h3>
+          <div class="surf-p-line"></div>
+          <p class="surf-p-desc" data-i18n="surfaces.product1.desc">100% Cotone — Regular Fit. Stampa 100 CLAY.</p>
+          <div class="surf-p-dets">
+            <div class="surf-p-det" data-i18n="surfaces.product1.det1">100% Cotone — Regular Fit</div>
+            <div class="surf-p-det" data-i18n="surfaces.product1.det2">Stampa 100 CLAY</div>
+            <div class="surf-p-det" data-i18n="surfaces.product1.det3">Produzione artigianale Made in Italy</div>
+            <div class="surf-p-det" data-i18n="surfaces.product1.det4">Disponibile in Colore Off White</div>
+          </div>
+          <a href="surfaces-product.html?id=surfaces-tshirt-clay" class="surf-p-cta" data-i18n="surfaces.product1.cta">Scopri</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT GRID -->
+    <section class="surf-pgs surf-reveal">
+      <div class="surf-pgs-hdr">
+        <div>
+          <div class="surf-sec-lbl" data-i18n="surfaces.pgs.label">CLAY Collection</div>
+          <h2 class="surf-sec-ttl" data-i18n-html="surfaces.pgs.title">La collezione<br><em>completa.</em></h2>
+        </div>
+      </div>
+      <div class="surf-pg">
+
+        <a class="surf-pg-card surf-reveal surf-rd1" href="surfaces-product.html?id=surfaces-sweatshirt-clay" style="text-decoration:none;color:inherit;display:block;">
+          <div class="surf-pg-img">
+            <img src="surfaces/img/sweatshirt.png" alt="Sweatshirt CLAY SURFACES">
+          </div>
+          <div class="surf-pg-num" data-i18n="surfaces.product2.ref">REF · 002</div>
+          <div class="surf-pg-name">
+            <span data-i18n="surfaces.product2.name">Sweatshirt</span>
+            <em data-i18n="surfaces.product2.sub">CLAY</em>
+          </div>
+          <div class="surf-pg-det" data-i18n="surfaces.product2.det">Produzione artigianale Made in Italy</div>
+        </a>
+
+        <a class="surf-pg-card surf-reveal surf-rd2" href="surfaces-product.html?id=surfaces-polo-clay" style="text-decoration:none;color:inherit;display:block;">
+          <div class="surf-pg-img">
+            <img src="surfaces/img/polo.jpg" alt="Polo CLAY SURFACES">
+          </div>
+          <div class="surf-pg-num" data-i18n="surfaces.product3.ref">REF · 003</div>
+          <div class="surf-pg-name">
+            <span data-i18n="surfaces.product3.name">Polo</span>
+            <em data-i18n="surfaces.product3.sub">CLAY</em>
+          </div>
+          <div class="surf-pg-det" data-i18n="surfaces.product3.det">Piquet di Cotone Premium · Made in Italy</div>
+        </a>
+
+        <a class="surf-pg-card surf-reveal surf-rd3" href="surfaces-product.html?id=surfaces-cap-clay" style="text-decoration:none;color:inherit;display:block;">
+          <div class="surf-pg-img">
+            <img src="surfaces/img/cap.jpg" alt="Cap CLAY SURFACES">
+          </div>
+          <div class="surf-pg-num" data-i18n="surfaces.product4.ref">REF · 004</div>
+          <div class="surf-pg-name">
+            <span data-i18n="surfaces.product4.name">Cap</span>
+            <em data-i18n="surfaces.product4.sub">CLAY</em>
+          </div>
+          <div class="surf-pg-det" data-i18n="surfaces.product4.det">Produzione artigianale Made in Italy</div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>
+        <a class="brand" href="index.html" style="display:flex;flex-direction:column;gap:2px;">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;letter-spacing:2px;">DOUBLEU</span>
+          <span style="font-size:8px;letter-spacing:3px;color:#6a8090;text-transform:uppercase;">Tennis Apparel</span>
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
+        <a href="termini.html" data-i18n="footer.terms">Termini e condizioni</a>
+        <a href="cookie.html" data-i18n="footer.cookie">Cookie Policy</a>
+        <a href="spedizioni.html" data-i18n="footer.shipping">Reso e Spedizioni</a>
+        <a href="pagamenti.html" data-i18n="footer.payments">Pagamenti</a>
+        <a href="garment-care.html" data-i18n="footer.care">Garment Care</a>
+      </div>
+      <div class="header-lang"><a href="#" data-lang="it">IT</a> | <a href="#" data-lang="en">EN</a> | <a href="#" data-lang="de">DE</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script>
+    const surfObs = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) en.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.surf-reveal').forEach(el => surfObs.observe(el));
+  </script>
+</body>
+</html>

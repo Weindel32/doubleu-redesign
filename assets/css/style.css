@@ -1588,6 +1588,7 @@ a { text-decoration: none; color: inherit; }
   .capsule-big-card-img .ph { min-height: 180px; }
 
   .capsule-full-card { grid-template-columns: 1fr; }
+  .capsule-full-card-img { min-height: 300px; }
   .capsule-full-card-img .ph { min-height: 200px; }
 
   .product-cards-grid { grid-template-columns: repeat(2, 1fr); }

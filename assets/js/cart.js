@@ -18,6 +18,7 @@ const Cart = {
     if (idx > -1) { items[idx].qty += 1; }
     else { items.push({ ...item, qty: 1 }); }
     this._save(items);
+    if (window.DWAnalytics) DWAnalytics.addToCart({ ...item, qty: 1 });
   },
 
   updateQty(idx, qty) {
@@ -29,8 +30,9 @@ const Cart = {
 
   remove(idx) {
     const items = this.getAll();
-    items.splice(idx, 1);
+    const [removed] = items.splice(idx, 1);
     this._save(items);
+    if (removed && window.DWAnalytics) DWAnalytics.removeFromCart(removed);
   },
 
   count() { return this.getAll().reduce((n, i) => n + i.qty, 0); },

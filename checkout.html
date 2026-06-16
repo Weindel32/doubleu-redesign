@@ -245,6 +245,8 @@
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/products.js"></script>
   <script src="assets/js/cart.js"></script>
+  <!-- Analytics & Cookie Consent (prima del codice inline che usa DWAnalytics) -->
+  <script src="assets/js/analytics.js"></script>
   <script>
     // ─── CONFIG ────────────────────────────────────────────────────────────
     // IMPORTANT: replace with your real Stripe publishable key
@@ -264,6 +266,9 @@
     const subtotal     = Cart.subtotal();
     const shipping     = (promoApplied && subtotal >= 89) ? 0 : SHIPPING_COST;
     const total        = subtotal + shipping;
+
+    // GA4: inizio checkout
+    if (window.DWAnalytics) DWAnalytics.beginCheckout(items, total);
 
     function fmt(n) { return n.toFixed(2).replace('.', ',') + ' €'; }
 

@@ -226,6 +226,8 @@
 
   <script src="assets/js/products.js"></script>
   <script src="assets/js/cart.js"></script>
+  <!-- Analytics & Cookie Consent (prima del codice inline che usa DWAnalytics) -->
+  <script src="assets/js/analytics.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/i18n.js"></script>
   <script>
@@ -247,6 +249,9 @@
         if (typeof applyTranslations === 'function') applyTranslations(lang);
         return;
       }
+
+      // GA4: visualizzazione prodotto
+      if (window.DWAnalytics) DWAnalytics.viewItem(product);
 
       document.title = `DOUBLEU | GRASS — ${product.name}`;
       document.getElementById('bc-name').textContent = product.name;

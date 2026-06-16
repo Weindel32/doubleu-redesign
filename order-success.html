@@ -45,6 +45,8 @@
   </main>
 
   <script src="assets/js/cart.js"></script>
+  <!-- Analytics & Cookie Consent (prima del codice inline che usa DWAnalytics) -->
+  <script src="assets/js/analytics.js"></script>
   <script>
     // IMPORTANT: replace with your real Stripe publishable key
     const STRIPE_PUBLISHABLE_KEY = 'pk_test_INSERISCI_QUI_LA_TUA_CHIAVE_PUBBLICA';
@@ -69,8 +71,19 @@
       const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
 
       if (paymentIntent.status === 'succeeded') {
+        // GA4: acquisto (prima di svuotare il carrello, una sola volta per ordine)
+        const purchasedItems = Cart.getAll();
+        if (window.DWAnalytics && !sessionStorage.getItem('purchase_' + paymentIntent.id)) {
+          DWAnalytics.purchase({
+            transactionId: paymentIntent.id,
+            value: paymentIntent.amount / 100,
+            currency: (paymentIntent.currency || 'eur').toUpperCase(),
+            items: purchasedItems,
+          });
+          sessionStorage.setItem('purchase_' + paymentIntent.id, '1');
+        }
+
         // Clear cart on successful payment
-        Cart.getAll(); // ensure cart module loaded
         localStorage.removeItem('dw_cart');
         Cart.syncBadge();
 

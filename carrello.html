@@ -153,6 +153,8 @@
   <script src="assets/js/products.js"></script>
   <script src="assets/js/cart.js"></script>
   <script src="assets/js/main.js"></script>
+  <!-- Analytics & Cookie Consent (prima del codice inline che usa DWAnalytics) -->
+  <script src="assets/js/analytics.js"></script>
   <script>
     const SHIPPING_COST = 9.90;
     const FREE_SHIPPING_THRESHOLD = 89;
@@ -271,6 +273,8 @@
     }
 
     renderCart();
+    // GA4: visualizzazione carrello (una volta al caricamento)
+    if (window.DWAnalytics) { const ci = Cart.getAll(); if (ci.length) DWAnalytics.viewCart(ci); }
     document.getElementById('cart-page-title').textContent = t('shop.cart.title', getLang());
     if (typeof applyTranslations === 'function') applyTranslations(getLang());
 

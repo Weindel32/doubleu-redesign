@@ -15,7 +15,7 @@
   'use strict';
 
   // --- CONFIG ---------------------------------------------------------------
-  const GA4_ID = 'G-XXXXXXXXXX';            // <-- INSERISCI QUI il tuo ID GA4
+  const GA4_ID = 'G-F44GWBQ30C';            // Measurement ID GA4 (proprietà DOUBLEU Shop)
   const CONSENT_KEY = 'cookie_consent';     // chiave/cookie come da cookie policy
   const CONSENT_MAX_AGE = 60 * 60 * 24 * 365; // 1 anno (vedi cookie.html)
 

@@ -30,8 +30,9 @@ const Cart = {
 
   remove(idx) {
     const items = this.getAll();
-    items.splice(idx, 1);
+    const [removed] = items.splice(idx, 1);
     this._save(items);
+    if (removed && window.DWAnalytics) DWAnalytics.removeFromCart(removed);
   },
 
   count() { return this.getAll().reduce((n, i) => n + i.qty, 0); },

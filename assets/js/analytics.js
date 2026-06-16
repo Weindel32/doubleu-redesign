@@ -146,6 +146,34 @@
       });
     },
 
+    // Visualizzazione scheda prodotto. Accetta un prodotto (products.js) o un cart item.
+    viewItem: function (product, price) {
+      const p = typeof price === 'number'
+        ? price
+        : (product.basePrice || (product.colors && product.colors[0] && product.colors[0].price) || product.price || 0);
+      gtag('event', 'view_item', {
+        currency: CURRENCY,
+        value: p,
+        items: [{ item_id: product.id, item_name: product.name, price: p, quantity: 1 }],
+      });
+    },
+
+    viewCart: function (cartItems) {
+      gtag('event', 'view_cart', {
+        currency: CURRENCY,
+        value: cartValue(cartItems || []),
+        items: (cartItems || []).map(toItem),
+      });
+    },
+
+    removeFromCart: function (cartItem) {
+      gtag('event', 'remove_from_cart', {
+        currency: CURRENCY,
+        value: cartItem.price * (cartItem.qty || 1),
+        items: [toItem(cartItem)],
+      });
+    },
+
     purchase: function (data) {
       // data: { transactionId, value, currency, shipping, items: [cartItems] }
       gtag('event', 'purchase', {

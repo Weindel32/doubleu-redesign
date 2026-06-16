@@ -105,11 +105,57 @@
     loadGA4();
   }
 
-  /* Helper pubblico per eventi e-commerce futuri (add_to_cart, purchase, ...).
-     Es: DWAnalytics.track('add_to_cart', { value: 49, currency: 'EUR' }); */
+  /* ---- Helper e-commerce (eventi GA4 standard, valuta EUR) ----------------
+     Gli eventi vengono inviati solo se l'utente ha dato il consenso e GA4 è
+     caricato; in caso contrario restano inerti (corretto a livello GDPR). */
+  const CURRENCY = 'EUR';
+
+  // Converte un articolo del carrello (cart.js) in un item GA4.
+  function toItem(ci) {
+    return {
+      item_id: ci.id,
+      item_name: ci.name,
+      item_variant: [ci.color, ci.size].filter(Boolean).join(' / '),
+      price: ci.price,
+      quantity: ci.qty || 1,
+    };
+  }
+
+  function cartValue(items) {
+    return items.reduce(function (n, i) { return n + i.price * (i.qty || 1); }, 0);
+  }
+
   window.DWAnalytics = {
     track: function (name, params) { gtag('event', name, params || {}); },
     openConsent: function () { showBanner(); },
+
+    addToCart: function (cartItem) {
+      gtag('event', 'add_to_cart', {
+        currency: CURRENCY,
+        value: cartItem.price * (cartItem.qty || 1),
+        items: [toItem(cartItem)],
+      });
+    },
+
+    beginCheckout: function (cartItems, value) {
+      const items = (cartItems || []).map(toItem);
+      gtag('event', 'begin_checkout', {
+        currency: CURRENCY,
+        value: typeof value === 'number' ? value : cartValue(cartItems || []),
+        items: items,
+      });
+    },
+
+    purchase: function (data) {
+      // data: { transactionId, value, currency, shipping, items: [cartItems] }
+      gtag('event', 'purchase', {
+        transaction_id: data.transactionId,
+        currency: data.currency || CURRENCY,
+        value: data.value,
+        shipping: data.shipping || 0,
+        items: (data.items || []).map(toItem),
+      });
+    },
   };
 
   // --- Banner ----------------------------------------------------------------

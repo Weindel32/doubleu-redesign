@@ -18,6 +18,7 @@ const Cart = {
     if (idx > -1) { items[idx].qty += 1; }
     else { items.push({ ...item, qty: 1 }); }
     this._save(items);
+    if (window.DWAnalytics) DWAnalytics.addToCart({ ...item, qty: 1 });
   },
 
   updateQty(idx, qty) {

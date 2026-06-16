@@ -231,8 +231,21 @@
     });
   }
 
+  // --- Tracciamento click sui contatti (delegato, vale per tutte le pagine) --
+  function setupLinkTracking() {
+    document.addEventListener('click', function (e) {
+      const a = e.target.closest && e.target.closest('a[href^="mailto:"]');
+      if (!a) return;
+      gtag('event', 'contact', {
+        method: 'email',
+        link_url: a.getAttribute('href').replace('mailto:', ''),
+      });
+    }, true);
+  }
+
   // --- Bootstrap -------------------------------------------------------------
   function init() {
+    setupLinkTracking();
     const consent = getConsent();
     if (consent === 'granted') {
       grant();           // l'utente aveva già accettato in una visita precedente

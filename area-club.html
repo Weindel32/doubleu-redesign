@@ -293,6 +293,7 @@
       errEl.textContent = '';
       try {
         await auth.signInWithPopup(provider);
+        if (window.DWAnalytics) DWAnalytics.track('login', { method: 'google' });
       } catch (err) {
         console.error('Google auth error:', err.code, err.message);
         if (err.code === 'auth/unauthorized-domain') {
@@ -334,6 +335,7 @@
           document.getElementById('login-email').value.trim(),
           document.getElementById('login-password').value
         );
+        if (window.DWAnalytics) DWAnalytics.track('login', { method: 'password' });
       } catch (err) {
         errEl.textContent = t('club.area.error.invalid', getLang());
         btn.disabled = false;

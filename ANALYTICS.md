@@ -36,6 +36,14 @@ Eventi standard GA4 (valuta EUR), generati dagli helper di `DWAnalytics`:
 | `begin_checkout` | `checkout.html` |
 | `purchase` | `order-success.html` (importo reale del PaymentIntent Stripe, deduplicato per ordine) |
 
+### Eventi di engagement
+
+| Evento | Dove scatta |
+|---|---|
+| `contact` | Click su un link email `mailto:` (qualsiasi pagina) — param `method: email` |
+| `select_language` | Cambio lingua IT/EN/DE (switcher in `i18n.js`) — param `language` |
+| `login` | Login Area Club riuscito (`area-club.html`) — param `method: password \| google` |
+
 ### Tracciare un evento custom
 
 ```js

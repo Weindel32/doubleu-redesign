@@ -2526,6 +2526,7 @@ function initI18n() {
       const newLang = el.getAttribute('data-lang');
       setLang(newLang);
       applyTranslations(newLang);
+      if (window.DWAnalytics) DWAnalytics.track('select_language', { language: newLang });
     });
   });
 

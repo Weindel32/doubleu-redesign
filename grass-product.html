@@ -3,7 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DOUBLEU | GRASS</title>
+  <title>DOUBLEU | Shop GRASS — Capsule Tennis sull'Erba</title>
+  <!-- SEO -->
+  <meta name="description" content="Acquista la capsule GRASS di DOUBLEU. Abbigliamento tennis dedicato all'erba, edizione limitata, made in Italy. Spedizione gratuita sopra 89€." />
+  <link rel="canonical" href="https://www.doubleutennis.com/grass-product.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.doubleutennis.com/grass-product.html" />
+  <meta property="og:title" content="DOUBLEU | Shop GRASS — Capsule Tennis sull'Erba" />
+  <meta property="og:description" content="Acquista la capsule GRASS di DOUBLEU. Abbigliamento tennis edizione limitata, made in Italy. Spedizione gratuita sopra 89€." />
+  <meta property="og:image" content="https://www.doubleutennis.com/assets/images/lookbook-01.jpg" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:site_name" content="DOUBLEU Tennis Apparel" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DOUBLEU | Shop GRASS — Capsule Tennis sull'Erba" />
+  <meta name="twitter:description" content="Acquista la capsule GRASS di DOUBLEU. Edizione limitata, made in Italy. Spedizione gratuita sopra 89€." />
+  <meta name="twitter:image" content="https://www.doubleutennis.com/assets/images/lookbook-01.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -132,6 +146,27 @@
       .product-title { font-size: 44px; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "GRASS — Capsule Tennis sull'Erba",
+    "description": "Acquista la capsule GRASS di DOUBLEU. Abbigliamento tennis dedicato all'erba, edizione limitata, made in Italy.",
+    "url": "https://www.doubleutennis.com/grass-product.html",
+    "provider": {
+      "@type": "Organization",
+      "name": "DOUBLEU Tennis Apparel",
+      "url": "https://www.doubleutennis.com"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "EUR",
+      "lowPrice": "59",
+      "highPrice": "159",
+      "offerCount": "2"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -275,7 +310,7 @@
 
       function buildGallery(imgs) {
         const mainContent = imgs[activeImgIdx]?.src
-          ? `<img id="main-img" src="${imgs[activeImgIdx].src}" alt="${product.name}">`
+          ? `<img loading="lazy" id="main-img" src="${imgs[activeImgIdx].src}" alt="${product.name}">`
           : `<div class="gallery-main-placeholder">${product.name}</div>`;
 
         const thumbs = imgs.map((img, i) => {

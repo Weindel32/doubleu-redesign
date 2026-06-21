@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DOUBLEU | Checkout</title>
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -275,7 +276,7 @@
     // ── Populate order summary ─────────────────────────────────────────────
     document.getElementById('os-items').innerHTML = items.map(i => `
       <div class="os-item">
-        <img class="os-item-img" src="${i.image || ''}" alt="${i.name}">
+        <img loading="lazy" class="os-item-img" src="${i.image || ''}" alt="${i.name}">
         <div>
           <div class="os-item-name">${i.name}</div>
           <div class="os-item-meta">${i.color} · ${i.size} · qty ${i.qty}</div>

@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /carrello.html
+Disallow: /checkout.html
+Disallow: /order-success.html
+Disallow: /area-club.html
+Disallow: /area-club-catalogo.html
+Disallow: /api/
+
+Sitemap: https://www.doubleutennis.com/sitemap.xml

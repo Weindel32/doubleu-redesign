@@ -28,7 +28,10 @@ Object.values(CLUB_CATALOG).forEach(club => (club.products || []).forEach(regist
 function priceCents(id, color) {
   const entry = catalog.get(id);
   if (!entry) return null;
-  const price = entry.colors.has(color) ? entry.colors.get(color) : entry.basePrice;
+  /* Il prezzo per colore vale solo se valorizzato: nei capi dei club i
+     colori esistono ma hanno price 0, e il prezzo buono e' quello base. */
+  const colorPrice = entry.colors.get(color);
+  const price = (typeof colorPrice === 'number' && colorPrice > 0) ? colorPrice : entry.basePrice;
   if (typeof price !== 'number' || !(price > 0)) return null;
   return Math.round(price * 100);
 }

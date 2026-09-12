@@ -1,11 +1,29 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const { priceCents, productName } = require('./_catalog');
 
 const SHIPPING_COST_CENTS = 990; // 9,90 €
 const FREE_SHIPPING_THRESHOLD_CENTS = 8900; // 89,00 €
 const PROMO_CODE = 'DELY26';
+const MAX_QTY_PER_LINE = 20;
+
+/* Il sito, l'app installata dai soci e le anteprime di lavorazione. */
+const ALLOWED_ORIGINS = [
+  'https://www.doubleutennis.com',
+  'https://doubleutennis.com',
+  'https://app.doubleutennis.com',
+];
+function isAllowedOrigin(origin) {
+  if (!origin) return false;
+  if (ALLOWED_ORIGINS.includes(origin)) return true;
+  return /^https:\/\/[a-z0-9-]+\.vercel\.app$/.test(origin);
+}
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  const origin = req.headers.origin;
+  if (isAllowedOrigin(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin');
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
@@ -17,8 +35,22 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: 'Carrello vuoto' });
   }
 
-  // Calculate subtotal in cents
-  const subtotalCents = items.reduce((sum, i) => sum + Math.round(i.price * 100) * i.qty, 0);
+  /* I prezzi vengono dal listino del server: quelli inviati dal browser
+     sono solo un'indicazione per l'interfaccia e non vengono usati. */
+  let subtotalCents = 0;
+  const lines = [];
+  for (const item of items) {
+    const unitCents = item && item.id ? priceCents(item.id, item.color) : null;
+    const qty = Math.floor(Number(item && item.qty));
+    if (unitCents === null) {
+      return res.status(400).json({ error: 'Prodotto non disponibile. Aggiorna il carrello.' });
+    }
+    if (!Number.isFinite(qty) || qty < 1 || qty > MAX_QTY_PER_LINE) {
+      return res.status(400).json({ error: 'Quantità non valida.' });
+    }
+    subtotalCents += unitCents * qty;
+    lines.push(`${productName(item.id)} (${item.color || '-'}, ${item.size || '-'}) x${qty}`);
+  }
 
   // Free shipping if promo applied and over threshold
   const promoValid = promoCode && promoCode.toUpperCase() === PROMO_CODE;
@@ -26,7 +58,7 @@ module.exports = async (req, res) => {
 
   const totalCents = subtotalCents + shippingCents;
 
-  const itemsSummary = items.map(i => `${i.name} (${i.color}, ${i.size}) x${i.qty}`).join(' | ');
+  const itemsSummary = lines.join(' | ');
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({

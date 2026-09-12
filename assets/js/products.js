@@ -400,3 +400,9 @@ function getCollectionProducts(collection) {
   if (collection === 'grass')    return GRASS_PRODUCTS;
   return [];
 }
+
+/* Reso disponibile anche a Node, cosi' il backend usa lo stesso listino
+   del sito invece di fidarsi dei prezzi inviati dal browser. */
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { WFOX_PRODUCTS, SURFACES_PRODUCTS, GRASS_PRODUCTS };
+}

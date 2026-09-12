@@ -175,3 +175,8 @@ function getClubProductById(productId) {
   }
   return null;
 }
+
+/* Vedi products.js: stesso listino per sito e backend. */
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { CLUB_CATALOG };
+}

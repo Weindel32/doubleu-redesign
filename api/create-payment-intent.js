@@ -2,7 +2,6 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { priceCents, productName } = require('./_catalog');
 const { shippingCents: shippingFor, zoneOf } = require('./_shipping');
 
-const PROMO_CODE = 'DELY26';
 const MAX_QTY_PER_LINE = 20;
 
 /* Il sito, l'app installata dai soci e le anteprime di lavorazione. */
@@ -53,9 +52,8 @@ module.exports = async (req, res) => {
 
   /* Spedizione per zona: costo e soglia di gratuita' dipendono dal paese
      di consegna, non piu' da una tariffa unica valida per tutto il mondo. */
-  const promoValid = promoCode && promoCode.toUpperCase() === PROMO_CODE;
   const country = (shipping && shipping.country) || 'IT';
-  const shippingCents = shippingFor(country, subtotalCents, promoValid);
+  const shippingCents = shippingFor(country, subtotalCents, promoCode);
 
   const totalCents = subtotalCents + shippingCents;
 
@@ -68,7 +66,6 @@ module.exports = async (req, res) => {
       automatic_payment_methods: { enabled: true },
       metadata: {
         items: itemsSummary.slice(0, 500),
-        promo_code: promoValid ? PROMO_CODE : '',
         shipping_cents: String(shippingCents),
         shipping_zone: zoneOf(country),
       },

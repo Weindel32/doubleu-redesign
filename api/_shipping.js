@@ -23,13 +23,30 @@ function zoneOf(country) {
   return 'WORLD';
 }
 
-/* Il codice promo vale solo in Italia: nato per il mercato interno, fuori
-   regalava spedizioni che costano piu' del margine dell'ordine. */
-function shippingCents(country, subtotalCents, promoValid) {
-  const zone = ZONES[zoneOf(country)];
-  if (zone.freeFrom !== null && subtotalCents >= zone.freeFrom) return 0;
-  if (promoValid && zoneOf(country) === 'IT') return 0;
-  return zone.shipping;
+/* Codici promozionali per la spedizione.
+   Oggi nessuno e' attivo: la soglia di gratuita' scatta da sola, e DELY26
+   era un codice pubblico e senza scadenza che regalava spedizioni anche
+   dove costano piu' del margine.
+
+   Per attivarne uno basta aggiungerlo qui, delimitato a zone e periodo:
+     'MTC27': { zones: ['IT','EU'], until: '2026-10-31' }
+   Cosi' una promozione italiana non regala piu' spedizioni in Germania. */
+const PROMO_CODES = {};
+
+function promoAllows(code, zone) {
+  if (!code) return false;
+  const rule = PROMO_CODES[String(code).toUpperCase()];
+  if (!rule) return false;
+  if (rule.until && new Date() > new Date(rule.until + 'T23:59:59Z')) return false;
+  return !rule.zones || rule.zones.includes(zone);
 }
 
-module.exports = { shippingCents, zoneOf, ZONES };
+function shippingCents(country, subtotalCents, promoCode) {
+  const zone = zoneOf(country);
+  const rules = ZONES[zone];
+  if (rules.freeFrom !== null && subtotalCents >= rules.freeFrom) return 0;
+  if (promoAllows(promoCode, zone)) return 0;
+  return rules.shipping;
+}
+
+module.exports = { shippingCents, zoneOf, ZONES, PROMO_CODES };

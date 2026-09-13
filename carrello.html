@@ -164,6 +164,9 @@
     const SHIPPING_COST = 9.90;
     const FREE_SHIPPING_THRESHOLD = 89;
     const PROMO_CODE = 'DELY26';
+    /* Campo codice sconto: nascosto finche' non c'e' una promozione attiva.
+       Per riattivarlo mettere true qui e aggiungere il codice in api/_shipping.js */
+    const PROMO_ACTIVE = false;
 
     let promoApplied = false;
 
@@ -175,7 +178,7 @@
       const items    = Cart.getAll();
       const layout   = document.getElementById('cart-layout');
       const subtotal = Cart.subtotal();
-      const shipping = (promoApplied && subtotal >= FREE_SHIPPING_THRESHOLD) ? 0 : SHIPPING_COST;
+      const shipping = SHIPPING_COST; // indicativa: il costo reale dipende dal paese
       const total    = subtotal + shipping;
 
       if (!items.length) {
@@ -209,15 +212,11 @@
           </div>
         </div>`).join('');
 
-      const shippingLabel = shipping === 0
-        ? `<span style="color:#C9A84C">${t('shop.cart.shipping.free', getLang())}</span>`
-        : formatPrice(SHIPPING_COST);
+      const shippingLabel = t('shop.cart.shipping.from', getLang());
 
-      const promoHint = !promoApplied
-        ? `<p style="font-size:11px;color:rgba(245,240,232,.38);letter-spacing:.06em;margin-bottom:8px">
-             ${t('shop.cart.promo.hint', getLang()).replace('{threshold}', FREE_SHIPPING_THRESHOLD)}
-           </p>`
-        : '';
+      const promoHint = `<p style="font-size:11px;color:rgba(245,240,232,.38);letter-spacing:.06em;margin-bottom:8px">
+             ${t('shop.cart.promo.hint', getLang())}
+           </p>`;
 
       layout.innerHTML = `
         <div class="cart-items">${itemsHtml}</div>
@@ -226,11 +225,11 @@
           <div class="summary-row"><span>${t('shop.cart.subtotal', getLang())}</span><span>${formatPrice(subtotal)}</span></div>
           <div class="summary-row shipping"><span>${t('shop.cart.shipping', getLang())}</span><span>${shippingLabel}</span></div>
           ${promoHint}
-          <div class="promo-input-row">
+          ${PROMO_ACTIVE ? `<div class="promo-input-row">
             <input class="promo-input" id="promo-input" type="text" placeholder="${t('shop.cart.promo.placeholder', getLang())}" maxlength="20" value="${promoApplied ? PROMO_CODE : ''}">
             <button class="promo-apply" id="promo-btn">${promoApplied ? t('shop.cart.promo.applied', getLang()) : t('shop.cart.promo.apply', getLang())}</button>
           </div>
-          <div class="promo-ok" id="promo-ok">${t('shop.cart.promo.ok', getLang())}</div>
+          <div class="promo-ok" id="promo-ok">${t('shop.cart.promo.ok', getLang())}</div>` : ''}
           <hr class="summary-divider">
           <div class="summary-total"><span>${t('shop.cart.total', getLang())}</span><span>${formatPrice(total)}</span></div>
           <div class="summary-tax">${t('shop.cart.tax', getLang())}</div>

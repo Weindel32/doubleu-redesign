@@ -673,7 +673,7 @@ const TRANSLATIONS = {
     "cta.text": "Vuoi un progetto simile per il tuo club?",
     "cta.btn": "Parliamo del tuo progetto",
     // Shop UI
-    "shop.promo": "Spedizione gratuita per ordini superiori a €89 — codice DELY26 al checkout",
+    "shop.promo": "Spedizione gratuita sopra €89 in Italia e €99 in Europa",
     "shop.cart.title": "Carrello",
     "shop.cart.empty.title": "Il carrello è vuoto",
     "shop.cart.empty.desc": "Esplora la collezione e aggiungi i tuoi pezzi preferiti.",
@@ -1491,7 +1491,7 @@ const TRANSLATIONS = {
     "cta.text": "Want a similar project for your club?",
     "cta.btn": "Let's talk about your project",
     // Shop UI
-    "shop.promo": "Free shipping on orders over €89 — use code DELY26 at checkout",
+    "shop.promo": "Free shipping over €89 in Italy and €99 in Europe",
     "shop.cart.title": "Cart",
     "shop.cart.empty.title": "Your cart is empty",
     "shop.cart.empty.desc": "Explore the collection and add your favourite pieces.",
@@ -2309,7 +2309,7 @@ const TRANSLATIONS = {
     "cta.text": "Möchten Sie ein ähnliches Projekt für Ihren Verein?",
     "cta.btn": "Über Ihr Projekt sprechen",
     // Shop UI
-    "shop.promo": "Kostenloser Versand ab €89 — Code DELY26 an der Kasse eingeben",
+    "shop.promo": "Kostenloser Versand ab 89 € in Italien und 99 € in Europa",
     "shop.cart.title": "Warenkorb",
     "shop.cart.empty.title": "Ihr Warenkorb ist leer",
     "shop.cart.empty.desc": "Entdecken Sie die Kollektion und fügen Sie Ihre Lieblingsstücke hinzu.",

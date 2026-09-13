@@ -113,14 +113,14 @@ const WFOX_PRODUCTS = [
     name: 'WFOX Logo Tee',
     subtitle: 'WFOX by DOUBLEU — Essential',
     tag: 'Essential',
-    basePrice: 59,
+    basePrice: 49,
     description: 'La t-shirt essenziale della capsule WFOX. 100% cotone Made in Italy, con logo WFOX stampato sul petto. Semplice, diretta, riconoscibile. Il pezzo che non manca mai nel guardaroba di chi gioca sul serio.',
     fit: 'Regular Fit',
     material: '100% Cotone / Cotton',
     printSize: 'WFOX Logo',
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Bianco', hex: '#E8E0D0', image: 'https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/dae7cda0-07e2-4e55-ad1b-30e2b6f8ca8c/ChatGPT+Image+12+mag+2026%2C+23_55_44.png?format=500w', price: 59 },
+      { name: 'Bianco', hex: '#E8E0D0', image: 'https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/dae7cda0-07e2-4e55-ad1b-30e2b6f8ca8c/ChatGPT+Image+12+mag+2026%2C+23_55_44.png?format=500w', price: 49 },
     ],
     gridImage: 'https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/dae7cda0-07e2-4e55-ad1b-30e2b6f8ca8c/ChatGPT+Image+12+mag+2026%2C+23_55_44.png?format=500w',
     i18n: {

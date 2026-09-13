@@ -1,8 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { priceCents, productName } = require('./_catalog');
+const { shippingCents: shippingFor, zoneOf } = require('./_shipping');
 
-const SHIPPING_COST_CENTS = 990; // 9,90 €
-const FREE_SHIPPING_THRESHOLD_CENTS = 8900; // 89,00 €
 const PROMO_CODE = 'DELY26';
 const MAX_QTY_PER_LINE = 20;
 
@@ -52,9 +51,11 @@ module.exports = async (req, res) => {
     lines.push(`${productName(item.id)} (${item.color || '-'}, ${item.size || '-'}) x${qty}`);
   }
 
-  // Free shipping if promo applied and over threshold
+  /* Spedizione per zona: costo e soglia di gratuita' dipendono dal paese
+     di consegna, non piu' da una tariffa unica valida per tutto il mondo. */
   const promoValid = promoCode && promoCode.toUpperCase() === PROMO_CODE;
-  const shippingCents = (promoValid && subtotalCents >= FREE_SHIPPING_THRESHOLD_CENTS) ? 0 : SHIPPING_COST_CENTS;
+  const country = (shipping && shipping.country) || 'IT';
+  const shippingCents = shippingFor(country, subtotalCents, promoValid);
 
   const totalCents = subtotalCents + shippingCents;
 
@@ -69,6 +70,7 @@ module.exports = async (req, res) => {
         items: itemsSummary.slice(0, 500),
         promo_code: promoValid ? PROMO_CODE : '',
         shipping_cents: String(shippingCents),
+        shipping_zone: zoneOf(country),
       },
       ...(shipping && {
         shipping: {

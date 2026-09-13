@@ -333,6 +333,8 @@
           body: JSON.stringify({
             items,
             promoCode: promoApplied ? PROMO_CODE : null,
+            // il paese decide zona, costo e soglia di spedizione
+            shipping: { country: (document.getElementById('country') || {}).value || 'IT' },
           }),
         });
         const data = await resp.json();

@@ -16,7 +16,7 @@ const WFOX_PRODUCTS = [
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
       { name: 'Blu Navy', hex: '#0D1B2A', image: 'wfox/img/crew.jpg',      price: 99 },
-      { name: 'Grigio',   hex: '#9E9E9E', image: 'wfox/img/crew-grey.png', price: 99 },
+      { name: 'Grigio',   hex: '#9E9E9E', image: 'wfox/img/crew-grey.jpg', price: 99 },
     ],
     gridImage: 'wfox/img/crew.jpg',
     i18n: {
@@ -55,8 +55,8 @@ const WFOX_PRODUCTS = [
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
       { name: 'Bianco', hex: '#E8E0D0', image: 'https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/235cc635-483a-46c5-ad0a-7e95cf1386e3/ChatGPT+Image+13+mag+2026%2C+11_40_55.png?format=500w', price: 59 },
-      { name: 'Grigio', hex: '#9E9E9E', image: 'wfox/img/tee-grey.png', price: 59 },
-      { name: 'Blu',    hex: '#1A3A5C', image: 'wfox/img/tee-blu.png',  price: 59 },
+      { name: 'Grigio', hex: '#9E9E9E', image: 'wfox/img/tee-grey.jpg', price: 59 },
+      { name: 'Blu',    hex: '#1A3A5C', image: 'wfox/img/tee-blu.jpg',  price: 59 },
     ],
     gridImage: 'https://images.squarespace-cdn.com/content/v1/651bc3235f93e804f10fc47f/235cc635-483a-46c5-ad0a-7e95cf1386e3/ChatGPT+Image+13+mag+2026%2C+11_40_55.png?format=500w',
     i18n: {
@@ -156,9 +156,9 @@ const SURFACES_PRODUCTS = [
     printSize: 'Stampa 100 CLAY',
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/tshirt.png', price: 69 },
+      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/tshirt.jpg', price: 69 },
     ],
-    gridImage: 'surfaces/img/tshirt.png',
+    gridImage: 'surfaces/img/tshirt.jpg',
     i18n: {
       en: {
         description: '100% premium cotton Made in Italy. Regular Fit, 100 CLAY print — inspired by the slowest, deepest and most elegant surface in tennis. Off White, a colour that tells the history of the game.',
@@ -189,9 +189,9 @@ const SURFACES_PRODUCTS = [
     printSize: 'Stampa CLAY',
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/sweatshirt.png', price: 159 },
+      { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/sweatshirt.jpg', price: 159 },
     ],
-    gridImage: 'surfaces/img/sweatshirt.png',
+    gridImage: 'surfaces/img/sweatshirt.jpg',
     i18n: {
       en: {
         description: 'Premium cotton sweatshirt Made in Italy. Post-match comfort meets the identity of tennis\' most technical surface. Artisan production, limited edition.',
@@ -229,7 +229,7 @@ const SURFACES_PRODUCTS = [
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
       { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/polo.jpg',     price: 99 },
-      { name: 'Clay',      hex: '#8B1A1A', image: 'surfaces/img/polo_red.png', price: 99 },
+      { name: 'Clay',      hex: '#8B1A1A', image: 'surfaces/img/polo_red.jpg', price: 99 },
     ],
     gridImage: 'surfaces/img/polo.jpg',
     i18n: {
@@ -269,7 +269,7 @@ const SURFACES_PRODUCTS = [
     sizes: ['Taglia Unica'],
     colors: [
       { name: 'Off White', hex: '#F5F0E8', image: 'surfaces/img/cap.jpg',     price: 59 },
-      { name: 'Clay',      hex: '#8B1A1A', image: 'surfaces/img/cap_red.png', price: 59 },
+      { name: 'Clay',      hex: '#8B1A1A', image: 'surfaces/img/cap_red.jpg', price: 59 },
     ],
     gridImage: 'surfaces/img/cap.jpg',
     i18n: {
@@ -313,9 +313,9 @@ const GRASS_PRODUCTS = [
     printSize: 'Stampa GRASS',
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Verde Scuro', hex: '#1A3A16', image: 'surfaces/img/grass-tshirt.png', price: 69 },
+      { name: 'Verde Scuro', hex: '#1A3A16', image: 'surfaces/img/grass-tshirt.jpg', price: 69 },
     ],
-    gridImage: 'surfaces/img/grass-tshirt.png',
+    gridImage: 'surfaces/img/grass-tshirt.jpg',
     i18n: {
       en: {
         description: '100% premium cotton Made in Italy. Regular Fit, GRASS print — inspired by the fastest and most unpredictable surface in tennis. Dark green, the colour of Wimbledon grass.',
@@ -346,9 +346,9 @@ const GRASS_PRODUCTS = [
     printSize: 'Patch ricamata GRASS',
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Verde Scuro', hex: '#1A3A16', image: 'surfaces/img/grass-sweatshirt.png', price: 159 },
+      { name: 'Verde Scuro', hex: '#1A3A16', image: 'surfaces/img/grass-sweatshirt.jpg', price: 159 },
     ],
-    gridImage: 'surfaces/img/grass-sweatshirt.png',
+    gridImage: 'surfaces/img/grass-sweatshirt.jpg',
     i18n: {
       en: {
         description: 'Premium cotton sweatshirt Made in Italy. The shortest season in tennis, the most elegant. Embroidered GRASS patch on the chest. Artisan production, limited edition.',

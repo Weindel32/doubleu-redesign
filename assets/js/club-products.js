@@ -22,10 +22,10 @@ const CLUB_CATALOG = {
         printSize: null,
         sizes: ['6', '8', '10', '12', '14', 'XS', 'S', 'M', 'L', 'XL', 'XXL'],
         colors: [
-          { name: 'Navy/Bianco', hex: '#1A3A5C', image: 'assets/images/club/mtc/tshirt-uomo.png', price: 0 },
+          { name: 'Navy/Bianco', hex: '#1A3A5C', image: 'assets/images/club/mtc/tshirt-uomo.jpg', price: 0 },
         ],
-        gridImage: 'assets/images/club/mtc/tshirt-uomo.png',
-        images: ['assets/images/club/mtc/tshirt-uomo.png'],
+        gridImage: 'assets/images/club/mtc/tshirt-uomo.jpg',
+        images: ['assets/images/club/mtc/tshirt-uomo.jpg'],
       },
       {
         id: 'mtc-tshirt-donna',
@@ -49,7 +49,7 @@ const CLUB_CATALOG = {
         gridImage: 'assets/images/club/mtc/tshirt-donna-front.jpg',
         images: [
           'assets/images/club/mtc/tshirt-donna-front.jpg',
-          'assets/images/club/mtc/tshirt-donna-back.png',
+          'assets/images/club/mtc/tshirt-donna-back.jpg',
         ],
       },
       {
@@ -69,13 +69,13 @@ const CLUB_CATALOG = {
         printSize: null,
         sizes: ['Unica'],
         colors: [
-          { name: 'Blu Navy', hex: '#1A3A5C', image: 'assets/images/club/mtc/cap-blu.png', price: 0 },
-          { name: 'Bianco', hex: '#FFFFFF', image: 'assets/images/club/mtc/cap-white.png', price: 0 },
+          { name: 'Blu Navy', hex: '#1A3A5C', image: 'assets/images/club/mtc/cap-blu.jpg', price: 0 },
+          { name: 'Bianco', hex: '#FFFFFF', image: 'assets/images/club/mtc/cap-white.jpg', price: 0 },
         ],
-        gridImage: 'assets/images/club/mtc/cap-blu.png',
+        gridImage: 'assets/images/club/mtc/cap-blu.jpg',
         images: [
-          'assets/images/club/mtc/cap-blu.png',
-          'assets/images/club/mtc/cap-white.png',
+          'assets/images/club/mtc/cap-blu.jpg',
+          'assets/images/club/mtc/cap-white.jpg',
         ],
       },
       {
@@ -95,10 +95,10 @@ const CLUB_CATALOG = {
         printSize: null,
         sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
         colors: [
-          { name: 'Bianco', hex: '#FFFFFF', image: 'assets/images/club/mtc/slit-short.png', price: 0 },
+          { name: 'Bianco', hex: '#FFFFFF', image: 'assets/images/club/mtc/slit-short.jpg', price: 0 },
         ],
-        gridImage: 'assets/images/club/mtc/slit-short.png',
-        images: ['assets/images/club/mtc/slit-short.png'],
+        gridImage: 'assets/images/club/mtc/slit-short.jpg',
+        images: ['assets/images/club/mtc/slit-short.jpg'],
       },
     ],
   },

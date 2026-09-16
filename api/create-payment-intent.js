@@ -1,4 +1,13 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+/* maxNetworkRetries non e' un dettaglio di robustezza: quando la risposta
+   di Stripe si perde per strada, la richiesta e' gia' stata eseguita e il
+   PaymentIntent esiste, ma noi rispondiamo errore e il cliente resta a
+   guardare un checkout rotto. Con il riprova automatico lo SDK rimanda la
+   stessa chiamata con la stessa chiave di idempotenza: Stripe restituisce
+   il PaymentIntent gia' creato invece di crearne un altro. */
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY, {
+  maxNetworkRetries: 2,
+  timeout: 8000,
+});
 const { priceCents, productName } = require('./_catalog');
 const { shippingCents: shippingFor, zoneOf } = require('./_shipping');
 
@@ -76,6 +85,11 @@ module.exports = async (req, res) => {
     },
   } : null;
 
+  /* Codice breve mostrato al cliente e scritto nel log: quando qualcuno
+     scrive "non riesco a pagare", questo lo riporta alla riga giusta. */
+  const ref = Math.random().toString(36).slice(2, 8);
+  const startedAt = Date.now();
+
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalCents,
@@ -89,6 +103,15 @@ module.exports = async (req, res) => {
       ...(shippingDetails && { shipping: shippingDetails }),
     });
 
+    console.log(JSON.stringify({
+      event: 'payment_intent_created',
+      ref,
+      ms: Date.now() - startedAt,
+      paymentIntent: paymentIntent.id,
+      amount: totalCents,
+      zone: zoneOf(country),
+    }));
+
     res.status(200).json({
       clientSecret: paymentIntent.client_secret,
       subtotal: subtotalCents / 100,
@@ -96,7 +119,25 @@ module.exports = async (req, res) => {
       total: totalCents / 100,
     });
   } catch (err) {
-    console.error('Stripe error:', err.message);
-    res.status(500).json({ error: 'Errore nel creare il pagamento. Riprova.' });
+    /* Una riga sola non bastava: "Stripe error: <messaggio>" non dice se
+       il parametro era sbagliato, se la chiave e' stata rifiutata o se la
+       risposta non e' mai arrivata, e sono guasti diversi. Qui finisce
+       tutto quello che serve a capirlo senza tirare a indovinare. */
+    console.error(JSON.stringify({
+      event: 'payment_intent_failed',
+      ref,
+      ms: Date.now() - startedAt,
+      message:     err.message,
+      type:        err.type,        // es. StripeInvalidRequestError, StripeConnectionError
+      code:        err.code,
+      param:       err.param,       // il parametro rifiutato, se e' quello
+      statusCode:  err.statusCode,
+      stripeReqId: err.requestId,   // apre la richiesta nei log di Stripe
+      amount:      totalCents,
+      zone:        zoneOf(country),
+      shippingAttached: Boolean(shippingDetails),
+    }));
+
+    res.status(500).json({ error: 'Errore nel creare il pagamento. Riprova.', ref });
   }
 };

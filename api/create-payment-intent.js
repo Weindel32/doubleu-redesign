@@ -59,6 +59,23 @@ module.exports = async (req, res) => {
 
   const itemsSummary = lines.join(' | ');
 
+  /* Il checkout chiama questa API al caricamento della pagina, quando il
+     cliente ha scelto solo il paese e non ha ancora scritto nome e via.
+     Stripe pero' rifiuta un blocco shipping senza name e senza line1: se
+     lo passassimo comunque, ogni ordine morirebbe qui con un 500. Lo
+     alleghiamo quindi solo quando l'indirizzo e' davvero compilato. */
+  const shipName = shipping && typeof shipping.name === 'string' ? shipping.name.trim() : '';
+  const shipLine1 = shipping && typeof shipping.address === 'string' ? shipping.address.trim() : '';
+  const shippingDetails = (shipName && shipLine1) ? {
+    name: shipName,
+    address: {
+      line1:       shipLine1,
+      city:        (shipping.city || '').trim() || undefined,
+      postal_code: (shipping.postalCode || '').trim() || undefined,
+      country,
+    },
+  } : null;
+
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalCents,
@@ -69,17 +86,7 @@ module.exports = async (req, res) => {
         shipping_cents: String(shippingCents),
         shipping_zone: zoneOf(country),
       },
-      ...(shipping && {
-        shipping: {
-          name: shipping.name,
-          address: {
-            line1:       shipping.address,
-            city:        shipping.city,
-            postal_code: shipping.postalCode,
-            country:     shipping.country || 'IT',
-          },
-        },
-      }),
+      ...(shippingDetails && { shipping: shippingDetails }),
     });
 
     res.status(200).json({

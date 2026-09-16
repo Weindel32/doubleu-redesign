@@ -369,11 +369,19 @@
           }),
         });
         const data = await resp.json();
-        if (!resp.ok) throw new Error(data.error || 'Errore server');
+        if (!resp.ok) {
+          /* Il riferimento arriva dal server e identifica la riga di log di
+             quel singolo errore: e' quello che rende diagnosticabile la
+             segnalazione di un cliente. */
+          const e = new Error(data.error || 'Errore server');
+          e.ref = data.ref;
+          throw e;
+        }
         clientSecret = data.clientSecret;
         renderServerTotals(data);
       } catch (err) {
-        document.getElementById('stripe-loading').textContent = '⚠ ' + err.message;
+        document.getElementById('stripe-loading').textContent =
+          '⚠ ' + err.message + (err.ref ? ' (rif. ' + err.ref + ')' : '');
         return;
       }
 

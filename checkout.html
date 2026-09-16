@@ -322,10 +322,41 @@
 
     // ── Stripe integration ────────────────────────────────────────────────
     let stripe, elements, paymentElement;
+    let currentCountry = null;
+
+    function selectedCountry() {
+      const el = document.getElementById('country');
+      return (el && el.value) || 'IT';
+    }
+
+    /* Il riepilogo a destra mostra i numeri del server, non una stima:
+       costo e soglia di gratuita' cambiano per zona, e due totali diversi
+       sulla stessa pagina sono il modo piu' rapido per perdere l'ordine. */
+    function renderServerTotals(data) {
+      if (typeof data.shippingCost === 'number') {
+        if (data.shippingCost === 0) {
+          shippingEl.innerHTML = '<span style="color:#C9A84C">Gratuita</span>';
+          shippingRow.classList.add('shipping-free');
+        } else {
+          shippingEl.textContent = fmt(data.shippingCost);
+          shippingRow.classList.remove('shipping-free');
+        }
+      }
+      if (typeof data.subtotal === 'number') {
+        document.getElementById('os-subtotal').textContent = fmt(data.subtotal);
+      }
+      if (typeof data.total === 'number') {
+        document.getElementById('os-total').textContent = fmt(data.total);
+        document.getElementById('btn-label').textContent = t('shop.checkout.pay', getLang()) + ' ' + fmt(data.total);
+      }
+    }
 
     async function initStripe() {
+      const country = selectedCountry();
+      currentCountry = country;
+
       // 1. Create PaymentIntent on our server
-      let clientSecret, serverTotal;
+      let clientSecret;
       try {
         const resp = await fetch('/api/create-payment-intent', {
           method: 'POST',
@@ -334,26 +365,25 @@
             items,
             promoCode: promoApplied ? PROMO_CODE : null,
             // il paese decide zona, costo e soglia di spedizione
-            shipping: { country: (document.getElementById('country') || {}).value || 'IT' },
+            shipping: { country },
           }),
         });
         const data = await resp.json();
         if (!resp.ok) throw new Error(data.error || 'Errore server');
         clientSecret = data.clientSecret;
-        serverTotal  = data.total;
+        renderServerTotals(data);
       } catch (err) {
         document.getElementById('stripe-loading').textContent = '⚠ ' + err.message;
         return;
       }
 
-      // Update total with server-confirmed amount
-      if (serverTotal) {
-        document.getElementById('os-total').textContent = fmt(serverTotal);
-        document.getElementById('btn-label').textContent = t('shop.checkout.pay', getLang()) + ' ' + fmt(serverTotal);
-      }
-
       // 2. Initialize Stripe Elements
-      stripe   = Stripe(STRIPE_PUBLISHABLE_KEY);
+      document.getElementById('stripe-loading').style.display = '';
+      document.getElementById('stripe-loading').textContent = 'Caricamento metodo di pagamento…';
+      document.getElementById('btn-pay').disabled = true;
+      if (paymentElement) { paymentElement.unmount(); paymentElement = null; }
+
+      stripe   = stripe || Stripe(STRIPE_PUBLISHABLE_KEY);
       elements = stripe.elements({
         clientSecret,
         appearance: {
@@ -407,6 +437,17 @@
         elements,
         confirmParams: {
           return_url: window.location.origin + '/order-success.html',
+          /* L'indirizzo di consegna viaggia sul PaymentIntent, non solo nei
+             dati di fatturazione: e' quello che serve per evadere l'ordine. */
+          shipping: {
+            name,
+            address: {
+              line1:       document.getElementById('address').value,
+              city:        document.getElementById('city').value,
+              postal_code: document.getElementById('postal-code').value,
+              country:     document.getElementById('country').value,
+            },
+          },
           payment_method_data: {
             billing_details: {
               name,
@@ -430,6 +471,16 @@
         btn.classList.remove('loading');
       }
       // On success Stripe redirects automatically to return_url
+    });
+
+    /* Cambiare paese cambia la zona, quindi l'importo: il PaymentIntent
+       gia' creato porta il vecchio totale e va rifatto, altrimenti una
+       consegna in Germania viene incassata a tariffa italiana. */
+    let countryReloadTimer = null;
+    document.getElementById('country').addEventListener('change', () => {
+      if (selectedCountry() === currentCountry) return;
+      clearTimeout(countryReloadTimer);
+      countryReloadTimer = setTimeout(initStripe, 150);
     });
 
     // Init on load

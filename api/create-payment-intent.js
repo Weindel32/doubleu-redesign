@@ -4,10 +4,20 @@
    guardare un checkout rotto. Con il riprova automatico lo SDK rimanda la
    stessa chiamata con la stessa chiave di idempotenza: Stripe restituisce
    il PaymentIntent gia' creato invece di crearne un altro. */
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY, {
-  maxNetworkRetries: 2,
-  timeout: 8000,
-});
+const Stripe = require('stripe');
+const STRIPE_OPTS = { maxNetworkRetries: 2, timeout: 8000 };
+const stripeLive = Stripe(process.env.STRIPE_SECRET_KEY, STRIPE_OPTS);
+/* Le anteprime di lavorazione pagano con le carte di prova di Stripe, cosi'
+   il checkout si puo' verificare per intero senza mai mettere il sito vero
+   in modalita' test e senza doverlo poi ricordare di rimettere a posto.
+   La chiave di prova e' facoltativa: senza, le anteprime usano la live
+   esattamente come prima. */
+const stripeTest = process.env.STRIPE_SECRET_KEY_TEST
+  ? Stripe(process.env.STRIPE_SECRET_KEY_TEST, STRIPE_OPTS)
+  : null;
+function isPreviewOrigin(origin) {
+  return /^https:\/\/[a-z0-9-]+\.vercel\.app$/.test(origin || '');
+}
 const { priceCents, productName } = require('./_catalog');
 const { shippingCents: shippingFor, zoneOf } = require('./_shipping');
 
@@ -35,6 +45,10 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  /* Solo le anteprime passano alla chiave di prova: i domini veri pagano
+     sempre con quella live, qualunque cosa arrivi nella richiesta. */
+  const stripe = (isPreviewOrigin(origin) && stripeTest) ? stripeTest : stripeLive;
 
   const { items, promoCode, shipping } = req.body || {};
 

@@ -50,7 +50,9 @@ module.exports = async (req, res) => {
      sempre con quella live, qualunque cosa arrivi nella richiesta. */
   const stripe = (isPreviewOrigin(origin) && stripeTest) ? stripeTest : stripeLive;
 
-  const { items, promoCode, shipping } = req.body || {};
+  const { items, promoCode, shipping, lang } = req.body || {};
+  const customerLang = ['IT', 'EN', 'DE'].includes(String(lang || '').toUpperCase())
+    ? String(lang).toUpperCase() : 'IT';
 
   if (!items || !Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ error: 'Carrello vuoto' });
@@ -113,6 +115,7 @@ module.exports = async (req, res) => {
         items: itemsSummary.slice(0, 500),
         shipping_cents: String(shippingCents),
         shipping_zone: zoneOf(country),
+        lang: customerLang,
       },
       ...(shippingDetails && { shipping: shippingDetails }),
     });

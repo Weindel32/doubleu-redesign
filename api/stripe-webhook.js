@@ -35,6 +35,16 @@ function esc(v) {
   return String(v == null ? '' : v).replace(/[&<>"]/g, c =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 }
+/* Numero d'ordine mostrato al cliente. L'identificativo di Stripe e' lungo
+   e illeggibile: ne teniamo la coda, che basta a distinguere un ordine fra
+   tutti gli altri. Lo stesso calcolo vive in shop.js, perche' la schermata
+   di conferma la disegna il telefono e questa email il server: devono
+   arrivare allo stesso numero senza parlarsi. */
+function orderRef(id) {
+  const tail = String(id || '').replace(/[^a-zA-Z0-9]/g, '').slice(-8).toUpperCase();
+  return tail ? 'DU-' + tail : '';
+}
+
 /* Il riepilogo arriva da Stripe come una riga sola:
    "Nome (Colore, Taglia) x2 | Altro (…) x1". Lo riapriamo per poterlo
    mostrare come elenco leggibile invece che come stringa tecnica. */
@@ -164,7 +174,7 @@ function customerEmail(o, items) {
     <h1 style="${S.h1}">${esc(t.hello)}</h1>
     <p style="${S.p}">${esc(t.lead)}</p>
     <div style="${S.label}padding-top:18px;">${esc(t.order)}</div>
-    <div style="${S.ref}">${esc(o.payment_intent)}</div>
+    <div style="${S.ref}">${esc(orderRef(o.payment_intent))}</div>
     ${itemsTable(items, t)}
     ${totalsTable(o, t)}
     ${addressBlock(o, t.shipTo)}
@@ -192,7 +202,9 @@ function internalEmail(o, items) {
     <div style="font-size:15px;line-height:1.7;color:#1b2430;">${rows.map(esc).join('<br>')}</div>
     <div style="${S.label}padding-top:18px;">Contatti</div>
     <div style="font-size:14px;line-height:1.6;">${esc(o.email || '—')}${o.phone ? '<br>' + esc(o.phone) : ''}</div>
-    <div style="${S.label}padding-top:18px;">Pagamento</div>
+    <div style="${S.label}padding-top:18px;">Numero ordine</div>
+    <div style="${S.ref}">${esc(orderRef(o.payment_intent))}</div>
+    <div style="${S.label}padding-top:18px;">Riferimento Stripe</div>
     <div style="${S.ref}">${esc(o.payment_intent)}</div>
   </div><div style="${S.foot}">
     Lingua del cliente: ${esc(o.lang)} · La conferma gli è già stata inviata.

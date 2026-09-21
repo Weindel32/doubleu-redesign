@@ -32,9 +32,6 @@ const CLUBS = {
     /* 27 settembre 2026, 19:30 in Germania (CEST, UTC+2). */
     chiusura: Date.parse('2026-09-27T17:30:00Z'),
   },
-  /* Temporaneo: serve a vedere arrivare in casella l'email al vincitore,
-     con un finto iscritto. Da togliere appena fatta la prova. */
-  prova: { sigla: 'PROVA', nome: 'Prova generale', chiusura: 0 },
 };
 
 const SUPABASE_URL = process.env.SUPABASE_URL;

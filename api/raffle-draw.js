@@ -41,7 +41,11 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
 const DRAW_KEY = process.env.RAFFLE_DRAW_KEY;
 const RESEND_KEY = process.env.RESEND_API_KEY;
-const FROM = 'DOUBLEU <ordini@doubleutennis.com>';
+/* Le mail del sorteggio partono da info@, non da ordini@: un indirizzo che
+   annuncia una vincita deve essere coerente col marchio, e 'ordini' che
+   scrive 'hai vinto' e' esattamente il tipo di incongruenza che i filtri
+   antispam pesano. E' anche l'indirizzo a cui il vincitore rispondera'. */
+const FROM = 'DOUBLEU <info@doubleutennis.com>';
 const NOTIFY = 'info@doubleutennis.com';
 
 const SIGNUPS = 'raffle_signups';
@@ -101,7 +105,7 @@ function sorteggia(n) {
 
 const COPY_VINCITORE = {
   IT: {
-    subject: 'Hai vinto \u2014 Verlosung {club}',
+    subject: '{club} \u00b7 il tuo numero \u00e8 stato estratto',
     eyebrow: 'Verlosung \u00b7 {club}',
     h1: 'Hai vinto.',
     lead: 'Fra tutti i soci che si sono registrati al club, il numero estratto \u00e8 il tuo.',
@@ -117,7 +121,7 @@ const COPY_VINCITORE = {
     close: 'Complimenti. Ti diamo il benvenuto in DOUBLEU.',
   },
   DE: {
-    subject: 'Du hast gewonnen \u2014 Verlosung {club}',
+    subject: '{club} \u00b7 deine Nummer wurde gezogen',
     eyebrow: 'Verlosung \u00b7 {club}',
     h1: 'Du hast gewonnen.',
     lead: 'Unter allen Mitgliedern, die sich angemeldet haben, wurde deine Nummer gezogen.',
@@ -133,7 +137,7 @@ const COPY_VINCITORE = {
     close: 'Herzlichen Gl\u00fcckwunsch. Willkommen bei DOUBLEU.',
   },
   EN: {
-    subject: 'You won \u2014 Prize draw {club}',
+    subject: '{club} \u00b7 your number was drawn',
     eyebrow: 'Prize draw \u00b7 {club}',
     h1: 'You won.',
     lead: 'Among all the members who signed up at the club, yours is the number that was drawn.',

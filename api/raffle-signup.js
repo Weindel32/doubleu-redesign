@@ -26,6 +26,10 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
 const TABLE = 'raffle_signups';
 
+const RESEND_KEY = process.env.RESEND_API_KEY;
+const FROM = 'DOUBLEU <info@doubleutennis.com>';
+const NOTIFY = 'info@doubleutennis.com';
+
 function clean(v) {
   return typeof v === 'string' ? v.trim().replace(/\s+/g, ' ').slice(0, MAX_LEN) : '';
 }
@@ -44,6 +48,69 @@ async function sb(path, options = {}) {
     },
   });
   return res;
+}
+
+/* Un avviso solo, alla primissima registrazione di un club.
+
+   Non serve a contare: il numero si guarda in ogni momento dalla pagina
+   dell'estrazione. Serve a sapere che la catena regge davvero — QR, app,
+   server, database — il giorno in cui il cartello viene esposto. Se questa
+   mail non arriva entro la mattina, qualcosa non funziona e c'e' ancora
+   tempo per accorgersene.
+
+   Dopo la prima, silenzio: con sessanta soci un avviso per ciascuno
+   intaserebbe la casella proprio nei due giorni in cui serve leggere altro. */
+async function avvisaPrimaRegistrazione(club, row) {
+  if (!RESEND_KEY) return;
+  try {
+    /* Prima di annunciare 'la prima', contiamo davvero: la riga appena
+       inserita deve essere l'unica del club. */
+    const r = await sb(
+      `${TABLE}?select=seq&club=eq.${encodeURIComponent(club)}`,
+      { headers: { Prefer: 'count=exact', Range: '0-0' } });
+    const totale = Number((r.headers.get('content-range') || '').split('/')[1] || 0);
+    if (totale !== 1) return;
+
+    const quando = new Date().toLocaleString('it-IT', {
+      timeZone: 'Europe/Rome', dateStyle: 'short', timeStyle: 'short',
+    });
+    const numero = entryNumber(club, row.seq);
+    const html = `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+       max-width:520px;margin:0 auto;padding:28px 24px;background:#fffdf8;color:#1b2430">
+      <div style="font-weight:700;letter-spacing:.13em;font-size:17px;color:#102845">DOUBLEU</div>
+      <div style="font-size:8px;letter-spacing:.34em;color:#102845;margin-top:4px">TENNIS CULTURE</div>
+      <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#a04f31;
+         font-weight:700;margin-top:24px">Verlosung ${esc(CLUBS[club] || club)}</div>
+      <h1 style="font-family:Georgia,serif;font-weight:400;font-size:26px;color:#102845;margin:8px 0 0">
+        La prima registrazione &egrave; arrivata</h1>
+      <p style="font-size:15px;line-height:1.6;color:#2b3542;margin:16px 0 0">
+        Il primo socio si &egrave; registrato alle ${esc(quando)} e ha ricevuto il numero
+        <b>${esc(numero)}</b>. Il QR, l&rsquo;app e il database funzionano.
+      </p>
+      <p style="font-size:14px;line-height:1.6;color:#6f6d68;margin:18px 0 0">
+        Da qui in avanti nessun altro avviso: il numero di partecipanti lo vedi
+        in ogni momento dalla pagina dell&rsquo;estrazione.
+      </p>
+    </div>`;
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + RESEND_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: FROM, to: [NOTIFY], reply_to: NOTIFY,
+        subject: `Verlosung ${esc(CLUBS[club] || club)}: prima registrazione`,
+        html,
+      }),
+    });
+  } catch (e) {
+    /* La registrazione del socio e' gia' avvenuta: un avviso mancato non
+       deve farla fallire. */
+    console.log(JSON.stringify({ event: 'avviso_prima_registrazione_fallito', errore: String(e) }));
+  }
+}
+
+function esc(v) {
+  return String(v == null ? '' : v).replace(/[&<>"]/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 }
 
 module.exports = async (req, res) => {
@@ -128,6 +195,7 @@ module.exports = async (req, res) => {
       console.error('raffle-signup: risposta senza seq', JSON.stringify(rows).slice(0, 200));
       return res.status(502).json({ error: 'Registrazione non riuscita' });
     }
+    await avvisaPrimaRegistrazione(club, row);
     return res.status(200).json({ number: entryNumber(club, row.seq) });
   } catch (err) {
     console.error('raffle-signup:', err && err.message);

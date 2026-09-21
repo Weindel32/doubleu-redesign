@@ -18,7 +18,7 @@ function isAllowedOrigin(origin) {
 /* Club ammessi e loro sigla nel numero di partecipazione. Un club che non
    sta qui non puo' registrare nessuno, anche se qualcuno ne inventa il nome. */
 const CLUBS = { mtc: 'MTC' };
-const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+const SIZES = ['XS', 'S', 'M', 'L', 'XL'];
 const LANGS = ['IT', 'EN', 'DE'];
 const MAX_LEN = 80;
 

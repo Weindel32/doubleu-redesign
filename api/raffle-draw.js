@@ -32,6 +32,9 @@ const CLUBS = {
     /* 27 settembre 2026, 19:30 in Germania (CEST, UTC+2). */
     chiusura: Date.parse('2026-09-27T17:30:00Z'),
   },
+  /* Temporaneo: serve a vedere arrivare in casella l'email al vincitore,
+     con un finto iscritto. Da togliere appena fatta la prova. */
+  prova: { sigla: 'PROVA', nome: 'Prova generale', chiusura: 0 },
 };
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
@@ -87,7 +90,127 @@ function sorteggia(n) {
   return v % n;
 }
 
-async function avvisaDoubleu(club, estrazione, vincitore, totale) {
+/* ---- email a chi ha vinto -------------------------------------------------
+
+   Parte da sola nel momento dell'estrazione: se il vincitore e' al club
+   mentre il delegato annuncia il numero, il telefono gli vibra in quell'
+   istante. E' il motivo per cui non la mandiamo a mano il giorno dopo.
+
+   Le tre lingue nascono dalla stessa struttura, cosi' una modifica
+   all'impaginazione non puo' applicarsi a una lingua sola. */
+
+const COPY_VINCITORE = {
+  IT: {
+    subject: 'Hai vinto \u2014 Verlosung {club}',
+    eyebrow: 'Verlosung \u00b7 {club}',
+    h1: 'Hai vinto.',
+    lead: 'Fra tutti i soci che si sono registrati al club, il numero estratto \u00e8 il tuo.',
+    ticketLabel: 'Il tuo numero',
+    prize: 'Il premio \u00e8 una <b>t-shirt DOUBLEU cucita a mano in Italia</b>, scelta fra le '
+         + 'collezioni <b>CLAY</b> e <b>WFOX</b>, nella taglia che hai indicato quando ti sei '
+         + 'registrato: <b>{taglia}</b>.',
+    whereLabel: 'Dove te la mandiamo?',
+    where: 'Rispondi a questa email con <b>nome, indirizzo, citt\u00e0 e paese</b>. Prepariamo il '
+         + 'pacco e lo spediamo al tuo indirizzo <b>entro 8 giorni lavorativi</b>.',
+    deadline: 'Hai <b>14 giorni</b> per rispondere: passati quelli, il regolamento prevede che il '
+            + 'premio venga riassegnato a un altro partecipante.',
+    close: 'Complimenti. Ti diamo il benvenuto in DOUBLEU.',
+  },
+  DE: {
+    subject: 'Du hast gewonnen \u2014 Verlosung {club}',
+    eyebrow: 'Verlosung \u00b7 {club}',
+    h1: 'Du hast gewonnen.',
+    lead: 'Unter allen Mitgliedern, die sich angemeldet haben, wurde deine Nummer gezogen.',
+    ticketLabel: 'Deine Nummer',
+    prize: 'Der Gewinn ist ein <b>in Italien von Hand gefertigtes DOUBLEU T-Shirt</b>, '
+         + 'ausgew\u00e4hlt aus den Kollektionen <b>CLAY</b> und <b>WFOX</b>, in der '
+         + 'Gr\u00f6\u00dfe, die du bei der Anmeldung angegeben hast: <b>{taglia}</b>.',
+    whereLabel: 'Wohin sollen wir es schicken?',
+    where: 'Antworte einfach auf diese E-Mail mit <b>Name, Adresse, Stadt und Land</b>. Wir packen '
+         + 'den Gewinn und senden ihn <b>innerhalb von 8 Werktagen</b> an deine Adresse.',
+    deadline: 'Du hast <b>14 Tage</b> Zeit zu antworten: danach wird der Gewinn gem\u00e4\u00df den '
+            + 'Teilnahmebedingungen unter den \u00fcbrigen Teilnehmenden neu ausgelost.',
+    close: 'Herzlichen Gl\u00fcckwunsch. Willkommen bei DOUBLEU.',
+  },
+  EN: {
+    subject: 'You won \u2014 Prize draw {club}',
+    eyebrow: 'Prize draw \u00b7 {club}',
+    h1: 'You won.',
+    lead: 'Among all the members who signed up at the club, yours is the number that was drawn.',
+    ticketLabel: 'Your number',
+    prize: 'The prize is a <b>DOUBLEU t-shirt, handmade in Italy</b>, chosen from the <b>CLAY</b> '
+         + 'and <b>WFOX</b> collections, in the size you gave when you signed up: <b>{taglia}</b>.',
+    whereLabel: 'Where should we send it?',
+    where: 'Just reply to this email with your <b>name, address, city and country</b>. We pack it '
+         + 'and ship it to your address <b>within 8 working days</b>.',
+    deadline: 'You have <b>14 days</b> to reply: after that, the terms provide for the prize to be '
+            + 'drawn again among the remaining entrants.',
+    close: 'Congratulations. Welcome to DOUBLEU.',
+  },
+};
+
+function paginaVincitore(t, numeroStr) {
+  return `<div style="max-width:520px;margin:0 auto;background:#fffdf8;color:#1b2430">
+ <div style="padding:34px 30px 30px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+  <div style="font-weight:700;letter-spacing:.13em;font-size:17px;color:#102845;line-height:1">DOUBLEU</div>
+  <div style="font-size:8px;letter-spacing:.34em;color:#102845;margin-top:5px">TENNIS CULTURE</div>
+  <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#a04f31;font-weight:700;margin-top:30px">${t.eyebrow}</div>
+  <h1 style="font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:40px;
+             line-height:1.1;letter-spacing:-.02em;color:#102845;margin:10px 0 0">${t.h1}</h1>
+  <p style="font-size:16px;line-height:1.6;color:#2b3542;margin:18px 0 0">${t.lead}</p>
+  <div style="margin:26px 0 0;padding:22px;background:#f5efe5;border-radius:4px;text-align:center">
+    <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6f6d68">${t.ticketLabel}</div>
+    <div style="font-family:Georgia,serif;font-size:38px;line-height:1;color:#102845;margin-top:10px">${numeroStr}</div>
+  </div>
+  <p style="font-size:16px;line-height:1.65;color:#2b3542;margin:26px 0 0">${t.prize}</p>
+  <div style="height:1px;background:#10284522;margin:30px 0"></div>
+  <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#a04f31;font-weight:700">${t.whereLabel}</div>
+  <p style="font-size:16px;line-height:1.65;color:#2b3542;margin:12px 0 0">${t.where}</p>
+  <p style="font-size:14.5px;line-height:1.6;color:#6f6d68;margin:18px 0 0">${t.deadline}</p>
+  <p style="font-size:16px;line-height:1.65;color:#2b3542;margin:30px 0 0">${t.close}</p>
+  <p style="font-size:16px;line-height:1.5;color:#102845;margin:16px 0 0">Marco Pagnotta<br>
+    <span style="font-size:13px;color:#6f6d68">CEO &amp; Founder, DOUBLEU</span></p>
+ </div>
+ <div style="padding:20px 30px 26px;border-top:1px solid #10284522;font-size:11.5px;line-height:1.6;
+      color:#6f6d68;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+   DOUBLEU SRLS \u2014 Via Generale Luigi Parisi 53, 84013 Cava de\u2019 Tirreni (SA)<br>
+   info@doubleutennis.com \u00b7 doubleutennis.com
+ </div>
+</div>`;
+}
+
+async function avvisaVincitore(club, vincitore) {
+  if (!RESEND_KEY || !vincitore.email) return false;
+  const base = COPY_VINCITORE[vincitore.lang] || COPY_VINCITORE.DE;
+  const numeroStr = numero(club.sigla, vincitore.seq);
+  const riempi = v => v.split('{club}').join(esc(club.nome))
+                       .split('{taglia}').join(esc(vincitore.size || ''));
+  const t = {};
+  for (const k of Object.keys(base)) t[k] = riempi(base[k]);
+  try {
+    const r = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + RESEND_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: FROM,
+        to: [vincitore.email],
+        /* Le risposte arrivano dove Marco legge: il vincitore rispondera' a
+           questa mail con il suo indirizzo di spedizione. */
+        reply_to: NOTIFY,
+        subject: t.subject,
+        html: paginaVincitore(t, numeroStr),
+      }),
+    });
+    return r.ok;
+  } catch (e) {
+    /* L'estrazione resta valida: la mail interna porta comunque a Marco
+       nome, email e taglia, e puo' scrivere a mano. */
+    console.log(JSON.stringify({ event: 'mail_vincitore_fallita', errore: String(e) }));
+    return false;
+  }
+}
+
+async function avvisaDoubleu(club, estrazione, vincitore, totale, avvisato) {
   if (!RESEND_KEY) return;
   const quando = new Date(estrazione.drawn_at).toLocaleString('it-IT', {
     timeZone: 'Europe/Rome', dateStyle: 'short', timeStyle: 'short',
@@ -100,6 +223,7 @@ async function avvisaDoubleu(club, estrazione, vincitore, totale) {
     ['Lingua', vincitore.lang || '—'],
     ['Partecipanti', String(totale)],
     ['Estrazione', 'n. ' + estrazione.round + ' del ' + quando],
+    ['Email al vincitore', avvisato ? 'inviata' : 'NON inviata \u2014 scrivigli a mano'],
   ];
   const html = `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
      max-width:520px;margin:0 auto;padding:28px 24px;background:#fffdf8;color:#1b2430">
@@ -252,7 +376,8 @@ module.exports = async (req, res) => {
   if (!rIns.ok) return res.status(502).json({ error: 'Registrazione fallita' });
   const estrazione = (await rIns.json())[0];
 
-  await avvisaDoubleu(club, estrazione, vincitore, totale);
+  const avvisato = await avvisaVincitore(club, vincitore);
+  await avvisaDoubleu(club, estrazione, vincitore, totale, avvisato);
 
   console.log(JSON.stringify({
     event: 'estrazione', club: clubKey, round, seq: vincitore.seq, partecipanti: totale,

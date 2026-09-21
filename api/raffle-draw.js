@@ -32,6 +32,16 @@ const CLUBS = {
     /* 27 settembre 2026, 19:30 in Germania (CEST, UTC+2). */
     chiusura: Date.parse('2026-09-27T17:30:00Z'),
   },
+  /* Club finto per la prova generale: sempre aperto, dati propri, nessun
+     contatto con le registrazioni dell'MTC. Serve a vedere l'estrazione
+     succedere davvero prima della sera dell'evento, perche' quella sera il
+     pulsante lo premera' una persona che non puo' chiamare nessuno.
+     Da togliere dopo la prova. */
+  prova: {
+    sigla: 'PROVA',
+    nome: 'Prova generale',
+    chiusura: 0,
+  },
 };
 
 const SUPABASE_URL = process.env.SUPABASE_URL;

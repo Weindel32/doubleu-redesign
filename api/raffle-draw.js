@@ -32,16 +32,6 @@ const CLUBS = {
     /* 27 settembre 2026, 19:30 in Germania (CEST, UTC+2). */
     chiusura: Date.parse('2026-09-27T17:30:00Z'),
   },
-  /* Club finto per la prova generale: sempre aperto, dati propri, nessun
-     contatto con le registrazioni dell'MTC. Serve a vedere l'estrazione
-     succedere davvero prima della sera dell'evento, perche' quella sera il
-     pulsante lo premera' una persona che non puo' chiamare nessuno.
-     Da togliere dopo la prova. */
-  prova: {
-    sigla: 'PROVA',
-    nome: 'Prova generale',
-    chiusura: 0,
-  },
 };
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
@@ -127,7 +117,7 @@ async function avvisaDoubleu(club, estrazione, vincitore, totale) {
       </tr>`).join('')}
     </table>
     <p style="font-size:13px;line-height:1.6;color:#6f6d68;margin-top:24px">
-      Al club e' stato annunciato soltanto il numero. Il nome non e' uscito da qui.<br>
+      Al club è stato annunciato soltanto il numero: il nome non è uscito da qui.<br>
       Se il vincitore non risponde entro 14 giorni, il premio si riassegna.
     </p>
   </div>`;

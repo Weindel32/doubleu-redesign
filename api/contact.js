@@ -36,7 +36,11 @@ const TABLE = 'contact_requests';
 
 const RESEND_KEY = process.env.RESEND_API_KEY;
 const FROM = 'DOUBLEU <info@doubleutennis.com>';
+/* Gli avvisi interni vanno dove Marco legge davvero (CONTACT_NOTIFY_EMAIL,
+   impostata su Vercel); il cliente invece vede e risponde sempre a info@,
+   l'indirizzo del marchio. */
 const NOTIFY = process.env.CONTACT_NOTIFY_EMAIL || 'info@doubleutennis.com';
+const REPLY_TO = 'info@doubleutennis.com';
 
 function clean(v, max) {
   return typeof v === 'string' ? v.trim().replace(/\s+/g, ' ').slice(0, max) : '';
@@ -106,39 +110,42 @@ const COPY_CLIENTE = {
     eyebrow: 'Richiesta ricevuta',
     h1: 'Grazie, {nome}.',
     lead: 'La tua richiesta è arrivata ed è già nelle mani del nostro team. '
-        + 'Ti rispondiamo personalmente <b>entro 48 ore lavorative</b>.',
+        + 'Ti rispondiamo personalmente <b>entro 24 ore lavorative</b>.',
     recapLabel: 'Il tuo messaggio',
     typeLabel: 'Tipo di richiesta',
     clubLabel: 'Club',
     next: 'Se vuoi aggiungere dettagli, loghi o riferimenti, rispondi pure a questa email: '
         + 'arriva direttamente a noi.',
     close: 'A presto,',
+    signature: 'Il team DOUBLEU',
   },
   EN: {
     subject: 'We have received your request · DOUBLEU',
     eyebrow: 'Request received',
     h1: 'Thank you, {nome}.',
     lead: 'Your request has reached us and is already with our team. '
-        + 'We will reply personally <b>within 48 working hours</b>.',
+        + 'We will reply personally <b>within 24 working hours</b>.',
     recapLabel: 'Your message',
     typeLabel: 'Type of enquiry',
     clubLabel: 'Club',
     next: 'If you would like to add details, logos or references, just reply to this email: '
         + 'it comes straight to us.',
     close: 'Speak soon,',
+    signature: 'The DOUBLEU team',
   },
   DE: {
     subject: 'Wir haben deine Anfrage erhalten · DOUBLEU',
     eyebrow: 'Anfrage erhalten',
     h1: 'Danke, {nome}.',
     lead: 'Deine Anfrage ist bei uns angekommen und liegt bereits bei unserem Team. '
-        + 'Wir antworten dir persönlich <b>innerhalb von 48 Arbeitsstunden</b>.',
+        + 'Wir antworten dir persönlich <b>innerhalb von 24 Arbeitsstunden</b>.',
     recapLabel: 'Deine Nachricht',
     typeLabel: 'Art der Anfrage',
     clubLabel: 'Club',
     next: 'Möchtest du Details, Logos oder Referenzen ergänzen? Antworte einfach auf '
         + 'diese E-Mail: Sie kommt direkt bei uns an.',
     close: 'Bis bald,',
+    signature: 'Dein DOUBLEU Team',
   },
 };
 
@@ -164,8 +171,7 @@ function paginaCliente(t, r) {
   </div>
   <p style="font-size:15px;line-height:1.65;color:#2b3542;margin:26px 0 0">${t.next}</p>
   <p style="font-size:16px;line-height:1.65;color:#2b3542;margin:30px 0 0">${t.close}</p>
-  <p style="font-size:16px;line-height:1.5;color:#102845;margin:6px 0 0">Marco Pagnotta<br>
-    <span style="font-size:13px;color:#6f6d68">CEO &amp; Founder, DOUBLEU</span></p>
+  <p style="font-size:16px;line-height:1.5;color:#102845;margin:6px 0 0">${t.signature}</p>
  </div>
  <div style="padding:20px 30px 26px;border-top:1px solid #10284522;font-size:11.5px;line-height:1.6;
       color:#6f6d68;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
@@ -283,7 +289,7 @@ module.exports = async (req, res) => {
     for (const k of Object.keys(base)) t[k] = base[k].split('{nome}').join(esc(r.name.split(' ')[0]));
     const autoReply = await sendMail({
       to: [r.email],
-      reply_to: NOTIFY,
+      reply_to: REPLY_TO,
       subject: t.subject,
       html: paginaCliente(t, r),
     });

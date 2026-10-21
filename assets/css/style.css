@@ -210,6 +210,7 @@ a { text-decoration: none; color: inherit; }
   justify-content: center;
 }
 
+.hero-content h1,
 .hero-content h2 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 54px;
@@ -646,6 +647,11 @@ a { text-decoration: none; color: inherit; }
 .footer-lang a { color: #8a9aaa; transition: color 0.2s; }
 .footer-links a:hover,
 .footer-lang a:hover { color: #fff; }
+
+.footer-social { display: flex; gap: 16px; align-items: center; }
+.footer-social a { color: #8a9aaa; display: inline-flex; transition: color 0.2s; }
+.footer-social a:hover { color: #fff; }
+.footer-social svg { display: block; }
 
 
 /* ================================
@@ -1554,7 +1560,7 @@ a { text-decoration: none; color: inherit; }
   .made-grid { grid-template-columns: repeat(2, 1fr); }
   .case-grid { grid-template-columns: 1fr; }
   .visual-collection-grid { grid-template-columns: 1fr; }
-  .hero-content h2 { font-size: 44px; }
+  .hero-content h1, .hero-content h2 { font-size: 44px; }
 }
 
 @media (max-width: 860px) {
@@ -1567,7 +1573,7 @@ a { text-decoration: none; color: inherit; }
 
   .hero-split { grid-template-columns: 1fr; }
   .hero-content { padding: 48px 0 32px; }
-  .hero-content h2 { font-size: 36px; }
+  .hero-content h1, .hero-content h2 { font-size: 36px; }
 
   .cs-hero { padding: 40px 0 32px; }
   .cs-hero-title { font-size: 36px; }
@@ -1620,7 +1626,7 @@ a { text-decoration: none; color: inherit; }
 
 @media (max-width: 600px) {
   .brand-name { font-size: 30px; }
-  .hero-content h2 { font-size: 30px; }
+  .hero-content h1, .hero-content h2 { font-size: 30px; }
   .club-icons-grid { grid-template-columns: repeat(2, 1fr); }
   .made-grid { grid-template-columns: repeat(2, 1fr); }
   .feature-cards-grid { grid-template-columns: 1fr; }

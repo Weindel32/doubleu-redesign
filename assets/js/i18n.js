@@ -123,6 +123,21 @@ const TRANSLATIONS = {
     "club.cs.1.desc": "Kit scuola e shop club per uno dei club più dinamici della scena tedesca.",
     "club.cs.2.desc": "Identità visiva completa per scuola, staff e lifestyle del club.",
     "club.cs.3.desc": "Heritage internazionale dal 1928. Sviluppo apparel Made in Italy dal 2019.",
+    "club.about.title": "Chi siamo",
+    "club.about.desc": "DOUBLEU è un brand italiano specializzato nella progettazione e produzione di abbigliamento sportivo personalizzato premium per club di tennis, padel e pickleball. Dalle divise gara ai kit scuola, fino alle collezioni off-court e agli shop dedicati ai soci, sviluppiamo ogni progetto attorno all'identità del club, senza partire da un catalogo standard.",
+    "club.faq.title": "Domande frequenti",
+    "club.faq.q1": "DOUBLEU realizza abbigliamento personalizzato per tennis club?",
+    "club.faq.a1": "Sì. DOUBLEU progetta e produce collezioni su misura per club di tennis, padel e pickleball, scuole tennis e accademie: dalle divise gara ai kit scuola, fino all'abbigliamento staff e off-court.",
+    "club.faq.q2": "Dove vengono prodotti i capi DOUBLEU?",
+    "club.faq.a2": "In Italia, con materiali selezionati e controllo qualità artigianale.",
+    "club.faq.q3": "È possibile sviluppare una collezione esclusiva per il proprio club?",
+    "club.faq.a3": "Sì. Ogni progetto nasce dall'identità del club, non da un catalogo standard: tessuti, colori e direzione stilistica vengono definiti insieme e affinati fino all'approvazione finale.",
+    "club.faq.q4": "Quali tipologie di abbigliamento possono essere personalizzate?",
+    "club.faq.a4": "Kit scuola tennis e padel, divise gara, abbigliamento staff e capi off-court: t-shirt, polo, pantaloncini, gonnellini, felpe, tute e cappellini. La personalizzazione comprende ricami, inserti, etichette e finiture.",
+    "club.faq.q5": "DOUBLEU collabora anche con club e accademie fuori dall'Italia?",
+    "club.faq.a5": "Sì. Oltre all'Italia, DOUBLEU ha sviluppato progetti in Germania, Belgio e Spagna. Seguiamo i clienti in italiano, inglese e tedesco.",
+    "club.faq.q6": "È possibile realizzare uno shop online dedicato ai soci del club?",
+    "club.faq.a6": "Sì. Possiamo attivare un'area riservata con e-commerce dedicato ai soci e un sistema di ordine collettivo con consegna centralizzata al club, come per MTC Ausstellungspark e All Round Sport & Wellness.",
     "club.cta.title": "Costruisci l'identità del tuo club con DOUBLEU.",
     "club.cta.btn": "Avvia un progetto club",
     // Capsule
@@ -486,6 +501,7 @@ const TRANSLATIONS = {
     "contact.desc": "Che tu stia pensando a una nuova collezione per il tuo club o voglia saperne di più sulle capsule, siamo pronti ad ascoltarti.",
     "contact.sede.label": "Sede",
     "contact.sede.value": "Italia",
+    "contact.social.label": "Social",
     "contact.lang.label": "Lingua",
     "contact.lang.value": "Italiano · English · Deutsch",
     "contact.form.name.label": "Nome e cognome",
@@ -952,6 +968,21 @@ const TRANSLATIONS = {
     "club.cs.1.desc": "School kit and club shop for one of the most dynamic clubs in the German scene.",
     "club.cs.2.desc": "Complete visual identity for school, staff and club lifestyle.",
     "club.cs.3.desc": "International heritage since 1928. Made in Italy apparel development since 2019.",
+    "club.about.title": "About us",
+    "club.about.desc": "DOUBLEU is an Italian brand specialising in the design and production of premium custom sportswear for tennis, padel and pickleball clubs. From match uniforms and school kits to off-court collections and dedicated member shops, we build every project around the club's identity, never starting from a standard catalogue.",
+    "club.faq.title": "Frequently asked questions",
+    "club.faq.q1": "Does DOUBLEU make custom apparel for tennis clubs?",
+    "club.faq.a1": "Yes. DOUBLEU designs and produces bespoke collections for tennis, padel and pickleball clubs, tennis schools and academies: from match uniforms and school kits to staff and off-court apparel.",
+    "club.faq.q2": "Where are DOUBLEU garments made?",
+    "club.faq.a2": "In Italy, with selected materials and artisanal quality control.",
+    "club.faq.q3": "Can we develop an exclusive collection for our club?",
+    "club.faq.a3": "Yes. Every project starts from the club's identity, not from a standard catalogue: fabrics, colours and stylistic direction are defined together and refined until final approval.",
+    "club.faq.q4": "Which types of apparel can be customised?",
+    "club.faq.a4": "Tennis and padel school kits, match uniforms, staff apparel and off-court garments: t-shirts, polos, shorts, skirts, sweatshirts, tracksuits and caps. Customisation includes embroidery, inserts, labels and finishes.",
+    "club.faq.q5": "Does DOUBLEU work with clubs and academies outside Italy?",
+    "club.faq.a5": "Yes. Beyond Italy, DOUBLEU has developed projects in Germany, Belgium and Spain. We work with clients in Italian, English and German.",
+    "club.faq.q6": "Can you set up an online shop dedicated to club members?",
+    "club.faq.a6": "Yes. We can set up a reserved area with a members-only online shop and a collective ordering system with centralised delivery to the club, as we did for MTC Ausstellungspark and All Round Sport & Wellness.",
     "club.cta.title": "Build your club's identity with DOUBLEU.",
     "club.cta.btn": "Start a club project",
     "capsule.hero.eyebrow": "Limited Capsules",
@@ -1312,6 +1343,7 @@ const TRANSLATIONS = {
     "contact.desc": "Whether you're thinking about a new collection for your club or want to learn more about our capsules, we're ready to listen.",
     "contact.sede.label": "Location",
     "contact.sede.value": "Italy",
+    "contact.social.label": "Social",
     "contact.lang.label": "Language",
     "contact.lang.value": "Italiano · English · Deutsch",
     "contact.form.name.label": "Full name",
@@ -1773,6 +1805,21 @@ const TRANSLATIONS = {
     "club.cs.1.desc": "Vereinslinie und Onlineshop für einen der traditionsreichsten Tennisvereine Münchens.",
     "club.cs.2.desc": "Komplette visuelle Identität für Schule, Personal und Vereinslebensstil.",
     "club.cs.3.desc": "Internationales Erbe seit 1928. Made-in-Italy-Bekleidung seit 2019.",
+    "club.about.title": "Über uns",
+    "club.about.desc": "DOUBLEU ist eine italienische Marke, spezialisiert auf Design und Produktion hochwertiger individueller Sportbekleidung für Tennis-, Padel- und Pickleball-Vereine. Von Matchtrikots und Schulkits bis zu Off-Court-Kollektionen und eigenen Mitgliedershops entwickeln wir jedes Projekt rund um die Identität des Vereins – nie ausgehend von einem Standardkatalog.",
+    "club.faq.title": "Häufige Fragen",
+    "club.faq.q1": "Fertigt DOUBLEU individuelle Bekleidung für Tennisvereine?",
+    "club.faq.a1": "Ja. DOUBLEU entwirft und produziert maßgeschneiderte Kollektionen für Tennis-, Padel- und Pickleball-Vereine, Tennisschulen und Akademien: von Matchtrikots und Schulkits bis zu Trainer- und Off-Court-Bekleidung.",
+    "club.faq.q2": "Wo werden die DOUBLEU-Kleidungsstücke hergestellt?",
+    "club.faq.a2": "In Italien, mit ausgewählten Materialien und handwerklicher Qualitätskontrolle.",
+    "club.faq.q3": "Können wir eine exklusive Kollektion für unseren Verein entwickeln?",
+    "club.faq.a3": "Ja. Jedes Projekt entsteht aus der Identität des Vereins, nicht aus einem Standardkatalog: Stoffe, Farben und stilistische Richtung werden gemeinsam festgelegt und bis zur finalen Freigabe verfeinert.",
+    "club.faq.q4": "Welche Bekleidung kann individuell gestaltet werden?",
+    "club.faq.a4": "Tennis- und Padel-Schulkits, Matchtrikots, Trainerbekleidung und Off-Court-Kleidung: T-Shirts, Polos, Shorts, Röcke, Sweatshirts, Trainingsanzüge und Caps. Die Personalisierung umfasst Stickereien, Einsätze, Etiketten und Veredelungen.",
+    "club.faq.q5": "Arbeitet DOUBLEU auch mit Vereinen und Akademien außerhalb Italiens?",
+    "club.faq.a5": "Ja. Neben Italien hat DOUBLEU Projekte in Deutschland, Belgien und Spanien umgesetzt. Wir betreuen unsere Kunden auf Italienisch, Englisch und Deutsch.",
+    "club.faq.q6": "Ist ein eigener Onlineshop für die Vereinsmitglieder möglich?",
+    "club.faq.a6": "Ja. Wir können einen geschützten Mitgliederbereich mit eigenem Onlineshop und ein Sammelbestellsystem mit zentraler Lieferung an den Verein einrichten – wie für MTC Ausstellungspark und All Round Sport & Wellness.",
     "club.cta.title": "Bauen Sie die Identität Ihres Vereins mit DOUBLEU auf.",
     "club.cta.btn": "Vereinsprojekt starten",
     "capsule.hero.eyebrow": "Limitierte Kapseln",
@@ -2133,6 +2180,7 @@ const TRANSLATIONS = {
     "contact.desc": "Ob Sie an einer neuen Kollektion für Ihren Verein denken oder mehr über unsere Kapseln erfahren möchten — wir sind bereit, Ihnen zuzuhören.",
     "contact.sede.label": "Standort",
     "contact.sede.value": "Italien",
+    "contact.social.label": "Social Media",
     "contact.lang.label": "Sprache",
     "contact.lang.value": "Italiano · English · Deutsch",
     "contact.form.name.label": "Vor- und Nachname",
@@ -2485,12 +2533,33 @@ const TRANSLATIONS = {
 const DEFAULT_LANG = 'it';
 const STORAGE_KEY = 'dw-lang';
 
+// Pagine con URL dedicato per lingua (/en/, /de/): la lingua è quella della pagina
+const PAGE_LANG = document.documentElement.hasAttribute('data-i18n-fixed')
+  ? document.documentElement.lang.slice(0, 2)
+  : null;
+
 function getLang() {
-  return localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG;
+  if (PAGE_LANG) return PAGE_LANG;
+  try { return localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG; } catch (e) { return DEFAULT_LANG; }
 }
 
 function setLang(lang) {
-  localStorage.setItem(STORAGE_KEY, lang);
+  try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+}
+
+// Percorso della versione della pagina in un'altra lingua (dai tag hreflang), se esiste
+function alternatePath(lang) {
+  const link = document.querySelector('link[rel="alternate"][hreflang="' + lang + '"]');
+  return link ? new URL(link.href).pathname : null;
+}
+
+if (PAGE_LANG) {
+  setLang(PAGE_LANG);
+} else {
+  // Pagina italiana con versioni tradotte: chi ha scelto EN/DE va alla sua versione
+  const pref = getLang();
+  const alt = pref !== DEFAULT_LANG && alternatePath(pref);
+  if (alt) location.replace(alt + location.search + location.hash);
 }
 
 function t(key, lang) {
@@ -2534,8 +2603,13 @@ function initI18n() {
       e.preventDefault();
       const newLang = el.getAttribute('data-lang');
       setLang(newLang);
-      applyTranslations(newLang);
       if (window.DWAnalytics) DWAnalytics.track('select_language', { language: newLang });
+      const alt = alternatePath(newLang);
+      if (alt) {
+        if (alt !== location.pathname) location.href = alt + location.search + location.hash;
+        return;
+      }
+      applyTranslations(newLang);
     });
   });
 

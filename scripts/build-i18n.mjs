@@ -139,6 +139,60 @@ const JSONLD_TEXT = {
   'Marchio storico del tennis internazionale': { en: 'Historic international tennis brand', de: 'Traditionsmarke des internationalen Tennis' },
 };
 
+// Testi alternativi delle immagini (alt) che non coincidono con un testo di i18n.js.
+// Nomi propri e nomi di prodotto restano invariati (ALT_KEEP).
+const ALT_TEXT = {
+  'Atleti in campo con abbigliamento DOUBLEU': { en: 'Players on court wearing DOUBLEU apparel', de: 'Spieler auf dem Platz in DOUBLEU-Bekleidung' },
+  'Abbigliamento tennis personalizzato DOUBLEU per club': { en: 'DOUBLEU custom tennis apparel for clubs', de: 'Individuelle DOUBLEU-Tennisbekleidung für Vereine' },
+  'Capsule Limitate DOUBLEU': { en: 'DOUBLEU limited capsules', de: 'Limitierte DOUBLEU-Capsules' },
+  'Collezioni Club': { en: 'Club collections', de: 'Vereinskollektionen' },
+  'Cultura Tennis': { en: 'Tennis culture', de: 'Tenniskultur' },
+  'Artigianale': { en: 'Craftsmanship', de: 'Handwerk' },
+  'Italia': { en: 'Italy', de: 'Italien' },
+  'Materiali': { en: 'Materials', de: 'Materialien' },
+  'Materiali selezionati': { en: 'Selected materials', de: 'Ausgewählte Materialien' },
+  'Materiali Premium': { en: 'Premium materials', de: 'Premium-Materialien' },
+  'Produzione': { en: 'Production', de: 'Produktion' },
+  'Produzione artigianale': { en: 'Artisanal production', de: 'Handwerkliche Produktion' },
+  'Produzione Made in Italy': { en: 'Made in Italy production', de: 'Produktion Made in Italy' },
+  'Personalizzazione': { en: 'Customisation', de: 'Personalisierung' },
+  'Tempi chiari': { en: 'Clear timelines', de: 'Klare Zeitpläne' },
+  'Tirature Limitate': { en: 'Limited runs', de: 'Limitierte Auflagen' },
+  'Lucchetto': { en: 'Padlock', de: 'Vorhängeschloss' },
+  'Gruccia': { en: 'Hanger', de: 'Kleiderbügel' },
+  'Staff': { en: 'Staff', de: 'Trainerteam' },
+  'Conferma': { en: 'Confirmation', de: 'Freigabe' },
+  'Distinta Taglie': { en: 'Size list', de: 'Größenliste' },
+  'Consegna': { en: 'Delivery', de: 'Lieferung' },
+  'T-Shirt Uomo': { en: "Men's T-shirt", de: 'Herren-T-Shirt' },
+  'T-Shirt Donna': { en: "Women's T-shirt", de: 'Damen-T-Shirt' },
+  'Collezione Club MTC': { en: 'MTC club collection', de: 'MTC-Vereinskollektion' },
+  'Ordine Collettivo MTC': { en: 'MTC collective order', de: 'MTC-Sammelbestellung' },
+  'Festa di Natale MTC': { en: 'MTC Christmas party', de: 'MTC-Weihnachtsfeier' },
+  'Linea Premium All Round': { en: 'All Round Premium Line', de: 'All Round Premium Line' },
+  'Area Soci All Round': { en: 'All Round members area', de: 'All Round Mitgliederbereich' },
+  'Design e Sviluppo Collezione': { en: 'Collection design and development', de: 'Kollektionsdesign und -entwicklung' },
+  'WFOX — coppia al tennis club': { en: 'WFOX — couple at the tennis club', de: 'WFOX — Paar im Tennisclub' },
+  'WFOX — Lifestyle fuori dal campo': { en: 'WFOX — off-court lifestyle', de: 'WFOX — Lifestyle abseits des Platzes' },
+  'WFOX indossato': { en: 'WFOX worn', de: 'WFOX getragen' },
+  'T-shirt verde WFOX': { en: 'WFOX green T-shirt', de: 'Grünes WFOX-T-Shirt' },
+  'Felpa WFOX': { en: 'WFOX sweatshirt', de: 'WFOX-Sweatshirt' },
+  'Felpa SURFACES Clay': { en: 'SURFACES Clay sweatshirt', de: 'SURFACES Clay Sweatshirt' },
+  'SURFACES — Attrezzatura sul campo in terra': { en: 'SURFACES — gear on a clay court', de: 'SURFACES — Ausrüstung auf dem Sandplatz' },
+  'SURFACES Collection — CLAY e GRASS': { en: 'SURFACES Collection — CLAY and GRASS', de: 'SURFACES Collection — CLAY und GRASS' },
+  'Il progetto SURFACES': { en: 'The SURFACES project', de: 'Das Projekt SURFACES' },
+  'GRASS — Patch ricamata': { en: 'GRASS — embroidered patch', de: 'GRASS — gestickter Aufnäher' },
+};
+const ALT_KEEP = new Set([
+  '', 'Snauwaert', 'MTC Ausstellungspark', 'All Round', 'All Round Sport & Wellness', 'WFOX', 'WFOX Logo', 'WFOX Logo Tee',
+  'WFOX Tee flat lay', 'WFOX Tee White', 'WFOX Crewneck White', 'WFOX Crewneck Navy', 'WFOX Capsule', 'WFOX Capsule Hero',
+  'Visual Collection', 'Brief', 'Short', 'Polo', 'Shopping bag', 'Club-Shop MTC', 'Essential Line All Round', 'Keep Off The Grass',
+  'T-shirt SURFACES Clay', 'T-Shirt CLAY SURFACES', 'Sweatshirt CLAY SURFACES', 'Polo CLAY SURFACES', 'Cap SURFACES Clay', 'Cap CLAY SURFACES',
+  'SURFACES — A Decade On Court', 'GRASS Tee — SURFACES by DOUBLEU', 'GRASS Sweatshirt — SURFACES by DOUBLEU',
+  'GRASS Collection — A Surfaces Capsule by DOUBLEU', 'CLAY — A Surfaces Capsule',
+  ...Array.from({ length: 9 }, (_, i) => `DOUBLEU Lookbook 0${i + 1}`),
+]);
+
 // Titoli italiani dei case study usati come headline nei dati strutturati
 const CASE_HEADLINES = {
   'casestudies/mtc-ausstellungspark.html': 'DOUBLEU × MTC Ausstellungspark (Monaco di Baviera) — Abbigliamento Personalizzato per Tennis Club',
@@ -242,6 +296,19 @@ function translateMarkup(html, T, lang) {
   html = html.replace(/(<[^>]*\sdata-i18n-placeholder="([^"]+)"[^>]*>)/g, (tag, _t, key) =>
     tag.replace(/\splaceholder="[^"]*"/, ` placeholder="${escAttr(tr(T, key, lang))}"`));
   return html;
+}
+
+// Testi alternativi delle immagini: da i18n.js se coincidono con un testo italiano, altrimenti da ALT_TEXT
+function translateAlts(html, page, lang, T) {
+  const fromI18n = new Map();
+  for (const [key, it] of Object.entries(T.it)) if (T[lang][key] && !fromI18n.has(it)) fromI18n.set(it, T[lang][key]);
+  return html.replace(/(<img\b[^>]*?\salt=")([^"]*)(")/g, (m, pre, raw, post) => {
+    const alt = decode(raw);
+    const val = ALT_TEXT[alt]?.[lang] ?? fromI18n.get(alt);
+    if (val !== undefined) return pre + escAttr(val) + post;
+    if (!ALT_KEEP.has(alt)) console.warn(`  ! ${lang}/${page}: alt non tradotto: "${alt}"`);
+    return m;
+  });
 }
 
 // ---------------------------------------------------------- head e link
@@ -355,6 +422,7 @@ function buildPage(page, lang, T) {
   html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${publicUrl(page, lang)}$2`);
   html = setAlternates(html, page);
   html = rewriteLinks(html, page, lang);
+  html = translateAlts(html, page, lang, T);
   html = setLangSwitchLinks(html, page);
 
   const res = translateJsonLd(html, page, lang, textMap);

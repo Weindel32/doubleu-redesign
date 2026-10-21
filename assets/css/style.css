@@ -648,6 +648,11 @@ a { text-decoration: none; color: inherit; }
 .footer-links a:hover,
 .footer-lang a:hover { color: #fff; }
 
+.footer-social { display: flex; gap: 16px; align-items: center; }
+.footer-social a { color: #8a9aaa; display: inline-flex; transition: color 0.2s; }
+.footer-social a:hover { color: #fff; }
+.footer-social svg { display: block; }
+
 
 /* ================================
    CLUB PAGE — FEATURE CARDS

@@ -184,7 +184,7 @@ const ALT_TEXT = {
   'GRASS — Patch ricamata': { en: 'GRASS — embroidered patch', de: 'GRASS — gestickter Aufnäher' },
 };
 const ALT_KEEP = new Set([
-  '', 'Snauwaert', 'MTC Ausstellungspark', 'All Round', 'All Round Sport & Wellness', 'WFOX', 'WFOX Logo', 'WFOX Logo Tee',
+  '', 'Snauwaert', 'MTC Ausstellungspark', 'All Round', 'All Round Sport & Wellness', 'WFOX', 'WFOX — Be Your Nature', 'WFOX Logo', 'WFOX Logo Tee',
   'WFOX Tee flat lay', 'WFOX Tee White', 'WFOX Crewneck White', 'WFOX Crewneck Navy', 'WFOX Capsule', 'WFOX Capsule Hero',
   'Visual Collection', 'Brief', 'Short', 'Polo', 'Shopping bag', 'Club-Shop MTC', 'Essential Line All Round', 'Keep Off The Grass',
   'T-shirt SURFACES Clay', 'T-Shirt CLAY SURFACES', 'Sweatshirt CLAY SURFACES', 'Polo CLAY SURFACES', 'Cap SURFACES Clay', 'Cap CLAY SURFACES',

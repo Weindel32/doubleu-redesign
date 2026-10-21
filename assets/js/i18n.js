@@ -2530,12 +2530,33 @@ const TRANSLATIONS = {
 const DEFAULT_LANG = 'it';
 const STORAGE_KEY = 'dw-lang';
 
+// Pagine con URL dedicato per lingua (/en/, /de/): la lingua è quella della pagina
+const PAGE_LANG = document.documentElement.hasAttribute('data-i18n-fixed')
+  ? document.documentElement.lang.slice(0, 2)
+  : null;
+
 function getLang() {
-  return localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG;
+  if (PAGE_LANG) return PAGE_LANG;
+  try { return localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG; } catch (e) { return DEFAULT_LANG; }
 }
 
 function setLang(lang) {
-  localStorage.setItem(STORAGE_KEY, lang);
+  try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+}
+
+// Percorso della versione della pagina in un'altra lingua (dai tag hreflang), se esiste
+function alternatePath(lang) {
+  const link = document.querySelector('link[rel="alternate"][hreflang="' + lang + '"]');
+  return link ? new URL(link.href).pathname : null;
+}
+
+if (PAGE_LANG) {
+  setLang(PAGE_LANG);
+} else {
+  // Pagina italiana con versioni tradotte: chi ha scelto EN/DE va alla sua versione
+  const pref = getLang();
+  const alt = pref !== DEFAULT_LANG && alternatePath(pref);
+  if (alt) location.replace(alt + location.search + location.hash);
 }
 
 function t(key, lang) {
@@ -2579,8 +2600,13 @@ function initI18n() {
       e.preventDefault();
       const newLang = el.getAttribute('data-lang');
       setLang(newLang);
-      applyTranslations(newLang);
       if (window.DWAnalytics) DWAnalytics.track('select_language', { language: newLang });
+      const alt = alternatePath(newLang);
+      if (alt) {
+        if (alt !== location.pathname) location.href = alt + location.search + location.hash;
+        return;
+      }
+      applyTranslations(newLang);
     });
   });
 

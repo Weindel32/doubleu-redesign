@@ -54,8 +54,8 @@
   <!-- Analytics & Cookie Consent (prima del codice inline che usa DWAnalytics) -->
   <script src="assets/js/analytics.js"></script>
   <script>
-    // IMPORTANT: replace with your real Stripe publishable key
-    const STRIPE_PUBLISHABLE_KEY = 'pk_test_INSERISCI_QUI_LA_TUA_CHIAVE_PUBBLICA';
+    // Stessa chiave pubblica di checkout.html: il pagamento da verificare e' stato creato con quella
+    const STRIPE_PUBLISHABLE_KEY = 'pk_live_65e4UN3MEqffCgB7b7kfgwBx';
 
     const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
     const params = new URLSearchParams(location.search);

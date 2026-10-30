@@ -49,6 +49,7 @@
     </div>
   </main>
 
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/cart.js"></script>
   <!-- Analytics & Cookie Consent (prima del codice inline che usa DWAnalytics) -->
   <script src="assets/js/analytics.js"></script>
@@ -60,6 +61,9 @@
     const params = new URLSearchParams(location.search);
     const clientSecret = params.get('payment_intent_client_secret');
     const card = document.getElementById('success-card');
+    const lang = typeof getLang === 'function' ? getLang() : 'it';
+    const tr = key => typeof t === 'function' ? t(key, lang) : key;
+    card.querySelector('.success-loading').textContent = tr('shop.success.verifying');
 
     async function checkPayment() {
       if (!clientSecret) {
@@ -67,9 +71,9 @@
           <div class="success-icon">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126z"/></svg>
           </div>
-          <h1 class="success-title">Pagina non valida</h1>
-          <p class="success-desc">Torna al sito e riprova.</p>
-          <a href="wfox.html" class="btn primary">Torna alla Collezione</a>`;
+          <h1 class="success-title">${tr('shop.success.invalid.title')}</h1>
+          <p class="success-desc">${tr('shop.success.invalid.desc')}</p>
+          <a href="wfox.html" class="btn primary">${tr('shop.success.continue')}</a>`;
         return;
       }
 
@@ -99,15 +103,15 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4.5 12.75 6 6 9-13.5"/></svg>
           </div>
           <div class="success-eyebrow">WFOX by DOUBLEU</div>
-          <h1 class="success-title">Ordine<br>Confermato</h1>
-          <p class="success-desc">Grazie per il tuo acquisto. Riceverai una conferma via e-mail con tutti i dettagli e le informazioni di spedizione.</p>
-          <p class="success-email">Produzione Made in Italy — spediamo entro <strong>3–5 giorni lavorativi</strong>.</p>
+          <h1 class="success-title">${tr('shop.success.title')}</h1>
+          <p class="success-desc">${tr('shop.success.desc')}</p>
+          <p class="success-email">${tr('shop.success.shipping.note')}</p>
           <div class="success-order">
-            <div class="success-order-label">Numero Ordine</div>
+            <div class="success-order-label">${tr('shop.success.order.label')}</div>
             <div class="success-order-id">${orderId}</div>
           </div>
           <div class="success-actions">
-            <a href="wfox.html" class="btn primary">← Torna alla Collezione</a>
+            <a href="wfox.html" class="btn primary">${tr('shop.success.continue')}</a>
             <a href="index.html" class="btn">Home</a>
           </div>`;
       } else {
@@ -115,11 +119,11 @@
           <div class="success-icon" style="background:#c0392b">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6M6 6l12 12"/></svg>
           </div>
-          <h1 class="success-title">Pagamento<br>Non Completato</h1>
-          <p class="success-desc">Il pagamento non è andato a buon fine. Nessun importo è stato addebitato.</p>
+          <h1 class="success-title">${tr('shop.success.failed.title')}</h1>
+          <p class="success-desc">${tr('shop.success.failed.desc')}</p>
           <div class="success-actions">
-            <a href="checkout.html" class="btn primary">Riprova</a>
-            <a href="carrello.html" class="btn">Torna al Carrello</a>
+            <a href="checkout.html" class="btn primary">${tr('shop.success.retry')}</a>
+            <a href="carrello.html" class="btn">${tr('shop.back.cart')}</a>
           </div>`;
       }
     }

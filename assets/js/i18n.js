@@ -751,6 +751,9 @@ const TRANSLATIONS = {
     "shop.success.failed.desc": "Il pagamento non è andato a buon fine. Nessun importo è stato addebitato.",
     "shop.success.retry": "Riprova",
     "shop.back.cart": "Torna al Carrello",
+    "shop.success.verifying": "Verifica pagamento in corso…",
+    "shop.success.invalid.title": "Pagina non valida",
+    "shop.success.invalid.desc": "Torna al sito e riprova.",
     // Club Area Riservata
     "club.area.title": "Area Riservata",
     "club.area.tab.login": "Accedi",
@@ -1588,6 +1591,9 @@ const TRANSLATIONS = {
     "shop.success.failed.desc": "Your payment was not completed. No amount has been charged.",
     "shop.success.retry": "Try Again",
     "shop.back.cart": "Back to Cart",
+    "shop.success.verifying": "Verifying payment…",
+    "shop.success.invalid.title": "Invalid page",
+    "shop.success.invalid.desc": "Go back to the site and try again.",
     // Club Reserved Area
     "club.area.title": "Members Area",
     "club.area.tab.login": "Sign In",
@@ -2425,6 +2431,9 @@ const TRANSLATIONS = {
     "shop.success.failed.desc": "Ihre Zahlung wurde nicht abgeschlossen. Es wurde kein Betrag belastet.",
     "shop.success.retry": "Erneut versuchen",
     "shop.back.cart": "Zum Warenkorb",
+    "shop.success.verifying": "Zahlung wird überprüft…",
+    "shop.success.invalid.title": "Ungültige Seite",
+    "shop.success.invalid.desc": "Kehren Sie zur Website zurück und versuchen Sie es erneut.",
     // Club Mitgliederbereich
     "club.area.title": "Mitgliederbereich",
     "club.area.tab.login": "Anmelden",
@@ -3273,6 +3282,9 @@ const TRANSLATIONS = {
     "shop.success.failed.desc": "El pago no se ha completado. No se ha cargado ningún importe.",
     "shop.success.retry": "Reintentar",
     "shop.back.cart": "Volver al carrito",
+    "shop.success.verifying": "Verificando el pago…",
+    "shop.success.invalid.title": "Página no válida",
+    "shop.success.invalid.desc": "Vuelve al sitio e inténtalo de nuevo.",
     // Club Area Riservata
     "club.area.title": "Área Reservada",
     "club.area.tab.login": "Acceder",

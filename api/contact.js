@@ -21,7 +21,7 @@ function isAllowedOrigin(origin) {
 }
 
 const TYPES = ['club', 'capsule', 'info', 'altro'];
-const LANGS = ['IT', 'EN', 'DE'];
+const LANGS = ['IT', 'EN', 'DE', 'ES'];
 const MAX_SHORT = 120;
 const MAX_MESSAGE = 4000;
 
@@ -95,13 +95,14 @@ async function sendMail(payload) {
 
 /* ---- testi ---------------------------------------------------------------
 
-   Le tre lingue nascono dalla stessa struttura, come la mail al vincitore
+   Le quattro lingue nascono dalla stessa struttura, come la mail al vincitore
    della raffle: una modifica all'impaginazione vale per tutte. */
 
 const TYPE_LABEL = {
   IT: { club: 'Collezione Club', capsule: 'Capsule WFOX / SURFACES', info: 'Informazioni generali', altro: 'Altro' },
   EN: { club: 'Club Collection', capsule: 'WFOX / SURFACES Capsule', info: 'General information', altro: 'Other' },
   DE: { club: 'Club-Kollektion', capsule: 'WFOX / SURFACES Capsule', info: 'Allgemeine Informationen', altro: 'Sonstiges' },
+  ES: { club: 'Colección Club', capsule: 'Cápsulas WFOX / SURFACES', info: 'Información general', altro: 'Otro' },
 };
 
 const COPY_CLIENTE = {
@@ -146,6 +147,20 @@ const COPY_CLIENTE = {
         + 'diese E-Mail: Sie kommt direkt bei uns an.',
     close: 'Bis bald,',
     signature: 'Dein DOUBLEU Team',
+  },
+  ES: {
+    subject: 'Hemos recibido tu solicitud · DOUBLEU',
+    eyebrow: 'Solicitud recibida',
+    h1: 'Gracias, {nome}.',
+    lead: 'Tu solicitud nos ha llegado y ya está en manos de nuestro equipo. '
+        + 'Te responderemos personalmente <b>en un plazo de 24 horas laborables</b>.',
+    recapLabel: 'Tu mensaje',
+    typeLabel: 'Tipo de solicitud',
+    clubLabel: 'Club',
+    next: 'Si quieres añadir detalles, logotipos o referencias, responde a este email: '
+        + 'nos llega directamente.',
+    close: 'Hasta pronto,',
+    signature: 'El equipo DOUBLEU',
   },
 };
 

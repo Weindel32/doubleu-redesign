@@ -105,6 +105,8 @@
     @media (max-width: 560px) {
       .cl-pg { grid-template-columns: 1fr; }
       .cl-club-badge { display: none; }
+      /* su mobile la lingua si cambia dal selettore nel footer */
+      .cl-header-lang { display: none; }
     }
   </style>
 </head>
@@ -128,7 +130,7 @@
       <span class="cl-club-badge" id="cl-header-badge">Club</span>
       <div class="cl-header-right">
         <div class="cl-header-lang">
-          <a href="#" data-lang="it">IT</a> | <a href="#" data-lang="en">EN</a> | <a href="#" data-lang="de">DE</a>
+          <a href="#" data-lang="it">IT</a> | <a href="#" data-lang="en">EN</a> | <a href="#" data-lang="de">DE</a> | <a href="#" data-lang="es">ES</a>
         </div>
         <button class="cl-logout-btn" id="logout-btn" data-i18n="club.area.logout">Esci</button>
         <a class="cart-btn" href="carrello.html" aria-label="Carrello">
@@ -160,7 +162,8 @@
     <div class="cl-footer-lang">
       <a href="#" data-lang="it">IT</a> |
       <a href="#" data-lang="en">EN</a> |
-      <a href="#" data-lang="de">DE</a>
+      <a href="#" data-lang="de">DE</a> |
+      <a href="#" data-lang="es">ES</a>
     </div>
   </footer>
   <div class="cl-footer-legal">

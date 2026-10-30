@@ -366,6 +366,8 @@
             promoCode: promoApplied ? PROMO_CODE : null,
             // il paese decide zona, costo e soglia di spedizione
             shipping: { country },
+            // lingua della conferma d'ordine via email
+            lang: typeof getLang === 'function' ? getLang() : 'it',
           }),
         });
         const data = await resp.json();
@@ -387,7 +389,7 @@
 
       // 2. Initialize Stripe Elements
       document.getElementById('stripe-loading').style.display = '';
-      document.getElementById('stripe-loading').textContent = 'Caricamento metodo di pagamento…';
+      document.getElementById('stripe-loading').textContent = t('shop.checkout.loading', getLang());
       document.getElementById('btn-pay').disabled = true;
       if (paymentElement) { paymentElement.unmount(); paymentElement = null; }
 

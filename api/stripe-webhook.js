@@ -116,6 +116,14 @@ const COPY = {
     shipTo: 'Lieferung an', subtotal: 'Zwischensumme', shippingL: 'Versand',
     free: 'Kostenlos', total: 'Gesamt', questions: 'Bei Fragen antworte einfach auf diese E-Mail.',
   },
+  ES: {
+    subject: 'Tu pedido DOUBLEU',
+    hello: 'Gracias por tu pedido.',
+    lead: 'Lo preparamos a mano en nuestro taller y te avisaremos en cuanto salga.',
+    order: 'Pedido', items: 'Lo que has pedido', qty: 'Cant.',
+    shipTo: 'Envío a', subtotal: 'Total prendas', shippingL: 'Envío',
+    free: 'Gratuito', total: 'Total', questions: 'Para cualquier cosa, responde a este email.',
+  },
 };
 
 /* Le email si leggono in decine di programmi diversi, molti dei quali
@@ -258,7 +266,7 @@ module.exports = async (req, res) => {
       items: md.items || null,
       shipping_cents: Number(md.shipping_cents || 0) || 0,
       shipping_zone: md.shipping_zone || null,
-      lang: ['IT', 'EN', 'DE'].includes(md.lang) ? md.lang : 'IT',
+      lang: ['IT', 'EN', 'DE', 'ES'].includes(md.lang) ? md.lang : 'IT',
       status: 'paid',
     };
 

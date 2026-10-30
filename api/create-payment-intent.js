@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
   const stripe = (isPreviewOrigin(origin) && stripeTest) ? stripeTest : stripeLive;
 
   const { items, promoCode, shipping, lang } = req.body || {};
-  const customerLang = ['IT', 'EN', 'DE'].includes(String(lang || '').toUpperCase())
+  const customerLang = ['IT', 'EN', 'DE', 'ES'].includes(String(lang || '').toUpperCase())
     ? String(lang).toUpperCase() : 'IT';
 
   if (!items || !Array.isArray(items) || items.length === 0) {

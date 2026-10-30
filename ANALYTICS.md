@@ -19,7 +19,7 @@ unico file: **`assets/js/analytics.js`** (incluso in tutte le pagine HTML).
 GA4 usa cookie, quindi parte **solo dopo il consenso esplicito** dell'utente:
 
 - **Google Consent Mode v2** con default `denied`.
-- Banner cookie multilingua (IT/EN/DE) mostrato alla prima visita.
+- Banner cookie multilingua (IT/EN/DE/ES) mostrato alla prima visita.
 - La scelta è salvata nel cookie `cookie_consent` (1 anno), coerente con `cookie.html`.
 - IP anonimizzato (`anonymize_ip: true`).
 
@@ -41,7 +41,7 @@ Eventi standard GA4 (valuta EUR), generati dagli helper di `DWAnalytics`:
 | Evento | Dove scatta |
 |---|---|
 | `contact` | Click su un link email `mailto:` (qualsiasi pagina) — param `method: email` |
-| `select_language` | Cambio lingua IT/EN/DE (switcher in `i18n.js`) — param `language` |
+| `select_language` | Cambio lingua IT/EN/DE/ES (switcher in `i18n.js`) — param `language` |
 | `login` | Login Area Club riuscito (`area-club.html`) — param `method: password \| google` |
 
 ### Tracciare un evento custom

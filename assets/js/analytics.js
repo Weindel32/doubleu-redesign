@@ -21,7 +21,7 @@
 
   const isPlaceholder = !GA4_ID || GA4_ID.indexOf('XXXX') !== -1;
 
-  // --- i18n del banner (allineato a dw-lang: it | en | de) ------------------
+  // --- i18n del banner (allineato a dw-lang: it | en | de | es) ------------------
   const I18N = {
     it: {
       text: 'Usiamo cookie tecnici necessari e, previo tuo consenso, cookie analitici per migliorare il sito.',
@@ -40,6 +40,12 @@
       accept: 'Akzeptieren',
       reject: 'Ablehnen',
       policy: 'Cookie-Richtlinie',
+    },
+    es: {
+      text: 'Usamos cookies técnicas necesarias y, con tu consentimiento, cookies analíticas para mejorar el sitio.',
+      accept: 'Aceptar',
+      reject: 'Rechazar',
+      policy: 'Política de cookies',
     },
   };
 

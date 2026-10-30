@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Genera le versioni EN e DE (URL dedicati /en/ e /de/) delle pagine pubbliche
+// Genera le versioni EN, DE ed ES (URL dedicati /en/, /de/ e /es/) delle pagine pubbliche
 // a partire dalle pagine italiane e dalle traduzioni di assets/js/i18n.js.
 //
 // Le pagine italiane restano la fonte: dopo ogni modifica a una pagina tradotta
@@ -17,9 +17,9 @@ import vm from 'node:vm';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const SITE = 'https://www.doubleutennis.com';
-const LANGS = ['en', 'de'];
-const OG_LOCALE = { it: 'it_IT', en: 'en_GB', de: 'de_DE' };
-const IN_LANGUAGE = { it: 'it-IT', en: 'en', de: 'de-DE' };
+const LANGS = ['en', 'de', 'es'];
+const OG_LOCALE = { it: 'it_IT', en: 'en_GB', de: 'de_DE', es: 'es_ES' };
+const IN_LANGUAGE = { it: 'it-IT', en: 'en', de: 'de-DE', es: 'es-ES' };
 
 // Pagine con versione tradotta, con title e meta description per lingua.
 // Il title/description italiano resta quello scritto nella pagina sorgente.
@@ -29,78 +29,104 @@ const PAGES = {
          'DOUBLEU designs and manufactures custom sportswear in Italy for tennis, padel and pickleball clubs: school kits, staff apparel, off-court collections and member shops.'],
     de: ['DOUBLEU | Individuelle Tennisbekleidung für Vereine — Made in Italy',
          'DOUBLEU entwirft und produziert in Italien individuelle Sportbekleidung für Tennis-, Padel- und Pickleball-Vereine: Schulkits, Trainerbekleidung, Off-Court-Kollektionen und Mitgliedershops.'],
+    es: ['DOUBLEU | Ropa de tenis personalizada para clubes — Made in Italy',
+         'DOUBLEU diseña y fabrica en Italia ropa deportiva personalizada para clubes de tenis, pádel y pickleball: kits de escuela, ropa para el staff, colecciones off-court y tiendas para socios.'],
   },
   'club.html': {
     en: ['DOUBLEU | Custom Sportswear for Tennis and Padel Clubs — Made in Italy',
          'Premium custom tennis apparel for tennis, padel and pickleball clubs, designed and made in Italy: school kits, staff, off-court wear, club shops and members-only areas.'],
     de: ['DOUBLEU | Individuelle Sportbekleidung für Tennis- und Padelvereine — Made in Italy',
          'Hochwertige individuelle Tennisbekleidung für Tennis-, Padel- und Pickleball-Vereine, in Italien entworfen und gefertigt: Schulkits, Trainerteam, Off-Court, Vereinsshops und Mitgliederbereiche.'],
+    es: ['DOUBLEU | Ropa deportiva personalizada para clubes de tenis y pádel — Made in Italy',
+         'Ropa de tenis personalizada premium para clubes de tenis, pádel y pickleball, diseñada y fabricada en Italia: kits de escuela, staff, ropa off-court, tiendas del club y áreas reservadas para socios.'],
   },
   'capsule.html': {
     en: ['DOUBLEU | Capsule Collections — Limited-Edition Italian Tennis Apparel',
          'Explore the limited DOUBLEU capsules WFOX, GRASS and SURFACES: high-quality tennis apparel inspired by the culture of the game. Limited edition, made in Italy.'],
     de: ['DOUBLEU | Capsule Collections — Italienische Tennisbekleidung in limitierter Auflage',
          'Entdecken Sie die limitierten DOUBLEU-Capsules WFOX, GRASS und SURFACES: hochwertige Tennisbekleidung, inspiriert von der Kultur des Spiels. Limitierte Auflage, Made in Italy.'],
+    es: ['DOUBLEU | Capsule Collections — Ropa de tenis italiana de edición limitada',
+         'Descubre las cápsulas limitadas de DOUBLEU WFOX, GRASS y SURFACES: ropa de tenis de alta calidad inspirada en la cultura del juego. Edición limitada, Made in Italy.'],
   },
   'casestudies.html': {
     en: ['DOUBLEU | Case Studies — Custom Apparel for Tennis Clubs',
          'DOUBLEU custom tennis apparel projects: MTC Ausstellungspark (Munich), All Round Sport & Wellness (Rome) and SNAUWAERT. Club collections, dedicated shops and Made in Italy production.'],
     de: ['DOUBLEU | Case Studies — Individuelle Bekleidung für Tennisvereine',
          'DOUBLEU-Projekte für individuelle Tennisbekleidung: MTC Ausstellungspark (München), All Round Sport & Wellness (Rom) und SNAUWAERT. Vereinskollektionen, eigene Shops und Produktion Made in Italy.'],
+    es: ['DOUBLEU | Case Studies — Ropa personalizada para clubes de tenis',
+         'Proyectos DOUBLEU de ropa de tenis personalizada: MTC Ausstellungspark (Múnich), All Round Sport & Wellness (Roma) y SNAUWAERT. Colecciones de club, tiendas propias y producción Made in Italy.'],
   },
   'casestudies/mtc-ausstellungspark.html': {
     en: ['DOUBLEU × MTC Ausstellungspark (Munich) — Custom Tennis Club Apparel',
          'Bespoke club line and first online Club Shop for MTC Ausstellungspark, a historic Munich tennis club: Made in Italy match shirts, shorts and caps, with collective ordering.'],
     de: ['DOUBLEU × MTC Ausstellungspark (München) — Individuelle Bekleidung für Tennisvereine',
          'Maßgeschneiderte Vereinslinie und erster Online-Clubshop für den MTC Ausstellungspark, einen traditionsreichen Münchner Tennisverein: Spieltrikots, Shorts und Caps Made in Italy, mit Sammelbestellung.'],
+    es: ['DOUBLEU × MTC Ausstellungspark (Múnich) — Ropa personalizada para clubes de tenis',
+         'Línea de club a medida y primera Club Shop online para el MTC Ausstellungspark, histórico club de tenis de Múnich: camisetas de juego, pantalones cortos y gorras Made in Italy, con pedido colectivo.'],
   },
   'casestudies/all-round.html': {
     en: ['DOUBLEU × All Round Sport & Wellness (Rome) — Custom Tennis and Padel Apparel',
          'Bespoke collection for the tennis and padel schools of All Round Sport & Wellness in Rome: Essential Line, Premium Line for staff and competition, members-only area and in-club display.'],
     de: ['DOUBLEU × All Round Sport & Wellness (Rom) — Individuelle Tennis- und Padelbekleidung',
          'Maßgeschneiderte Kollektion für die Tennis- und Padelschulen von All Round Sport & Wellness in Rom: Essential Line, Premium Line für Trainerteam und Wettkampf, Mitgliederbereich und Ausstellungsfläche im Club.'],
+    es: ['DOUBLEU × All Round Sport & Wellness (Roma) — Ropa personalizada de tenis y pádel',
+         'Colección a medida para las escuelas de tenis y pádel de All Round Sport & Wellness en Roma: Essential Line, Línea Premium para staff y competición, área reservada para socios y espacio expositivo en el club.'],
   },
   'casestudies/snauwaert.html': {
     en: ['DOUBLEU × SNAUWAERT — Made in Italy Tennis Apparel Development and Production',
          "Since 2019 DOUBLEU has partnered with SNAUWAERT, the historic tennis brand founded in 1928, on the design, prototyping and Made in Italy production of men's and women's apparel collections."],
     de: ['DOUBLEU × SNAUWAERT — Entwicklung und Produktion von Tennisbekleidung Made in Italy',
          'Seit 2019 begleitet DOUBLEU die 1928 gegründete Traditionsmarke SNAUWAERT bei Design, Prototyping und Produktion Made in Italy von Herren- und Damenkollektionen.'],
+    es: ['DOUBLEU × SNAUWAERT — Desarrollo y producción de ropa de tenis Made in Italy',
+         'Desde 2019 DOUBLEU colabora con SNAUWAERT, la histórica marca de tenis fundada en 1928, en el diseño, el prototipado y la producción Made in Italy de sus colecciones de hombre y mujer.'],
   },
   'contatti.html': {
     en: ['DOUBLEU | Contact — Custom Tennis Apparel, Made in Italy',
          "Contact DOUBLEU about club projects, orders, shipping and capsule collections. Based in Cava de' Tirreni (SA), Italy — info@doubleutennis.com"],
     de: ['DOUBLEU | Kontakt — Individuelle Tennisbekleidung Made in Italy',
          "Kontaktieren Sie DOUBLEU für Vereinsprojekte, Bestellungen, Versand und Capsule Collections. Sitz in Cava de' Tirreni (SA), Italien — info@doubleutennis.com"],
+    es: ['DOUBLEU | Contacto — Ropa de tenis personalizada, Made in Italy',
+         "Contacta con DOUBLEU para proyectos de club, pedidos, envíos y capsule collections. Sede en Cava de' Tirreni (SA), Italia — info@doubleutennis.com"],
   },
   'lookbook.html': {
     en: ['DOUBLEU | Lookbook — Made in Italy Tennis Apparel Capsules',
          'Browse the DOUBLEU lookbook: photography of the WFOX, GRASS and SURFACES capsules. Limited-edition tennis apparel made in Italy.'],
     de: ['DOUBLEU | Lookbook — Tennisbekleidung Made in Italy',
          'Das DOUBLEU-Lookbook: Fotografien der Capsules WFOX, GRASS und SURFACES. Tennisbekleidung in limitierter Auflage, Made in Italy.'],
+    es: ['DOUBLEU | Lookbook — Cápsulas de ropa de tenis Made in Italy',
+         'Descubre el lookbook de DOUBLEU: fotografías de las cápsulas WFOX, GRASS y SURFACES. Ropa de tenis de edición limitada, Made in Italy.'],
   },
   'wfox.html': {
     en: ['DOUBLEU | WFOX — Be Your Nature | Made in Italy Tennis Capsule',
          "WFOX is DOUBLEU's first capsule: limited-edition tennis apparel in premium technical materials. Discover the Be Your Nature collection, made in Italy."],
     de: ['DOUBLEU | WFOX — Be Your Nature | Tennis-Capsule Made in Italy',
          'WFOX ist die erste DOUBLEU-Capsule: Tennisbekleidung in limitierter Auflage aus hochwertigen technischen Materialien. Entdecken Sie die Kollektion Be Your Nature, Made in Italy.'],
+    es: ['DOUBLEU | WFOX — Be Your Nature | Cápsula de tenis Made in Italy',
+         'WFOX es la primera cápsula de DOUBLEU: ropa de tenis de edición limitada en materiales técnicos premium. Descubre la colección Be Your Nature, Made in Italy.'],
   },
   'grass.html': {
     en: ['DOUBLEU | GRASS — Grass Court Tennis Capsule | Made in Italy',
          'GRASS is the DOUBLEU capsule dedicated to grass courts: limited-edition technical tennis apparel inspired by the tradition of grass-court tennis. Made in Italy.'],
     de: ['DOUBLEU | GRASS — Tennis-Capsule für Rasenplätze | Made in Italy',
          'GRASS ist die DOUBLEU-Capsule für den Rasen: technische Tennisbekleidung in limitierter Auflage, inspiriert von der Tradition des Rasentennis. Made in Italy.'],
+    es: ['DOUBLEU | GRASS — Cápsula de tenis para pista de hierba | Made in Italy',
+         'GRASS es la cápsula de DOUBLEU dedicada a la hierba: ropa técnica de tenis de edición limitada inspirada en la tradición del tenis sobre hierba. Made in Italy.'],
   },
   'surfaces.html': {
     en: ['DOUBLEU | SURFACES — A Decade On Court | Made in Italy Tennis Capsule',
          'SURFACES is the DOUBLEU capsule celebrating a decade on court. Three surfaces, three colours, one vision of Italian tennis. Limited edition, made in Italy.'],
     de: ['DOUBLEU | SURFACES — A Decade On Court | Tennis-Capsule Made in Italy',
          'SURFACES ist die DOUBLEU-Capsule, die ein Jahrzehnt auf dem Platz feiert. Drei Beläge, drei Farben, eine Vision des italienischen Tennis. Limitierte Auflage, Made in Italy.'],
+    es: ['DOUBLEU | SURFACES — A Decade On Court | Cápsula de tenis Made in Italy',
+         'SURFACES es la cápsula de DOUBLEU que celebra una década en la pista. Tres superficies, tres colores, una visión del tenis italiano. Edición limitada, Made in Italy.'],
   },
   'clay.html': {
     en: ['DOUBLEU | CLAY — Clay Court Tennis Capsule | Made in Italy',
          'CLAY is the SURFACES variant dedicated to clay courts: limited-edition technical tennis apparel made in Italy, in warm colours and premium materials.'],
     de: ['DOUBLEU | CLAY — Tennis-Capsule für Sandplätze | Made in Italy',
          'CLAY ist die SURFACES-Variante für Sandplätze: technische Tennisbekleidung in limitierter Auflage, Made in Italy, in warmen Farben und hochwertigen Materialien.'],
+    es: ['DOUBLEU | CLAY — Cápsula de tenis para tierra batida | Made in Italy',
+         'CLAY es la variante de SURFACES dedicada a la tierra batida: ropa técnica de tenis de edición limitada, Made in Italy, en colores cálidos y materiales premium.'],
   },
 };
 
@@ -109,79 +135,85 @@ const JSONLD_TEXT = {
   'DOUBLEU è un brand italiano che progetta e produce in Italia abbigliamento sportivo personalizzato premium per club di tennis, padel e pickleball: kit scuola, abbigliamento staff, collezioni off-court, shop club e aree riservate ai soci. Realizza inoltre capsule collection in edizione limitata.': {
     en: 'DOUBLEU is an Italian brand that designs and manufactures premium custom sportswear in Italy for tennis, padel and pickleball clubs: school kits, staff apparel, off-court collections, club shops and members-only areas. It also creates limited-edition capsule collections.',
     de: 'DOUBLEU ist eine italienische Marke, die in Italien hochwertige individuelle Sportbekleidung für Tennis-, Padel- und Pickleball-Vereine entwirft und produziert: Schulkits, Trainerbekleidung, Off-Court-Kollektionen, Vereinsshops und Mitgliederbereiche. Dazu kommen Capsule Collections in limitierter Auflage.',
+    es: 'DOUBLEU es una marca italiana que diseña y fabrica en Italia ropa deportiva personalizada premium para clubes de tenis, pádel y pickleball: kits de escuela, ropa para el staff, colecciones off-court, tiendas del club y áreas reservadas para socios. Además, crea capsule collections de edición limitada.',
   },
-  'Abbigliamento sportivo personalizzato': { en: 'Custom sportswear', de: 'Individuelle Sportbekleidung' },
-  'Abbigliamento tennis personalizzato per club': { en: 'Custom tennis club apparel', de: 'Individuelle Tennisbekleidung für Vereine' },
-  'Abbigliamento padel personalizzato': { en: 'Custom padel apparel', de: 'Individuelle Padelbekleidung' },
-  'Abbigliamento pickleball personalizzato': { en: 'Custom pickleball apparel', de: 'Individuelle Pickleballbekleidung' },
+  'Abbigliamento sportivo personalizzato': { en: 'Custom sportswear', de: 'Individuelle Sportbekleidung', es: 'Ropa deportiva personalizada' },
+  'Abbigliamento tennis personalizzato per club': { en: 'Custom tennis club apparel', de: 'Individuelle Tennisbekleidung für Vereine', es: 'Ropa de tenis personalizada para clubes' },
+  'Abbigliamento padel personalizzato': { en: 'Custom padel apparel', de: 'Individuelle Padelbekleidung', es: 'Ropa de pádel personalizada' },
+  'Abbigliamento pickleball personalizzato': { en: 'Custom pickleball apparel', de: 'Individuelle Pickleballbekleidung', es: 'Ropa de pickleball personalizada' },
   'Abbigliamento sportivo personalizzato per club di tennis, padel e pickleball': {
     en: 'Custom sportswear for tennis, padel and pickleball clubs',
     de: 'Individuelle Sportbekleidung für Tennis-, Padel- und Pickleball-Vereine',
+    es: 'Ropa deportiva personalizada para clubes de tenis, pádel y pickleball',
   },
   'Progettazione e produzione di abbigliamento sportivo personalizzato': {
     en: 'Design and manufacturing of custom sportswear',
     de: 'Design und Produktion individueller Sportbekleidung',
+    es: 'Diseño y fabricación de ropa deportiva personalizada',
   },
   "DOUBLEU sviluppa collezioni su misura attorno all'identità del club: kit scuola tennis e padel, abbigliamento staff, abbigliamento off-court, soluzioni shop club e aree riservate ai soci. Produzione in Italia.": {
     en: "DOUBLEU develops bespoke collections around the club's identity: tennis and padel school kits, staff apparel, off-court apparel, club shop solutions and members-only areas. Made in Italy.",
     de: 'DOUBLEU entwickelt maßgeschneiderte Kollektionen rund um die Identität des Vereins: Tennis- und Padel-Schulkits, Trainerbekleidung, Off-Court-Bekleidung, Vereinsshop-Lösungen und Mitgliederbereiche. Produktion in Italien.',
+    es: 'DOUBLEU desarrolla colecciones a medida en torno a la identidad del club: kits de escuela de tenis y pádel, ropa para el staff, ropa off-court, soluciones de tienda del club y áreas reservadas para socios. Producción en Italia.',
   },
   'Club di tennis, padel e pickleball, scuole tennis e accademie': {
     en: 'Tennis, padel and pickleball clubs, tennis schools and academies',
     de: 'Tennis-, Padel- und Pickleball-Vereine, Tennisschulen und Akademien',
+    es: 'Clubes de tenis, pádel y pickleball, escuelas de tenis y academias',
   },
-  'Case Studies DOUBLEU': { en: 'DOUBLEU Case Studies', de: 'DOUBLEU Case Studies' },
-  'Tennis club di Monaco di Baviera, Germania': { en: 'Tennis club in Munich, Germany', de: 'Tennisverein in München, Deutschland' },
+  'Case Studies DOUBLEU': { en: 'DOUBLEU Case Studies', de: 'DOUBLEU Case Studies', es: 'Case Studies DOUBLEU' },
+  'Tennis club di Monaco di Baviera, Germania': { en: 'Tennis club in Munich, Germany', de: 'Tennisverein in München, Deutschland', es: 'Club de tenis en Múnich, Alemania' },
   'Centro sportivo con scuola tennis e scuola padel a Roma, Italia': {
     en: 'Sports centre with a tennis school and a padel school in Rome, Italy',
     de: 'Sportzentrum mit Tennis- und Padelschule in Rom, Italien',
+    es: 'Centro deportivo con escuela de tenis y escuela de pádel en Roma, Italia',
   },
-  'Marchio storico del tennis internazionale': { en: 'Historic international tennis brand', de: 'Traditionsmarke des internationalen Tennis' },
+  'Marchio storico del tennis internazionale': { en: 'Historic international tennis brand', de: 'Traditionsmarke des internationalen Tennis', es: 'Marca histórica del tenis internacional' },
 };
 
 // Testi alternativi delle immagini (alt) che non coincidono con un testo di i18n.js.
 // Nomi propri e nomi di prodotto restano invariati (ALT_KEEP).
 const ALT_TEXT = {
-  'Atleti in campo con abbigliamento DOUBLEU': { en: 'Players on court wearing DOUBLEU apparel', de: 'Spieler auf dem Platz in DOUBLEU-Bekleidung' },
-  'Abbigliamento tennis personalizzato DOUBLEU per club': { en: 'DOUBLEU custom tennis apparel for clubs', de: 'Individuelle DOUBLEU-Tennisbekleidung für Vereine' },
-  'Capsule Limitate DOUBLEU': { en: 'DOUBLEU limited capsules', de: 'Limitierte DOUBLEU-Capsules' },
-  'Collezioni Club': { en: 'Club collections', de: 'Vereinskollektionen' },
-  'Cultura Tennis': { en: 'Tennis culture', de: 'Tenniskultur' },
-  'Artigianale': { en: 'Craftsmanship', de: 'Handwerk' },
-  'Italia': { en: 'Italy', de: 'Italien' },
-  'Materiali': { en: 'Materials', de: 'Materialien' },
-  'Materiali selezionati': { en: 'Selected materials', de: 'Ausgewählte Materialien' },
-  'Materiali Premium': { en: 'Premium materials', de: 'Premium-Materialien' },
-  'Produzione': { en: 'Production', de: 'Produktion' },
-  'Produzione artigianale': { en: 'Artisanal production', de: 'Handwerkliche Produktion' },
-  'Produzione Made in Italy': { en: 'Made in Italy production', de: 'Produktion Made in Italy' },
-  'Personalizzazione': { en: 'Customisation', de: 'Personalisierung' },
-  'Tempi chiari': { en: 'Clear timelines', de: 'Klare Zeitpläne' },
-  'Tirature Limitate': { en: 'Limited runs', de: 'Limitierte Auflagen' },
-  'Lucchetto': { en: 'Padlock', de: 'Vorhängeschloss' },
-  'Gruccia': { en: 'Hanger', de: 'Kleiderbügel' },
-  'Staff': { en: 'Staff', de: 'Trainerteam' },
-  'Conferma': { en: 'Confirmation', de: 'Freigabe' },
-  'Distinta Taglie': { en: 'Size list', de: 'Größenliste' },
-  'Consegna': { en: 'Delivery', de: 'Lieferung' },
-  'T-Shirt Uomo': { en: "Men's T-shirt", de: 'Herren-T-Shirt' },
-  'T-Shirt Donna': { en: "Women's T-shirt", de: 'Damen-T-Shirt' },
-  'Collezione Club MTC': { en: 'MTC club collection', de: 'MTC-Vereinskollektion' },
-  'Ordine Collettivo MTC': { en: 'MTC collective order', de: 'MTC-Sammelbestellung' },
-  'Festa di Natale MTC': { en: 'MTC Christmas party', de: 'MTC-Weihnachtsfeier' },
-  'Linea Premium All Round': { en: 'All Round Premium Line', de: 'All Round Premium Line' },
-  'Area Soci All Round': { en: 'All Round members area', de: 'All Round Mitgliederbereich' },
-  'Design e Sviluppo Collezione': { en: 'Collection design and development', de: 'Kollektionsdesign und -entwicklung' },
-  'WFOX — coppia al tennis club': { en: 'WFOX — couple at the tennis club', de: 'WFOX — Paar im Tennisclub' },
-  'WFOX — Lifestyle fuori dal campo': { en: 'WFOX — off-court lifestyle', de: 'WFOX — Lifestyle abseits des Platzes' },
-  'WFOX indossato': { en: 'WFOX worn', de: 'WFOX getragen' },
-  'T-shirt verde WFOX': { en: 'WFOX green T-shirt', de: 'Grünes WFOX-T-Shirt' },
-  'Felpa WFOX': { en: 'WFOX sweatshirt', de: 'WFOX-Sweatshirt' },
-  'Felpa SURFACES Clay': { en: 'SURFACES Clay sweatshirt', de: 'SURFACES Clay Sweatshirt' },
-  'SURFACES — Attrezzatura sul campo in terra': { en: 'SURFACES — gear on a clay court', de: 'SURFACES — Ausrüstung auf dem Sandplatz' },
-  'SURFACES Collection — CLAY e GRASS': { en: 'SURFACES Collection — CLAY and GRASS', de: 'SURFACES Collection — CLAY und GRASS' },
-  'Il progetto SURFACES': { en: 'The SURFACES project', de: 'Das Projekt SURFACES' },
-  'GRASS — Patch ricamata': { en: 'GRASS — embroidered patch', de: 'GRASS — gestickter Aufnäher' },
+  'Atleti in campo con abbigliamento DOUBLEU': { en: 'Players on court wearing DOUBLEU apparel', de: 'Spieler auf dem Platz in DOUBLEU-Bekleidung', es: 'Jugadores en la pista con ropa DOUBLEU' },
+  'Abbigliamento tennis personalizzato DOUBLEU per club': { en: 'DOUBLEU custom tennis apparel for clubs', de: 'Individuelle DOUBLEU-Tennisbekleidung für Vereine', es: 'Ropa de tenis personalizada DOUBLEU para clubes' },
+  'Capsule Limitate DOUBLEU': { en: 'DOUBLEU limited capsules', de: 'Limitierte DOUBLEU-Capsules', es: 'Cápsulas limitadas DOUBLEU' },
+  'Collezioni Club': { en: 'Club collections', de: 'Vereinskollektionen', es: 'Colecciones Club' },
+  'Cultura Tennis': { en: 'Tennis culture', de: 'Tenniskultur', es: 'Cultura del tenis' },
+  'Artigianale': { en: 'Craftsmanship', de: 'Handwerk', es: 'Artesanía' },
+  'Italia': { en: 'Italy', de: 'Italien', es: 'Italia' },
+  'Materiali': { en: 'Materials', de: 'Materialien', es: 'Materiales' },
+  'Materiali selezionati': { en: 'Selected materials', de: 'Ausgewählte Materialien', es: 'Materiales seleccionados' },
+  'Materiali Premium': { en: 'Premium materials', de: 'Premium-Materialien', es: 'Materiales premium' },
+  'Produzione': { en: 'Production', de: 'Produktion', es: 'Producción' },
+  'Produzione artigianale': { en: 'Artisanal production', de: 'Handwerkliche Produktion', es: 'Producción artesanal' },
+  'Produzione Made in Italy': { en: 'Made in Italy production', de: 'Produktion Made in Italy', es: 'Producción Made in Italy' },
+  'Personalizzazione': { en: 'Customisation', de: 'Personalisierung', es: 'Personalización' },
+  'Tempi chiari': { en: 'Clear timelines', de: 'Klare Zeitpläne', es: 'Plazos claros' },
+  'Tirature Limitate': { en: 'Limited runs', de: 'Limitierte Auflagen', es: 'Tiradas limitadas' },
+  'Lucchetto': { en: 'Padlock', de: 'Vorhängeschloss', es: 'Candado' },
+  'Gruccia': { en: 'Hanger', de: 'Kleiderbügel', es: 'Percha' },
+  'Staff': { en: 'Staff', de: 'Trainerteam', es: 'Staff' },
+  'Conferma': { en: 'Confirmation', de: 'Freigabe', es: 'Aprobación' },
+  'Distinta Taglie': { en: 'Size list', de: 'Größenliste', es: 'Lista de tallas' },
+  'Consegna': { en: 'Delivery', de: 'Lieferung', es: 'Entrega' },
+  'T-Shirt Uomo': { en: "Men's T-shirt", de: 'Herren-T-Shirt', es: 'Camiseta de hombre' },
+  'T-Shirt Donna': { en: "Women's T-shirt", de: 'Damen-T-Shirt', es: 'Camiseta de mujer' },
+  'Collezione Club MTC': { en: 'MTC club collection', de: 'MTC-Vereinskollektion', es: 'Colección club MTC' },
+  'Ordine Collettivo MTC': { en: 'MTC collective order', de: 'MTC-Sammelbestellung', es: 'Pedido colectivo MTC' },
+  'Festa di Natale MTC': { en: 'MTC Christmas party', de: 'MTC-Weihnachtsfeier', es: 'Fiesta de Navidad MTC' },
+  'Linea Premium All Round': { en: 'All Round Premium Line', de: 'All Round Premium Line', es: 'Línea Premium All Round' },
+  'Area Soci All Round': { en: 'All Round members area', de: 'All Round Mitgliederbereich', es: 'Área de socios All Round' },
+  'Design e Sviluppo Collezione': { en: 'Collection design and development', de: 'Kollektionsdesign und -entwicklung', es: 'Diseño y desarrollo de la colección' },
+  'WFOX — coppia al tennis club': { en: 'WFOX — couple at the tennis club', de: 'WFOX — Paar im Tennisclub', es: 'WFOX — pareja en el club de tenis' },
+  'WFOX — Lifestyle fuori dal campo': { en: 'WFOX — off-court lifestyle', de: 'WFOX — Lifestyle abseits des Platzes', es: 'WFOX — lifestyle fuera de la pista' },
+  'WFOX indossato': { en: 'WFOX worn', de: 'WFOX getragen', es: 'WFOX puesto' },
+  'T-shirt verde WFOX': { en: 'WFOX green T-shirt', de: 'Grünes WFOX-T-Shirt', es: 'Camiseta verde WFOX' },
+  'Felpa WFOX': { en: 'WFOX sweatshirt', de: 'WFOX-Sweatshirt', es: 'Sudadera WFOX' },
+  'Felpa SURFACES Clay': { en: 'SURFACES Clay sweatshirt', de: 'SURFACES Clay Sweatshirt', es: 'Sudadera SURFACES Clay' },
+  'SURFACES — Attrezzatura sul campo in terra': { en: 'SURFACES — gear on a clay court', de: 'SURFACES — Ausrüstung auf dem Sandplatz', es: 'SURFACES — equipamiento en una pista de tierra batida' },
+  'SURFACES Collection — CLAY e GRASS': { en: 'SURFACES Collection — CLAY and GRASS', de: 'SURFACES Collection — CLAY und GRASS', es: 'SURFACES Collection — CLAY y GRASS' },
+  'Il progetto SURFACES': { en: 'The SURFACES project', de: 'Das Projekt SURFACES', es: 'El proyecto SURFACES' },
+  'GRASS — Patch ricamata': { en: 'GRASS — embroidered patch', de: 'GRASS — gestickter Aufnäher', es: 'GRASS — parche bordado' },
 };
 const ALT_KEEP = new Set([
   '', 'Snauwaert', 'MTC Ausstellungspark', 'All Round', 'All Round Sport & Wellness', 'WFOX', 'WFOX — Be Your Nature', 'WFOX Logo', 'WFOX Logo Tee',
@@ -326,7 +358,7 @@ function setAlternates(html, page) {
 
 // Link del selettore lingua verso le versioni della pagina (utili anche ai crawler)
 const setLangSwitchLinks = (html, page) =>
-  html.replace(/<a href="[^"]*" data-lang="(it|en|de)">/g, (_m, l) => `<a href="${publicPath(page, l)}" data-lang="${l}">`);
+  html.replace(/<a href="[^"]*" data-lang="(it|en|de|es)">/g, (_m, l) => `<a href="${publicPath(page, l)}" data-lang="${l}">`);
 
 function setMeta(html, attr, name, value) {
   const re = new RegExp(`(<meta ${attr}="${name}" content=")[^"]*(")`);
@@ -370,10 +402,14 @@ function translateJsonLd(html, page, lang, textMap) {
   const untranslated = new Set();
   const out = html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/g, (m, a, body, c) => {
     if (body.includes('${')) return m;
-    const data = walk(JSON.parse(body), false);
-    // segnala i testi italiani rimasti (lunghi e con spazi: non nomi propri o URL)
+    const source = JSON.parse(body);
+    const data = walk(source, false);
+    // segnala i testi italiani rimasti uguali all'originale (lunghi e con spazi: non nomi propri o URL);
+    // il confronto con l'originale evita falsi allarmi su parole comuni ad altre lingue (es. "la", "con")
+    const itStrings = new Set();
+    JSON.stringify(source, (k, v) => { if (typeof v === 'string') itStrings.add(v); return v; });
     JSON.stringify(data, (k, v) => {
-      if (typeof v === 'string' && v.includes(' ') && !v.startsWith('http') && /[àèìòù]|\b(di|per|e|il|la|con)\b/.test(v)) untranslated.add(v);
+      if (typeof v === 'string' && itStrings.has(v) && v.includes(' ') && !v.startsWith('http') && /[àèìòù]|\b(di|per|e|il|la|con)\b/.test(v)) untranslated.add(v);
       return v;
     });
     return a + '\n' + JSON.stringify(data, null, 2).replace(/^/gm, '  ') + '\n  ' + c;
